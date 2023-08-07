@@ -32,7 +32,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'unique:users,name','min:6'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'username' => ['required', 'unique:users,username', 'min:6'],
+            'password' => 'required'
+        ]);
+        $validatedData['is_admin'] = true;
+        $validatedData['password'] = bcrypt($request->input('password'));
+        // return $validatedData;
+        User::create($validatedData);
+        return back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -64,6 +75,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back()->with('success', "Data Berhasil dihapus");
     }
 }

@@ -28,4 +28,4 @@ Route::post('/login', [LoginController::class, 'login']);
 // Admin Route
 
 //User Route
-Route::resource('/admin-user', UserController::class)->middleware('admin');
+Route::resource('/admin-user', UserController::class)->parameters(['admin-user'=> 'user'])->middleware('admin');
