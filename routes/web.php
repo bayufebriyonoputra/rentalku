@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+})->name('login');
+Route::get('/tes', function () {
+    return view('admin.main');
 });
+
+//Login Route
+Route::post('/login', [LoginController::class, 'login']);
+
+// Admin Route
+
+//User Route
+Route::resource('/admin-user', UserController::class)->middleware('admin');
