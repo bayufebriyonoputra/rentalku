@@ -150,7 +150,7 @@
                         <td>{{ $u->email }}</td>
                         <td>{{ $u->username }}</td>
                         <td>{{ $u->is_admin ? 'Admin' : 'Karyawan' }}</td>
-                        <td><a href="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <td><a href="/admin-user/{{ $u->id }}/edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                             <form action="/admin-user/{{ $u->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf

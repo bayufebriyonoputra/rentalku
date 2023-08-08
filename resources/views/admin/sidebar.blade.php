@@ -6,7 +6,7 @@
         <span class="hide-menu">Admin Menu</span>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html" aria-expanded="false">
+        <a class="sidebar-link" href="/admin-user" aria-expanded="false">
           <span>
             <i class="fa-solid fa-user-group"></i>
           </span>
