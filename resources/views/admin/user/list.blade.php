@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('main.main')
 @section('head')
     <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
     <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>

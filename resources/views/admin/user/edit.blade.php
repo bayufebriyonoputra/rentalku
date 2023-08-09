@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('main.main')
 @section('content')
     <div class="card">
         <div class="card-title">

@@ -27,7 +27,7 @@
             <i class="ti ti-x fs-8"></i>
           </div>
         </div>
-        @include('admin.sidebar')
+        @include('main.sidebar')
       </div>
       <!-- End Sidebar scroll-->
     </aside>

@@ -17,7 +17,8 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/admin-user');
+            if(Auth::user()->is_admin) return redirect()->intended('/admin-user');
+            return redirect()->intended('/kategori');
         }
 
         return back()->with('error', 'Username atau Password Salah');

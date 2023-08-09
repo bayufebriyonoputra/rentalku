@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -29,3 +30,8 @@ Route::post('/login', [LoginController::class, 'login']);
 
 //User Route
 Route::resource('/admin-user', UserController::class)->parameters(['admin-user'=> 'user'])->middleware('admin');
+
+// Karyawan Route
+
+// Kategori
+Route::resource('/kategori', KategoriController::class)->middleware('auth');

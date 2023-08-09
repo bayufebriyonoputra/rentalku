@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             'username' => 'bagas31',
             'password' => bcrypt('123')
         ]);
+
+        $this->call(KategoriSeeder::class);
     }
 
 
