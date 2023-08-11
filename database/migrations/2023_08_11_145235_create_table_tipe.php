@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('tipe', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('merk_id');
+            $table->string('barcode')->nullable();
+            $table->string('tipe');
+            $table->integer('tarif_sewa');
+            $table->integer('komisi_kirim');
+            $table->integer('komisi_ambil');
+            $table->string('satuan');
+            $table->string('saldo_awal');
+            $table->integer('stock');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

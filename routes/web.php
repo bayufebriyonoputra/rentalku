@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\TipeController;
+use App\Models\Merk;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,12 @@ Route::get('/tes', function () {
     return view('admin.main');
 });
 
+// Route API
+Route::get('/getMerk', function(Request $request){
+    $merk = Merk::where('kategori_id', $request->KategoriId)->get()->pluck('id', 'merk');
+    return response()->json($merk);
+});
+
 //Login Route
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -38,3 +47,5 @@ Route::resource('/admin-user', UserController::class)->parameters(['admin-user'=
 Route::resource('/kategori', KategoriController::class)->middleware('auth');
 // Merk
 Route::resource('/merk', MerkController::class)->middleware('auth');
+// Tipe
+Route::resource('/tipe', TipeController::class)->middleware('auth');
