@@ -30,11 +30,11 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+            <a class="sidebar-link" href="/merk" aria-expanded="false">
                 <span>
-                    <i class="ti ti-alert-circle"></i>
+                    <i class="fa-brands fa-bandcamp"></i>
                 </span>
-                <span class="hide-menu">Alerts</span>
+                <span class="hide-menu">Merk</span>
             </a>
         </li>
         <li class="sidebar-item">

@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-title">
             <div class="container">
-                <h3 class="mt-3 ms-4">Edit Data User</h3>
+                <h3 class="mt-3 ms-4">Edit Data Kategori</h3>
             </div>
         </div>
         <div class="card-body">

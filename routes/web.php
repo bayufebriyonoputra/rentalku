@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MerkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,5 @@ Route::resource('/admin-user', UserController::class)->parameters(['admin-user'=
 
 // Kategori
 Route::resource('/kategori', KategoriController::class)->middleware('auth');
+// Merk
+Route::resource('/merk', MerkController::class)->middleware('auth');
