@@ -21,6 +21,9 @@
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">Database Produk</span>
         </li>
+
+
+
         <li class="sidebar-item">
             <a class="sidebar-link" href="/kategori" aria-expanded="false">
                 <span>
@@ -45,12 +48,16 @@
                 <span class="hide-menu">Tipe</span>
             </a>
         </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Database</span>
+        </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+            <a class="sidebar-link" href="/karyawan" aria-expanded="false">
                 <span>
-                    <i class="ti ti-file-description"></i>
+                    <i class="fa-solid fa-person"></i>
                 </span>
-                <span class="hide-menu">Forms</span>
+                <span class="hide-menu">Karyawan</span>
             </a>
         </li>
         <li class="sidebar-item">

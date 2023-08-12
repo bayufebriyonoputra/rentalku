@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
@@ -49,3 +50,5 @@ Route::resource('/kategori', KategoriController::class)->middleware('auth');
 Route::resource('/merk', MerkController::class)->middleware('auth');
 // Tipe
 Route::resource('/tipe', TipeController::class)->middleware('auth');
+// Karyawan
+Route::resource('/karyawan', KaryawanController::class)->middleware('auth');
