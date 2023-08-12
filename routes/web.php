@@ -6,6 +6,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TipeController;
 use App\Models\Merk;
 use Illuminate\Http\Request;
@@ -52,3 +53,5 @@ Route::resource('/merk', MerkController::class)->middleware('auth');
 Route::resource('/tipe', TipeController::class)->middleware('auth');
 // Karyawan
 Route::resource('/karyawan', KaryawanController::class)->middleware('auth');
+// Pelanggan
+Route::resource('/pelanggan', PelangganController::class)->middleware('auth');

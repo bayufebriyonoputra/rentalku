@@ -61,11 +61,11 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+            <a class="sidebar-link" href="/pelanggan" aria-expanded="false">
                 <span>
-                    <i class="ti ti-typography"></i>
+                    <i class="fa-solid fa-people-group"></i>
                 </span>
-                <span class="hide-menu">Typography</span>
+                <span class="hide-menu">Pelanggan</span>
             </a>
         </li>
         <li class="nav-small-cap">
