@@ -70,22 +70,22 @@
         </li>
         <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">AUTH</span>
+            <span class="hide-menu">Transaksi</span>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+            <a class="sidebar-link" href="/transaksi-sewa" aria-expanded="false">
                 <span>
-                    <i class="ti ti-login"></i>
+                    <i class="fa-solid fa-retweet"></i>
                 </span>
-                <span class="hide-menu">Login</span>
+                <span class="hide-menu">Penyewaan Barang</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+            <a class="sidebar-link" href="/pengiriman" aria-expanded="false">
                 <span>
-                    <i class="ti ti-user-plus"></i>
+                    <i class="fa-solid fa-truck"></i>
                 </span>
-                <span class="hide-menu">Register</span>
+                <span class="hide-menu">Pengiriman Barang</span>
             </a>
         </li>
         <li class="nav-small-cap">

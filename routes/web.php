@@ -7,8 +7,11 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
+use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Merk;
+use App\Models\Tipe;
 use Illuminate\Http\Request;
 
 /*
@@ -34,6 +37,14 @@ Route::get('/getMerk', function(Request $request){
     $merk = Merk::where('kategori_id', $request->KategoriId)->get()->pluck('id', 'merk');
     return response()->json($merk);
 });
+Route::get('/getTipe', function(Request $request){
+    $tipe = Tipe::where('merk_id', $request->merk_id)->get()->pluck('id', 'tipe');
+    return response()->json($tipe);
+});
+Route::get('/tipeDetail', function(Request $request){
+    $tipe = Tipe::where('id', $request->tipe_id)->first();
+    return response()->json($tipe);
+});
 
 //Login Route
 Route::post('/login', [LoginController::class, 'login']);
@@ -55,3 +66,14 @@ Route::resource('/tipe', TipeController::class)->middleware('auth');
 Route::resource('/karyawan', KaryawanController::class)->middleware('auth');
 // Pelanggan
 Route::resource('/pelanggan', PelangganController::class)->middleware('auth');
+
+// Transaksi
+Route::get('/transaksi-sewa', [TransaksiController::class, 'listTransaksiSewa'])->middleware('auth');
+Route::post('/transaksi-sewa', [TransaksiController::class, 'storeSewa'])->middleware('auth');
+Route::get('/transaksi-sewa/{transaksi}/edit', [TransaksiController::class, 'detailSewa'])->middleware('auth');
+Route::post('/transaksi-sewa/detailOrder', [TransaksiController::class, 'isiDetailOrder'])->middleware('auth');
+Route::post('/transaksi-sewa/detailOrder/update', [TransaksiController::class, 'updateOrder'])->middleware('auth');
+Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, 'hapusOrdet'])->middleware('auth');
+
+// Transaksi Pengiriman Barang
+Route::get('/pengiriman', [PengirimanBarangController::class,'index'])->middleware('auth');
