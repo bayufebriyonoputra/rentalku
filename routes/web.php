@@ -9,7 +9,9 @@ use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
+use App\Http\Controllers\Transaksi\AbsensiController;
 use App\Http\Controllers\Transaksi\TransaksiController;
+use App\Models\Karyawan;
 use App\Models\Merk;
 use App\Models\Tipe;
 use Illuminate\Http\Request;
@@ -45,6 +47,10 @@ Route::get('/tipeDetail', function(Request $request){
     $tipe = Tipe::where('id', $request->tipe_id)->first();
     return response()->json($tipe);
 });
+Route::get('/getKaryawan', function(Request $request){
+    $karyawan = Karyawan::where('id', $request->karyawan_id)->first();
+    return response()->json($karyawan);
+});
 
 //Login Route
 Route::post('/login', [LoginController::class, 'login']);
@@ -79,3 +85,6 @@ Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, '
 Route::get('/pengiriman', [PengirimanBarangController::class,'index'])->middleware('auth');
 Route::get('/pengiriman/cari', [PengirimanBarangController::class,'detailSewa'])->middleware('auth');
 Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim'])->middleware('auth');
+
+// Absensi
+Route::resource('/absensi', AbsensiController::class)->middleware('auth');

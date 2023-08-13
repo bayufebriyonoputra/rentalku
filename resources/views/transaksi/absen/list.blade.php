@@ -30,7 +30,7 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Catat Absen</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/kategori" method="POST">
+                <form action="/absensi" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -39,6 +39,7 @@
                             </div>
                             <div class="col-md-9">
                                 <select name="karyawan_id" id="KaryawanId" class="form-select" required>
+                                    <option value="" disabled selected>---Pilih Karyawan---</option>
                                     @foreach ($karyawan as $k)
                                         <option value="{{ $k->id }}">{{ $k->nama }}</option>
                                     @endforeach
@@ -51,7 +52,8 @@
                                 <label for="Tanggal">Tanggal</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="date" class="form-control" name="tanggal" value="{{ now()->format('d-m-Y') }}" required>
+                                <input type="date" class="form-control" name="tanggal"
+                                    value="{{ now()->format('Y-m-d') }}" required>
                             </div>
                         </div>
 
@@ -60,10 +62,10 @@
                                 <label for="Shift">Shift</label>
                             </div>
                             <div class="col-md-9">
-                               <select name="shift" id="Shift" class="form-select" required>
-                                <option value="Shift 1">Shift 1</option>
-                                <option value="Shift 2">Shift 2</option>
-                               </select>
+                                <select name="shift" id="Shift" class="form-select" required>
+                                    <option value="Shift 1">Shift 1</option>
+                                    <option value="Shift 2">Shift 2</option>
+                                </select>
                             </div>
                         </div>
 
@@ -71,11 +73,14 @@
                             <div class="col-md-3">
                                 <label for="Shift">Lembur</label>
                             </div>
-                            <div class="col-md-5">
-                               <input type="time" id="start" class="form-control">
+                            <div class="col-md-4">
+                                <input type="time" id="start" class="form-control">
+                            </div>
+                            <div class="col-md-1">
+                                <p><b>-</b></p>
                             </div>
                             <div class="col-md-4">
-                               <input type="time" id="finish" class="form-control">
+                                <input type="time" id="finish" class="form-control">
                             </div>
                         </div>
 
@@ -84,7 +89,8 @@
                                 <label for="UangHarian">Uang Harian/Shift</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="number" class="form-control" id="UangHarian" name="uang_harian" placeholder="Rp." required>
+                                <input type="number" class="form-control" id="UangHarian" name="uang_harian"
+                                    placeholder="Rp." readonly required>
                             </div>
                         </div>
 
@@ -93,24 +99,27 @@
                                 <label for="UangMakan">Uang Makan/Hari</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="number" class="form-control" id="UangMakan" name="uang_makan" placeholder="Rp." required>
+                                <input type="number" class="form-control" id="UangMakan" name="uang_makan"
+                                    placeholder="Rp." readonly required>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-md-3">
-                                <label for="UpahLembur">Upah Lembur/Jam</label>
+                                <label for="UangLembur">Upah Lembur/Jam</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="number" class="form-control" id="UangLembur" name="uang_lembur" placeholder="Rp." required>
+                                <input type="number" class="form-control" id="UangLembur" name="uang_lembur"
+                                    placeholder="Rp." readonly required>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-3">
-                                <label for="Lembur">Total Uang Lembur</label>
+                                <label for="Lembur">Lembur (jam)</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="number" class="form-control" id="Lembur" name="lembur" placeholder="Jam" required>
+                                <input type="number" class="form-control" id="Lembur" name="lembur" placeholder="Jam"
+                                   value="0" readonly required>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -118,7 +127,8 @@
                                 <label for="TotalLembur">Total Uang Lembur</label>
                             </div>
                             <div class="col-md-9">
-                               <input type="number" class="form-control" id="TotalLembur" name="total_uang_lembur" placeholder="Jam" required>
+                                <input type="number" class="form-control" id="TotalLembur" name="total_uang_lembur"
+                                    placeholder="Rp." readonly required>
                             </div>
                         </div>
 
@@ -155,11 +165,11 @@
                         <td>{{ $a->karyawan->nama }}</td>
                         <td>{{ $a->tanggal }}</td>
                         <td>{{ $a->shift }}</td>
-                        <td>{{ formatRupiah($a->upah_harian) }}</td>
+                        <td>{{ formatRupiah($a->uang_harian) }}</td>
                         <td>{{ formatRupiah($a->uang_makan) }}</td>
                         <td>{{ formatRupiah($a->uang_lembur) }}</td>
-                        <td><a href="/kategori/{{ $a->id }}/edit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="/kategori/{{ $a->id }}" class="d-inline"
+                        <td>
+                            <form action="/absensi/{{ $a->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -212,5 +222,76 @@
                 }
             })
         }
+    </script>
+
+    <script>
+        function hitungSelisihJam(jamAwal, jamAkhir) {
+            // Pecah jamAwal dan jamAkhir menjadi jam dan menit
+            const [jamAwalHours, jamAwalMinutes] = jamAwal.split(':').map(Number);
+            const [jamAkhirHours, jamAkhirMinutes] = jamAkhir.split(':').map(Number);
+
+            // Buat objek Date untuk tanggal referensi
+            const today = new Date();
+            const jamAwalDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), jamAwalHours,
+                jamAwalMinutes);
+            const jamAkhirDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), jamAkhirHours,
+                jamAkhirMinutes);
+
+            // Hitung selisih dalam milidetik
+            let selisihMilidetik = jamAkhirDate - jamAwalDate;
+
+            // Perhatikan batas waktu 24 jam
+            if (selisihMilidetik < 0) {
+                selisihMilidetik += 24 * 60 * 60 * 1000; // Tambahkan 24 jam dalam milidetik
+            }
+
+            // Hitung selisih jam dan bulatkan
+            const selisihJam = Math.floor(selisihMilidetik / (60 * 60 * 1000));
+            return selisihJam;
+        }
+
+        $(document).ready(function() {
+            $('#KaryawanId').change(function() {
+                var KaryawanId = $(this).val();
+                if (KaryawanId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/getKaryawan?karyawan_id=" + KaryawanId,
+                        dataType: 'JSON',
+                        success: function(res) {
+                            if (res) {
+                                // console.log(res);
+                                $('#UangHarian').val(res.uang_harian);
+                                $('#UangMakan').val(res.uang_makan);
+                                $('#UangLembur').val(res.uang_lembur);
+                                $('#UangLembur').trigger('change');
+                            }
+                        }
+                    });
+                }
+            });
+
+            // jam Lembur Listener
+            $('#start').change(function(){
+                $('#Lembur').val(hitungSelisihJam($('#start').val(), $('#finish').val()));
+                $('#Lembur').trigger('change');
+            });
+            $('#finish').change(function(){
+                $('#Lembur').val(hitungSelisihJam($('#start').val(), $('#finish').val()));
+                $('#Lembur').trigger('change');
+            });
+
+            // Lembur Listener
+            $('#Lembur').change(function(){
+
+                let jam = $(this).val();
+                $('#TotalLembur').val(Number($('#UangLembur').val()) * Number(jam));
+            });
+            $('#UangLembur').change(function(){
+
+                let UangLembur = $(this).val();
+                $('#TotalLembur').val(Number($('#Lembur').val()) * Number(UangLembur));
+            });
+        });
     </script>
 @endsection

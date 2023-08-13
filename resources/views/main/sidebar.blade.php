@@ -89,7 +89,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+            <a class="sidebar-link" href="/absensi" aria-expanded="false">
                 <span>
                     <i class="fa-solid fa-chart-simple"></i>
                 </span>
