@@ -88,16 +88,12 @@
                 <span class="hide-menu">Pengiriman Barang</span>
             </a>
         </li>
-        <li class="nav-small-cap">
-            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">EXTRA</span>
-        </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
                 <span>
-                    <i class="ti ti-mood-happy"></i>
+                    <i class="fa-solid fa-chart-simple"></i>
                 </span>
-                <span class="hide-menu">Icons</span>
+                <span class="hide-menu">Absensi Karyawan</span>
             </a>
         </li>
         <li class="sidebar-item">

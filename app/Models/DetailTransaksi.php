@@ -15,4 +15,8 @@ class DetailTransaksi extends Model
     public function tipe(){
         return $this->belongsTo(Tipe::class);
     }
+
+    public function karyawan(){
+        return $this->belongsTo(Karyawan::class);
+    }
 }

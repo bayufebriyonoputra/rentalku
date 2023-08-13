@@ -7,7 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\PengirimanBarangController;
+use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Merk;
@@ -77,3 +77,5 @@ Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, '
 
 // Transaksi Pengiriman Barang
 Route::get('/pengiriman', [PengirimanBarangController::class,'index'])->middleware('auth');
+Route::get('/pengiriman/cari', [PengirimanBarangController::class,'detailSewa'])->middleware('auth');
+Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim'])->middleware('auth');
