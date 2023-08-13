@@ -10,6 +10,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\Transaksi\AbsensiController;
+use App\Http\Controllers\Transaksi\PinjamanController;
 use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Karyawan;
 use App\Models\Merk;
@@ -88,3 +89,8 @@ Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim']
 
 // Absensi
 Route::resource('/absensi', AbsensiController::class)->middleware('auth');
+
+// Pinjaman
+Route::get('/pinjaman', [PinjamanController::class, 'index'])->middleware('auth');
+Route::post('/pinjaman', [PinjamanController::class, 'store'])->middleware('auth');
+Route::delete('/pinjaman/{pinjaman}', [PinjamanController::class, 'destroy'])->middleware('auth');
