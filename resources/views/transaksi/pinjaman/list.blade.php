@@ -113,6 +113,7 @@
                     <th scope="col">Keterangan</th>
                     <th scope="col">Pinjaman</th>
                     <th scope="col">Pengembalian</th>
+                    <th scope="col">Saldo</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -126,6 +127,7 @@
                         <td>{{ $p->keterangan }}</td>
                         <td>{{ formatRupiah($p->pinjaman) }}</td>
                         <td>{{ formatRupiah($p->pengembalian) }}</td>
+                        <td>{{ formatRupiah($p->saldo) }}</td>
                         <td>
                             <form action="/pinjaman/{{ $p->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">

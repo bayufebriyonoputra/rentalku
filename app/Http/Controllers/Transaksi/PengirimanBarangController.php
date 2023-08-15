@@ -32,10 +32,12 @@ class PengirimanBarangController extends Controller
 
     public function siapKirim(Request $request)
     {
-        // dd($request->input('id'));
-        DetailTransaksi::where('id', $request->input('id'))
+        // dd($request->selectedData);
+
+
+        DetailTransaksi::whereIn('id', $request->selectedData)
         ->update([
-            'karyawan_id' => $request->input('karyawan_id')
+            'karyawan_id' => $request->karyawanId
         ]);
         $detail_transaksi = DetailTransaksi::where('no_nota', $request->no_nota)->get();
 
@@ -46,6 +48,7 @@ class PengirimanBarangController extends Controller
             ]);
 
         }
-        return back()->with('success', 'Status diperbarui');
+        $updatedData = DetailTransaksi::whereIn('id', $request->selectedData)->get();
+        return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $updatedData]);
     }
 }

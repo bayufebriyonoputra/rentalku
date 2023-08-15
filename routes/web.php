@@ -55,6 +55,7 @@ Route::get('/getKaryawan', function(Request $request){
 
 //Login Route
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // Admin Route
 
@@ -85,7 +86,7 @@ Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, '
 // Transaksi Pengiriman Barang
 Route::get('/pengiriman', [PengirimanBarangController::class,'index'])->middleware('auth');
 Route::get('/pengiriman/cari', [PengirimanBarangController::class,'detailSewa'])->middleware('auth');
-Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim'])->middleware('auth');
+Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim'])->middleware('auth')->name('pengiriman');
 
 // Absensi
 Route::resource('/absensi', AbsensiController::class)->middleware('auth');

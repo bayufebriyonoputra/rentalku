@@ -104,6 +104,14 @@
                 <span class="hide-menu">Pinjaman Karyawan</span>
             </a>
         </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/logout" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </span>
+                <span class="hide-menu">Logout</span>
+            </a>
+        </li>
     </ul>
 
 </nav>
