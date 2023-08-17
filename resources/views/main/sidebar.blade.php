@@ -104,6 +104,54 @@
                 <span class="hide-menu">Pinjaman Karyawan</span>
             </a>
         </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Laporan</span>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/laporan/transaksi-sewa" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </span>
+                <span class="hide-menu">Transaksi Sewa</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/laporan/komisi-kirim" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                </span>
+                <span class="hide-menu">Komisi Kirim</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/laporan/absensi" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </span>
+                <span class="hide-menu">Absensi</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/laporan/jadwal-ambil" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </span>
+                <span class="hide-menu">Jadwal Ambil</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/laporan/jadwal-kirim" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                </span>
+                <span class="hide-menu">Jadwal Kirim</span>
+            </a>
+        </li>
+        <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Lainnya</span>
+        </li>
         <li class="sidebar-item">
             <a class="sidebar-link" href="/logout" aria-expanded="false">
                 <span>

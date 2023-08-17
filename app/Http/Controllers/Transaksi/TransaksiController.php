@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailTransaksi;
 use App\Models\Kategori;
 use App\Models\Pelanggan;
+use App\Models\Tipe;
 use App\Models\Transaksi;
 use Symfony\Component\Console\Input\Input;
 
@@ -69,6 +70,11 @@ class TransaksiController extends Controller
         ];
 
         DetailTransaksi::create($data);
+        $tipe = Tipe::where('id', $request->input('tipe_id'))
+            ->first();
+        $tipe->update([
+            'stock' => $tipe->stock - $request->unit
+        ]);
         return back()->with('success', 'Item ditambahkan');
     }
 

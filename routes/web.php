@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
@@ -95,3 +96,10 @@ Route::resource('/absensi', AbsensiController::class)->middleware('auth');
 Route::get('/pinjaman', [PinjamanController::class, 'index'])->middleware('auth');
 Route::post('/pinjaman', [PinjamanController::class, 'store'])->middleware('auth');
 Route::delete('/pinjaman/{pinjaman}', [PinjamanController::class, 'destroy'])->middleware('auth');
+
+// Laporan
+Route::get('/laporan/transaksi-sewa',[LaporanController::class,'transaksiSewa'])->middleware('auth');
+Route::get('/laporan/komisi-kirim',[LaporanController::class,'komisiKirim'])->middleware('auth');
+Route::get('/laporan/absensi',[LaporanController::class,'absensi'])->middleware('auth');
+Route::get('/laporan/jadwal-ambil',[LaporanController::class,'jadwalAmbil'])->middleware('auth');
+Route::get('/laporan/jadwal-kirim',[LaporanController::class,'jadwalKirim'])->middleware('auth');
