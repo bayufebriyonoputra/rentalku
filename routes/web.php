@@ -12,6 +12,7 @@ use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\Transaksi\AbsensiController;
 use App\Http\Controllers\Transaksi\GajiKaryawan;
+use App\Http\Controllers\Transaksi\PengambilanController;
 use App\Http\Controllers\Transaksi\PinjamanController;
 use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Karyawan;
@@ -91,6 +92,13 @@ Route::post('/pengiriman/kirim/{transaksi}', [PengirimanBarangController::class,
 Route::get('/pengiriman/cari', [PengirimanBarangController::class,'detailSewa'])->middleware('auth');
 Route::post('/pengiriman/tambah-pengirim', [PengirimanBarangController::class,'tambahPengirim'])->middleware('auth')->name('pengiriman');
 Route::delete('/pengiriman/hapus-pengirim/{pengirim}', [PengirimanBarangController::class,'hapusPengirim'])->middleware('auth')->name('pengiriman');
+
+// Transaksi Pengambilan Barang
+Route::get('/pengambilan', [PengambilanController::class, 'index'])->middleware('auth');
+Route::get('/pengambilan/cari', [PengambilanController::class, 'detailSewa'])->middleware('auth');
+Route::post('/pengambilan/tambah-pengambil', [PengambilanController::class, 'tambahPengambil'])->middleware('auth');
+Route::delete('/pengambilan/hapus-pegambil/{pengambil}', [PengambilanController::class, 'hapusPengambil'])->middleware('auth');
+Route::post('/pengambilan/ambil/{transaksi}', [PengambilanController::class, 'ambil'])->middleware('auth');
 
 // Absensi
 Route::resource('/absensi', AbsensiController::class)->middleware('auth');

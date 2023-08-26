@@ -86,7 +86,7 @@ class PengirimanBarangController extends Controller
     {
         $transaksi->update(
             [
-                'status_pengiriman' => 'Dikrim'
+                'status_pengiriman' => 'Dikirim'
             ]
         );
 

@@ -1,10 +1,45 @@
 @extends('main.main')
 @section('head')
     <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <link
+        href="{{ asset('datatables/button-datatables.min.css') }}"
+        rel="stylesheet">
 @endsection
 @section('content')
     <h1 class="mb-4">Laporan Transaksi Sewa</h1>
-    <button class="btn btn-success" id="print-pdf-btn">Print PDF</button>
+    <p class="text-muted">Filter</p>
+    <form action="" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="">Tanggal Awal</label>
+                <input type="date" class="form-control" name="tanggal_awal" value="{{ $tanggal_awal }}">
+            </div>
+            <div class="col-md-6">
+                <label for="">Tanggal Akhir</label>
+                <input type="date" class="form-control" name="tanggal_akhir" value="{{ $tanggal_akhir }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="">Status Pengiriman</label>
+                <select name="status_pengiriman" class="form-select">
+                    <option value="semua" {{ $status_pengiriman === 'semua' ? 'selected' : '' }}>Semua</option>
+                    <option value="dikirim" {{ $status_pengiriman === 'dikirim' ? 'selected' : '' }}>Dikirim</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="">Penyewa</label>
+                <select name="penyewa" class="form-select">
+                    <option value="semua" {{ $penyewa === 'semua' ? 'selected' : '' }}>Semua</option>
+                    @foreach ($pelanggan as $p)
+                        <option value="{{ $p->id }}" {{ $penyewa == $p->id ? 'selected' : '' }}>{{ $p->pelanggan }}
+                        </option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary mt-3">Terapkan</button>
+            </div>
+        </div>
+    </form>
+
 
 
     <div style="overflow-x: auto;">
@@ -37,51 +72,28 @@
     <script src="{{ asset('datatables/jQuery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src="{{ asset('datatables/pdf-make.min.js') }}"></script>
+    <script src="{{ asset('datatables/font.min.js') }}"></script>
+    <script
+        src="{{ asset('datatables/html5.min.js') }}">
+    </script>
 
 
     <script>
         $(document).ready(function() {
             var dataTable = $('#myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                dom: 'Bfrtip', // Menentukan elemen-elemen yang akan ditampilkan
+                buttons: [
+                    'copy', 'excel', 'csv',
+                    {
+                        extend: 'pdf',
+                        filename: 'Transaksi Sewa {{ now() }}',
+                        title: 'Laporan Sewa',
+                    }
+                ]
             });
 
-
-            $('#print-pdf-btn').on('click', function() {
-                var tableData = [];
-                dataTable.rows().data().each(function(row) {
-                    var rowData = [];
-                    for (var i = 0; i < row.length; i++) {
-                        rowData.push(row[i]);
-                    }
-                    tableData.push(rowData);
-                });
-
-                var docDefinition = {
-                    content: [{
-                            text: 'Data Table PDF Example',
-                            style: 'header'
-                        },
-                        '\n',
-                        {
-                            table: {
-                                headerRows: 1,
-                                widths: [50, 50, 50,50,50], // Sesuaikan dengan jumlah kolom Anda
-                                body: tableData
-                            }
-                        }
-                    ],
-                    styles: {
-                        header: {
-                            fontSize: 18,
-                            bold: true
-                        }
-                    }
-                };
-
-                pdfMake.createPdf(docDefinition).download('datatable.pdf');
-            });
         });
     </script>
 @endsection
