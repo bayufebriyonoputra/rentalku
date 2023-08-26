@@ -27,7 +27,8 @@
                         <label for="" class="">Tanggal Pesan</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="date" class="col-md-9 form-control" name="tanggal" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
+                        <input type="date" class="col-md-9 form-control" name="tanggal"
+                            value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -35,7 +36,8 @@
                         <label for="" class="">Tanggal Kirim</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="date" class="col-md-9 form-control" name="tanggal_kirim" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
+                        <input type="date" class="col-md-9 form-control" name="tanggal_kirim"
+                            value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -43,7 +45,8 @@
                         <label for="" class="">Tanggal Ambil</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="date" class="col-md-9 form-control" name="tanggal_ambil" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
+                        <input type="date" class="col-md-9 form-control" name="tanggal_ambil"
+                            value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -52,7 +55,7 @@
                     </div>
                     <div class="col-md-8">
                         <input type="text" class="col-md-9 form-control" name="no_nota"
-                            value="ORD{{ \Carbon\Carbon::now()->format('dmyHis') }}" readonly required>
+                            value="{{ $no_nota }}" readonly required>
                     </div>
                 </div>
             </div>
@@ -63,12 +66,50 @@
                         <label for="" class="">Pilih Pelanggan</label>
                     </div>
                     <div class="col-md-8">
-                      <select name="pelanggan_id" id="" class="form-select" required>
-                        @foreach ($pelanggan as $p)
-                        <option value="{{ $p->id }}">{{ $p->pelanggan }}</option>
-                        @endforeach
-                      </select>
-                      <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                        <select name="pelanggan_id" id="" class="form-select" required>
+                            @foreach ($pelanggan as $p)
+                                <option value="{{ $p->id }}">{{ $p->pelanggan }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                </div>
+
+                <p class="text-muted"><b>Atas Nama</b></p>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">Nama</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="col-md-9 form-control" name="nama"
+                             required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">Alamat</label>
+                    </div>
+                    <div class="col-md-8">
+                       <textarea name="alamat"  rows="3" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">No Telepon</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" class="col-md-9 form-control" name="no_telpon"
+                             required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">Kota</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="col-md-9 form-control" name="kota"
+                             required>
+                             <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -99,9 +140,12 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $t->no_nota }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tannggal)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tanggal_ambil)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($t->tannggal)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        </td>
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        </td>
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal_ambil)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        </td>
                         <td>{{ formatRupiah($t->total_sewa) }}</td>
                         <td>{{ formatRupiah($t->biaya_kirim_ambil) }}</td>
                         <td>{{ formatRupiah($t->uang_muka) }}</td>

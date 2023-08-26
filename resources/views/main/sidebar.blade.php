@@ -104,6 +104,14 @@
                 <span class="hide-menu">Pinjaman Karyawan</span>
             </a>
         </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="/gaji" aria-expanded="false">
+                <span>
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </span>
+                <span class="hide-menu">Gaji Karyawan</span>
+            </a>
+        </li>
         <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">Laporan</span>

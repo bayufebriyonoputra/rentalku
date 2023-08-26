@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('sopir');
             $table->integer('lembur');
             $table->integer('uang_makan');
+            $table->integer('penerimaan');
             $table->integer('potongan');
             $table->timestamps();
         });

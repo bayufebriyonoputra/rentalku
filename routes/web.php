@@ -11,6 +11,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\Transaksi\AbsensiController;
+use App\Http\Controllers\Transaksi\GajiKaryawan;
 use App\Http\Controllers\Transaksi\PinjamanController;
 use App\Http\Controllers\Transaksi\TransaksiController;
 use App\Models\Karyawan;
@@ -86,11 +87,19 @@ Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, '
 
 // Transaksi Pengiriman Barang
 Route::get('/pengiriman', [PengirimanBarangController::class,'index'])->middleware('auth');
+Route::post('/pengiriman/kirim/{transaksi}', [PengirimanBarangController::class,'kirim'])->middleware('auth');
 Route::get('/pengiriman/cari', [PengirimanBarangController::class,'detailSewa'])->middleware('auth');
-Route::post('/pengiriman/kirim', [PengirimanBarangController::class,'siapKirim'])->middleware('auth')->name('pengiriman');
+Route::post('/pengiriman/tambah-pengirim', [PengirimanBarangController::class,'tambahPengirim'])->middleware('auth')->name('pengiriman');
+Route::delete('/pengiriman/hapus-pengirim/{pengirim}', [PengirimanBarangController::class,'hapusPengirim'])->middleware('auth')->name('pengiriman');
 
 // Absensi
 Route::resource('/absensi', AbsensiController::class)->middleware('auth');
+
+// Gaji
+Route::get('/gaji', [GajiKaryawan::class, 'index'])->middleware('auth');
+Route::post('/gaji', [GajiKaryawan::class, 'store'])->middleware('auth');
+Route::delete('/gaji/{gaji}', [GajiKaryawan::class, 'destroy'])->middleware('auth');
+Route::get('/getPinjaman', [GajiKaryawan::class, 'getPinjaman'])->middleware('auth');
 
 // Pinjaman
 Route::get('/pinjaman', [PinjamanController::class, 'index'])->middleware('auth');

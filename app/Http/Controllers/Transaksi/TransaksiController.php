@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaksi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AtasNama;
 use App\Models\DetailTransaksi;
 use App\Models\Kategori;
 use App\Models\Pelanggan;
@@ -17,10 +18,11 @@ class TransaksiController extends Controller
     {
 
         $pelanggan = Pelanggan::all();
-        $transaksi = Transaksi::with('pelanggan')->get();
+        $transaksi = Transaksi::with('pelanggan')->latest()->get();
 
         return view('transaksi.transaksi_sewa', [
             'pelanggan' => $pelanggan,
+            'no_nota'  => 'SP' . now()->isoFormat('YYMM'). $this->getDataByCurrentMonth(),
             'transaksi' => $transaksi
         ]);
     }
@@ -36,6 +38,15 @@ class TransaksiController extends Controller
         ];
 
         Transaksi::create($data);
+
+        AtasNama::create([
+            'no_nota' => $request->input('no_nota'),
+            'nama' => $request->input('nama'),
+            'alamat' => $request->input('alamat'),
+            'no_telpon' => $request->input('no_telpon'),
+            'kota' => $request->input('kota')
+        ]);
+
         return back()->with('success', 'Order Berhasil Dibuat');
     }
 
@@ -49,10 +60,10 @@ class TransaksiController extends Controller
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
         ]);
-
     }
 
-    public function hapusOrdet(DetailTransaksi $id){
+    public function hapusOrdet(DetailTransaksi $id)
+    {
         $id->delete();
         return back()->with('success', 'Order Dihapus');
     }
@@ -78,7 +89,8 @@ class TransaksiController extends Controller
         return back()->with('success', 'Item ditambahkan');
     }
 
-    public function updateOrder(Request $request){
+    public function updateOrder(Request $request)
+    {
         $no_nota = $request->input('no_nota');
         $transaksi = Transaksi::where('no_nota', $no_nota)->first();
         $data_transaksi = [
@@ -91,6 +103,24 @@ class TransaksiController extends Controller
         $transaksi->update($data_transaksi);
 
         return redirect()->to('/transaksi-sewa')->with('success', 'Data berhasil diupdate');
+    }
 
+    private function getDataByCurrentMonth()
+    {
+        $currentMonth = now()->format('m');
+        $currentYear = now()->format('Y');
+
+        $data = Transaksi::whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->latest()
+            ->first();
+
+        $lastThreeDigits = substr($data->no_nota, -3);
+
+        // Ubah string menjadi angka, tambahkan 1, lalu konversi kembali ke string
+        $lastThreeDigitsNumber = intval($lastThreeDigits) + 1;
+        $result = str_pad($lastThreeDigitsNumber, 3, '0', STR_PAD_LEFT);
+
+        return $result;
     }
 }
