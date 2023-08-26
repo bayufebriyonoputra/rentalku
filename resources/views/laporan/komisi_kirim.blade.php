@@ -1,10 +1,35 @@
 @extends('main.main')
 @section('head')
     <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/button-datatables.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <h1 class="mb-4">Laporan Komisi Kirim</h1>
+    <p class="text-muted">Filter</p>
+    <form action="" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="">Tanggal Awal</label>
+                <input type="date" class="form-control" name="tanggal_awal" value="{{ $tanggal_awal }}">
+            </div>
+            <div class="col-md-6">
+                <label for="">Tanggal Akhir</label>
+                <input type="date" class="form-control" name="tanggal_akhir" value="{{ $tanggal_akhir }}">
+            </div>
 
+            <div class="col-md-6">
+                <label for="">Penyewa</label>
+                <select name="penyewa" class="form-select">
+                    <option value="semua" {{ $penyewa === 'semua' ? 'selected' : '' }}>Semua</option>
+                    @foreach ($pelanggan as $p)
+                        <option value="{{ $p->id }}" {{ $penyewa == $p->id ? 'selected' : '' }}>{{ $p->pelanggan }}
+                        </option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary mt-3">Terapkan</button>
+            </div>
+        </div>
+    </form>
 
 
     <div style="overflow-x: auto;">
@@ -24,7 +49,8 @@
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $t->no_nota }}</td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd, D MMM YYYY') }}
+                        </td>
                         <td>{{ formatRupiah($t->total_komisi) }}</td>
                     </tr>
                 @endforeach
@@ -37,10 +63,22 @@
     <script src="{{ asset('datatables/jQuery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('datatables/pdf-make.min.js') }}"></script>
+    <script src="{{ asset('datatables/font.min.js') }}"></script>
+    <script src="{{ asset('datatables/html5.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             var dataTable = $('#myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                dom: 'Bfrtip', // Menentukan elemen-elemen yang akan ditampilkan
+                buttons: [
+                    'copy', 'excel', 'csv',
+                    {
+                        extend: 'pdf',
+                        filename: 'Komisi Kirim {{ now() }}',
+                        title: 'Komisi Kirim',
+                    }
+                ]
             });
         });
     </script>

@@ -1,9 +1,7 @@
 @extends('main.main')
 @section('head')
     <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
-    <link
-        href="{{ asset('datatables/button-datatables.min.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('datatables/button-datatables.min.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <h1 class="mb-4">Laporan Transaksi Sewa</h1>
@@ -74,9 +72,7 @@
     <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('datatables/pdf-make.min.js') }}"></script>
     <script src="{{ asset('datatables/font.min.js') }}"></script>
-    <script
-        src="{{ asset('datatables/html5.min.js') }}">
-    </script>
+    <script src="{{ asset('datatables/html5.min.js') }}"></script>
 
 
     <script>
@@ -90,6 +86,7 @@
                         extend: 'pdf',
                         filename: 'Transaksi Sewa {{ now() }}',
                         title: 'Laporan Sewa',
+
                     }
                 ]
             });
