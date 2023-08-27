@@ -10,7 +10,7 @@ use App\Models\Kategori;
 use App\Models\Pelanggan;
 use App\Models\Tipe;
 use App\Models\Transaksi;
-use Symfony\Component\Console\Input\Input;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransaksiController extends Controller
 {
@@ -22,7 +22,7 @@ class TransaksiController extends Controller
 
         return view('transaksi.transaksi_sewa', [
             'pelanggan' => $pelanggan,
-            'no_nota'  => 'SP' . now()->isoFormat('YYMM'). $this->getDataByCurrentMonth(),
+            'no_nota'  => 'SP' . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth(),
             'transaksi' => $transaksi
         ]);
     }
@@ -122,5 +122,18 @@ class TransaksiController extends Controller
         $result = str_pad($lastThreeDigitsNumber, 3, '0', STR_PAD_LEFT);
 
         return $result;
+    }
+
+    public function cetakNotaSewa(Transaksi $transaksi)
+    {
+
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
+        $pdf = PDF::loadView('nota.penyewaan_barang',[
+            'transaksi' => $data_transaksi,
+            'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
+            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota sewa'. now().'.pdf');
     }
 }

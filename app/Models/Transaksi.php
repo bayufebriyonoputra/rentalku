@@ -15,4 +15,12 @@ class Transaksi extends Model
     public function pelanggan(){
         return $this->belongsTo(Pelanggan::class);
     }
+
+    public function detailTransaksi(){
+        return $this->hasMany(DetailTransaksi::class,'no_nota','no_nota');
+    }
+
+    public function atasNama(){
+        return $this->hasOne(AtasNama::class,'no_nota','no_nota');
+    }
 }

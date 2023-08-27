@@ -120,3 +120,6 @@ Route::get('/laporan/komisi-kirim',[LaporanController::class,'komisiKirim'])->mi
 Route::get('/laporan/absensi',[LaporanController::class,'absensi'])->middleware('auth');
 Route::get('/laporan/jadwal-ambil',[LaporanController::class,'jadwalAmbil'])->middleware('auth');
 Route::get('/laporan/jadwal-kirim',[LaporanController::class,'jadwalKirim'])->middleware('auth');
+
+// Cetak Nota
+Route::get('/nota/penyewaan/{transaksi}', [TransaksiController::class, 'cetakNotaSewa'])->middleware('auth');

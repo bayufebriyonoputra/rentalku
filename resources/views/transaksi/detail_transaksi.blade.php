@@ -207,6 +207,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="/nota/penyewaan/{{ $transaksi->id }}" class="btn btn-success">Cetak Nota Penyewaan</a>
                 </div>
             </div>
         </form>
