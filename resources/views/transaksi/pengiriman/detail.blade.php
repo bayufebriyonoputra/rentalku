@@ -108,10 +108,11 @@
             <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Tambah Pengirim
             </button>
-            <form action="/pengiriman/kirim/{{ $transaksi->id }}" method="POST">
+            <form class="me-3" action="/pengiriman/kirim/{{ $transaksi->id }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-warning" id="update-selected">Kirim</button>
             </form>
+            <a href="/nota/kirim/{{ $transaksi->id }}" class="btn btn-success">Cetak Nota Pengiriman</a>
         </div>
     </div>
 

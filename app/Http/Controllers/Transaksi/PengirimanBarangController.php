@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Transaksi;
 
+use App\Models\Karyawan;
 use App\Models\Kategori;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Transaksi;
+use App\Models\Pengiriman;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
 use App\Http\Controllers\Controller;
-use App\Models\Karyawan;
-use App\Models\Pengiriman;
 
 class PengirimanBarangController extends Controller
 {
@@ -91,5 +92,16 @@ class PengirimanBarangController extends Controller
         );
 
         return back()->with('success', 'Status barang diubah menjadi kirim');
+    }
+
+    public function cetakNotaKirim(Transaksi $transaksi)
+    {
+
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $pdf = PDF::loadView('nota.pengiriman_barang', [
+            'transaksi' => $data_transaksi,
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota kirim' . now() . '.pdf', array("Attachment" => false));
+
     }
 }

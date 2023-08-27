@@ -192,7 +192,7 @@
                             <label for="">Uang Muka</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="number" placeholder="Rp." class="form-control" name="uang_muka" id="UangMuka" required>
+                            <input type="number" placeholder="Rp." class="form-control" name="uang_muka" id="UangMuka" value="{{ $transaksi->uang_muka }}" required>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -200,7 +200,7 @@
                             <label for="">Biaya Kirim/Ambil</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="number" placeholder="Rp." class="form-control" name="biaya_kirim_ambil" id="BiayaKirimAmbil" required>
+                            <input type="number" placeholder="Rp." class="form-control" name="biaya_kirim_ambil" id="BiayaKirimAmbil" value="{{ $transaksi->biaya_kirim_ambil }}" required>
                         </div>
                     </div>
                     <p class="mt-3" ><b id="Sisa">Sisa :</b></p>

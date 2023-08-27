@@ -123,3 +123,4 @@ Route::get('/laporan/jadwal-kirim',[LaporanController::class,'jadwalKirim'])->mi
 
 // Cetak Nota
 Route::get('/nota/penyewaan/{transaksi}', [TransaksiController::class, 'cetakNotaSewa'])->middleware('auth');
+Route::get('/nota/kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKirim'])->middleware('auth');
