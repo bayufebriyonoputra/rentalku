@@ -112,7 +112,8 @@
                 @csrf
                 <button type="submit" class="btn btn-warning" id="update-selected">Kirim</button>
             </form>
-            <a href="/nota/kirim/{{ $transaksi->id }}" class="btn btn-success">Cetak Nota Pengiriman</a>
+            <a href="/nota/kirim/{{ $transaksi->id }}" class="btn btn-success me-3">Cetak Nota Pengiriman</a>
+            <a href="/nota/komisi-kirim/{{ $transaksi->id }}" class="btn btn-success">Cetak Nota Komisi Pengiriman</a>
         </div>
     </div>
 

@@ -11,6 +11,7 @@ use App\Models\Pelanggan;
 use App\Models\Tipe;
 use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Response;
 
 class TransaksiController extends Controller
 {

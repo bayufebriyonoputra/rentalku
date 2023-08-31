@@ -10,4 +10,8 @@ class GajiKaryawan extends Model
     use HasFactory;
     protected $table = 'gaji_karyawan';
     protected $guarded = ['id'];
+
+    public function karyawan(){
+        return $this->belongsTo(Karyawan::class);
+    }
 }

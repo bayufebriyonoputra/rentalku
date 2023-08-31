@@ -221,6 +221,7 @@
                         <td>{{ formatRupiah($g->penerimaan) }}</td>
                         <td>{{ formatRupiah($g->potongan) }}</td>
                         <td>
+                            <a href="/nota/slip/{{ $g->id }}" class="btn btn-success">Cetak Slip Gaji</a>
                             <form action="/gaji/{{ $g->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf

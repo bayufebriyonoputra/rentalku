@@ -184,7 +184,7 @@
                 <div class="col-md-4">
                     <p><b>Total Biaya Sewa : {{ formatRupiah($total_biaya_sewa) }}</b></p>
                     <p><b>Total Komisi Kirm : {{ formatRupiah($total_komisi_kirim) }}</b></p>
-                    <p><b id="Jumlah">Jumlah : {{ formatRupiah($total_komisi_kirim + $total_biaya_sewa) }}</b></p>
+                    <p><b id="Jumlah">Jumlah : {{ formatRupiah($total_komisi_kirim + $total_biaya_sewa + $transaksi->biaya_kirim_ambil) }}</b></p>
                 </div>
                 <div class="col-md-4">
                     <div class="row">
@@ -207,7 +207,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="/nota/penyewaan/{{ $transaksi->id }}" class="btn btn-success">Cetak Nota Penyewaan</a>
+                    <a href="/nota/penyewaan/{{ $transaksi->id }}" target="_blank" class="btn btn-success">Cetak Nota Penyewaan</a>
                 </div>
             </div>
         </form>

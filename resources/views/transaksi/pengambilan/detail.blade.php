@@ -103,10 +103,13 @@
             <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Tambah Petugas
             </button>
-            <form action="/pengambilan/ambil/{{ $transaksi->id }}" method="POST">
+            <form action="/pengambilan/ambil/{{ $transaksi->id }}" class="me-3" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-warning" id="update-selected">Ambil</button>
             </form>
+            <a href="/nota/ambil/{{ $transaksi->id }}" class="btn btn-success me-3">Cetak Nota Ambil</a>
+            <a href="/nota/pelunasan/{{$transaksi->id}}" class="btn btn-success me-3">Cetak Nota Lunas</a>
+            <a href="/nota/komisi-ambil/{{$transaksi->id}}" class="btn btn-success">Cetak Nota Komisi</a>
         </div>
     </div>
 

@@ -104,4 +104,15 @@ class PengirimanBarangController extends Controller
         return $pdf->stream('nota kirim' . now() . '.pdf', array("Attachment" => false));
 
     }
+
+    public function cetakNotaKomisiKirim(Transaksi $transaksi)
+    {
+
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengiriman'])->first();
+        $pdf = PDF::loadView('nota.komisi_pengiriman', [
+            'transaksi' => $data_transaksi,
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota komsi kirim' . now() . '.pdf', array("Attachment" => false));
+
+    }
 }

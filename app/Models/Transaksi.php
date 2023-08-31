@@ -23,4 +23,12 @@ class Transaksi extends Model
     public function atasNama(){
         return $this->hasOne(AtasNama::class,'no_nota','no_nota');
     }
+
+    public function pengiriman(){
+        return $this->hasMany(Pengiriman::class,'no_nota', 'no_nota');
+    }
+
+    public function pengambilan(){
+        return $this->hasMany(Pengambilan::class,'no_nota', 'no_nota');
+    }
 }

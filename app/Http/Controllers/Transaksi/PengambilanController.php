@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi;
 
 use App\Models\Karyawan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Transaksi;
 use App\Models\Pengambilan;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class PengambilanController extends Controller
 {
     public function index()
     {
-        return view('transaksi.penagmbilan.cari_nota');
+        return view('transaksi.pengambilan.cari_nota');
     }
 
     public function detailSewa(Request $request)
@@ -36,7 +37,11 @@ class PengambilanController extends Controller
 
         // Ambil Total komisi
         $detail = DetailTransaksi::where('no_nota', $request->no_nota)->with('tipe')->get();
-        $total_komisi = $detail->sum('tipe.komisi_ambil');
+        // $total_komisi = $detail->sum('tipe.komisi_ambil');
+        $total_komisi = 0;
+        foreach ($detail as $d) {
+            $total_komisi += $d->x_komisi * $d->tipe->komisi_ambil;
+        }
 
 
 
@@ -73,12 +78,14 @@ class PengambilanController extends Controller
         $total_pengambilan = $pengambilan->count();
 
 
+        if ($pengambilan->count()) {
 
-        // Update Komisi
-        Pengambilan::where('no_nota', $request->no_nota)
-            ->update([
-                'komisi' => $total_komisi / $total_pengambilan
-            ]);
+            // Update Komisi
+            Pengambilan::where('no_nota', $request->no_nota)
+                ->update([
+                    'komisi' => $total_komisi / $total_pengambilan
+                ]);
+        }
 
         return back()->with('success', 'Pengirim dihapus');
     }
@@ -91,5 +98,50 @@ class PengambilanController extends Controller
         );
 
         return back()->with('success', 'Status barang diubah menjadi Diambil');
+    }
+
+    public function cetakNotaAmbil(Transaksi $transaksi)
+    {
+
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $pdf = PDF::loadView('nota.pengambilan_barang', [
+            'transaksi' => $data_transaksi,
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota ambil' . now() . '.pdf', array("Attachment" => false));
+    }
+
+    public function cetakNotaLunas(Transaksi $transaksi)
+    {
+        $total_bayar = $transaksi->total_sewa + $transaksi->biaya_kirim_ambil + $transaksi->total_komisi;
+        $sisa_bayar = $total_bayar - $transaksi->uang_muka;
+
+        $transaksi->pelunasan = $sisa_bayar;
+        $transaksi->save();
+
+
+
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
+        $pdf = PDF::loadView('nota.pelunasan', [
+            'transaksi' => $data_transaksi,
+            'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
+            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota pelunasan' . now() . '.pdf', array("Attachment" => false));
+    }
+
+    public function cetakNotaKomisiAmbil(Transaksi $transaksi)
+    {
+        $detail = DetailTransaksi::where('no_nota', $transaksi->no_nota)->with('tipe')->get();
+        $total_komisi = 0;
+        foreach ($detail as $d) {
+            $total_komisi += $d->x_komisi * $d->tipe->komisi_ambil;
+        }
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengambilan'])->first();
+        $pdf = PDF::loadView('nota.komisi_pengambilan', [
+            'transaksi' => $data_transaksi,
+            'total_komisi_ambil' => $total_komisi
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('nota komsi ambil' . now() . '.pdf', ["Attachment" => 0]);
     }
 }

@@ -32,7 +32,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('landing_page');
+});
+
+Route::get('/login', function(){
+    return view('login_2');
 })->name('login');
 Route::get('/tes', function () {
     return view('admin.main');
@@ -124,3 +128,8 @@ Route::get('/laporan/jadwal-kirim',[LaporanController::class,'jadwalKirim'])->mi
 // Cetak Nota
 Route::get('/nota/penyewaan/{transaksi}', [TransaksiController::class, 'cetakNotaSewa'])->middleware('auth');
 Route::get('/nota/kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKirim'])->middleware('auth');
+Route::get('/nota/ambil/{transaksi}', [PengambilanController::class, 'cetakNotaAmbil'])->middleware('auth');
+Route::get('/nota/komisi-kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKomisiKirim'])->middleware('auth');
+Route::get('/nota/pelunasan/{transaksi}', [PengambilanController::class, 'cetakNotaLunas'])->middleware('auth');
+Route::get('/nota/komisi-ambil/{transaksi}', [PengambilanController::class, 'cetakNotaKomisiAmbil'])->middleware('auth');
+Route::get('/nota/slip/{gaji}', [GajiKaryawan::class, 'cetakSlip'])->middleware('auth');

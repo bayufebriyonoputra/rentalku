@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Transaksi;
 
 use App\Models\Karyawan;
-use App\Models\GajiKaryawan as Gaji;
+use App\Models\Pinjaman;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Pinjaman;
+use App\Models\GajiKaryawan as Gaji;
 
 class GajiKaryawan extends Controller
 {
@@ -38,8 +39,10 @@ class GajiKaryawan extends Controller
             'sopir' => $request->input('sopir'),
             'lembur' => $request->input('uang_lembur'),
             'uang_makan' => $request->input('uang_makan'),
-            'penerimaan' => $request->input('saldo'),
+            'penerimaan' => $request->input('penerimaan'),
             'potongan' => $request->input('potongan'),
+            'pinjaman_karyawan' => $request->input('pinjaman_karyawan'),
+            'saldo' => $request->input('saldo'),
 
         ];
 
@@ -47,8 +50,17 @@ class GajiKaryawan extends Controller
         return back()->with('success', 'Data berhasil disimpan');
     }
 
-    public function destroy(Gaji $gaji){
+    public function destroy(Gaji $gaji)
+    {
         $gaji->delete();
         return back()->with('success', 'Data berhasil dihapus');
+    }
+
+    public function cetakSlip(Gaji $gaji)
+    {
+        $pdf = PDF::loadView('nota.slip_gaji', [
+            'gaji' => $gaji
+        ])->setPaper('a5', 'portrait');;
+        return $pdf->stream('slipGaji' . now() . '.pdf', array("Attachment" => false));
     }
 }
