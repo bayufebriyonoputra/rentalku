@@ -99,6 +99,8 @@ class TransaksiController extends Controller
             'total_komisi' => $request->input('total_komisi'),
             'biaya_kirim_ambil' => $request->input('biaya_kirim_ambil'),
             'uang_muka' => $request->input('uang_muka'),
+            'diskon' => $request->input('diskon'),
+            'jumlah_bayar' => $request->input('jumlah_bayar')
         ];
 
         $transaksi->update($data_transaksi);
@@ -116,7 +118,7 @@ class TransaksiController extends Controller
             ->latest()
             ->first();
 
-        $lastThreeDigits = substr($data->no_nota, -3);
+        $lastThreeDigits = substr($data->no_nota ?? 0, -3);
 
         // Ubah string menjadi angka, tambahkan 1, lalu konversi kembali ke string
         $lastThreeDigitsNumber = intval($lastThreeDigits) + 1;

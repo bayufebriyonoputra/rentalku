@@ -112,8 +112,9 @@ class PengambilanController extends Controller
 
     public function cetakNotaLunas(Transaksi $transaksi)
     {
-        $total_bayar = $transaksi->total_sewa + $transaksi->biaya_kirim_ambil + $transaksi->total_komisi;
-        $sisa_bayar = $total_bayar - $transaksi->uang_muka;
+        // $total_bayar = $transaksi->total_sewa + $transaksi->biaya_kirim_ambil + $transaksi->total_komisi;
+
+        $sisa_bayar = $transaksi->jumlah_bayar - $transaksi->uang_muka;
 
         $transaksi->pelunasan = $sisa_bayar;
         $transaksi->save();

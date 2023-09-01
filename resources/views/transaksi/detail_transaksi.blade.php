@@ -177,6 +177,7 @@
 
         <form action="/transaksi-sewa/detailOrder/update" class="mt-5" method="POST">
             @csrf
+            <input type="hidden" name="jumlah_bayar" id="JumlahBayar">
             <input type="hidden" name="no_nota" value="{{ $transaksi->no_nota }}">
             <input type="hidden" name="total_sewa" value="{{ $total_biaya_sewa }}">
             <input type="hidden" name="total_komisi" value="{{ $total_komisi_kirim }}">
@@ -201,6 +202,14 @@
                         </div>
                         <div class="col-md-9">
                             <input type="number" placeholder="Rp." class="form-control" name="biaya_kirim_ambil" id="BiayaKirimAmbil" value="{{ $transaksi->biaya_kirim_ambil }}" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="">Diskon</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="number" placeholder="%" class="form-control" name="diskon" id="Diskon" required>
                         </div>
                     </div>
                     <p class="mt-3" ><b id="Sisa">Sisa :</b></p>
@@ -363,17 +372,31 @@
             });
             // Listener UangMuka
             $('#UangMuka').change(function() {
+                $('#Diskon').val(null);
                 let dp = $(this).val();
                 let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +  Number($('#BiayaKirimAmbil').val());
                 $('#Sisa').text('Sisa : ' + formatToRupiah(total - dp));
+                $('#JumlahBayar').val(total);
             });
             // Listener Biaya Kirim Ambil
             $('#BiayaKirimAmbil').change(function() {
                 let biaya = $(this).val();
+                $('#Diskon').val(null);
                 let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +Number(biaya);
                 $('#Sisa').text('Sisa : ' + formatToRupiah(total - $('#UangMuka').val()));
                 $('#Jumlah').text('Jumlah : ' + formatToRupiah(total));
+                $('#JumlahBayar').val(total);
             });
+            // Diskon Listener
+            $('#Diskon').change(function(){
+                let diskon = $(this).val();
+                let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +  Number($('#BiayaKirimAmbil').val());
+                let after_diskon = diskon / 100 * total;
+                let jumlah_total = total - after_diskon;
+                $('#JumlahBayar').val(jumlah_total);
+                $('#Jumlah').text('Jumlah : ' + formatToRupiah(jumlah_total));
+                $('#Sisa').text('Sisa : ' + formatToRupiah(jumlah_total - $('#UangMuka').val()));
+            })
         });
     </script>
 @endsection

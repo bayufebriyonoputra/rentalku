@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('detail_transaksi', function (Blueprint $table) {
-            $table->dropColumn(['bagi_komisi_kirim', 'bagi_komisi_ambil']);
+        Schema::create('penyewa_umum', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -21,9 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('detail_transaksi', function (Blueprint $table) {
-            $table->string('bagi_komisi_kirim');
-            $table->string('bagi_komisi_ambil');
-        });
+        Schema::dropIfExists('penyewa_umum');
     }
 };
