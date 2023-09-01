@@ -85,6 +85,7 @@ Route::resource('/pelanggan', PelangganController::class)->middleware('auth');
 // Transaksi
 Route::get('/transaksi-sewa', [TransaksiController::class, 'listTransaksiSewa'])->middleware('auth');
 Route::post('/transaksi-sewa', [TransaksiController::class, 'storeSewa'])->middleware('auth');
+Route::delete('/transaksi-sewa/hapus/{transaksi}', [TransaksiController::class, 'destroy'])->middleware('auth');
 Route::get('/transaksi-sewa/{transaksi}/edit', [TransaksiController::class, 'detailSewa'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder', [TransaksiController::class, 'isiDetailOrder'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder/update', [TransaksiController::class, 'updateOrder'])->middleware('auth');

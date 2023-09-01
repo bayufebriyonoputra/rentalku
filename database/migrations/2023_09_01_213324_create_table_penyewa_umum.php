@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('penyewa_umum', function (Blueprint $table) {
             $table->id();
+            $table->string('no_nota');
+            $table->string('nama');
+            $table->text('alamat');
+            $table->integer('no_telpon');
+            $table->string('kota');
             $table->timestamps();
         });
     }

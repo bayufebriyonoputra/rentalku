@@ -54,25 +54,93 @@
                         <label for="" class="">No Nota</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="col-md-9 form-control" name="no_nota"
-                            value="{{ $no_nota }}" readonly required>
+                        <input type="text" class="col-md-9 form-control" name="no_nota" value="{{ $no_nota }}"
+                            readonly required>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-4">
-                <p class="text-muted"><b>Data Pelanggan</b></p>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="" class="">Pilih Pelanggan</label>
-                    </div>
-                    <div class="col-md-8">
-                        <select name="pelanggan_id" id="" class="form-select" required>
-                            @foreach ($pelanggan as $p)
-                                <option value="{{ $p->id }}">{{ $p->pelanggan }}</option>
-                            @endforeach
-                        </select>
 
+            </div>
+
+            <div class="col-md-6 mt-4">
+                {{-- Radio Button --}}
+                <p>Pilih Jenis Pelanggan</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="PenyewaType" id="Pelanggan"
+                                value="Pelanggan" checked>
+                            <label class="form-check-label" for="Pelanggan">
+                                Pelanggan
+                            </label>
+                        </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="PenyewaType" id="PenyewaUmum"
+                                value="PenyewaUmum">
+                            <label class="form-check-label" for="PenyewaUmum">
+                                Penyewa Umum
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- Pelanggan --}}
+                <div class="pelanggan" id="PelangganForm">
+                    <p class="text-muted"><b>Data Pelanggan</b></p>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="">Pilih Pelanggan</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="pelanggan_id" id="PilihPelanggan" class="form-select" >
+                                @foreach ($pelanggan as $p)
+                                    <option value="{{ $p->id }}">{{ $p->pelanggan }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Penyewa Umum --}}
+                <div class="penyewa-umum" id="PenyewaUmumForm" style="display: none;">
+                    <p class="text-muted"><b>Penyewa Umum</b></p>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="" class="">Nama</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="NamaUmum" class="col-md-9 form-control" name="nama_umum">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="" class="">Alamat</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea name="alamat_umum" id="AlamatUmum" rows="3" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="" class="">No Telepon</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" class="col-md-9 form-control" name="no_telpon_umum" id="NoTelponUmum" >
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="" class="">Kota</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="col-md-9 form-control" name="kota_umum" id="KotaUmum" >
+                        </div>
+                    </div>
+
                 </div>
 
                 <p class="text-muted"><b>Atas Nama</b></p>
@@ -81,8 +149,7 @@
                         <label for="" class="">Nama</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="col-md-9 form-control" name="nama"
-                             required>
+                        <input type="text" class="col-md-9 form-control" name="nama" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -90,7 +157,7 @@
                         <label for="" class="">Alamat</label>
                     </div>
                     <div class="col-md-8">
-                       <textarea name="alamat"  rows="3" class="form-control"></textarea>
+                        <textarea name="alamat" rows="3" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -98,8 +165,7 @@
                         <label for="" class="">No Telepon</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="col-md-9 form-control" name="no_telpon"
-                             required>
+                        <input type="number" class="col-md-9 form-control" name="no_telpon" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -107,9 +173,8 @@
                         <label for="" class="">Kota</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="col-md-9 form-control" name="kota"
-                             required>
-                             <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                        <input type="text" class="col-md-9 form-control" name="kota" required>
+                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -149,10 +214,10 @@
                         <td>{{ formatRupiah($t->total_sewa) }}</td>
                         <td>{{ formatRupiah($t->biaya_kirim_ambil) }}</td>
                         <td>{{ formatRupiah($t->uang_muka) }}</td>
-                        <td>{{ $t->pelanggan->pelanggan }}</td>
+                        <td>{{ $t->pelanggan->pelanggan ?? 'Penyewa Umum' }}</td>
                         <td><a href="/transaksi-sewa/{{ $t->id }}/edit" class="btn btn-warning"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="/kategori/{{ $t->id }}" class="d-inline"
+                            <form action="/transaksi-sewa/hapus/{{ $t->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -177,6 +242,28 @@
             $('#myTable').DataTable({
                 scrollX: true
             });
+            // Listerner Radio Box
+            $("input[name='PenyewaType']").change(function() {
+                console.log('ok');
+                if ($(this).val() === 'PenyewaUmum') {
+                    $("#PenyewaUmumForm").show();
+                    $("#PelangganForm").hide();
+                    $("#PilihPelanggan").removeAttr("required");
+                    $("#NamaUmum").prop("required", true);
+                    $("#AlamatUmum").prop("required", true);
+                    $("#NoTelponUmum").prop("required", true);
+                    $("#KotaUmum").prop("required", true);
+                } else if ($(this).val() === 'Pelanggan') {
+                    $("#PenyewaUmumForm").hide();
+                    $("#PelangganForm").show();
+                    $("#PilihPelanggan").prop("required", true);
+                    $("#NamaUmum").removeAttr("required");
+                    $("#AlamatUmum").removeAttr("required");
+                    $("#NoTelponUmum").removeAttr("required");
+                    $("#KotaUmum").removeAttr("required");
+                }
+            });
+
         });
     </script>
 

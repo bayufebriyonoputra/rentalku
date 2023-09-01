@@ -8,6 +8,7 @@ use App\Models\AtasNama;
 use App\Models\DetailTransaksi;
 use App\Models\Kategori;
 use App\Models\Pelanggan;
+use App\Models\PenyewaUmum;
 use App\Models\Tipe;
 use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -35,10 +36,22 @@ class TransaksiController extends Controller
             'tanggal_kirim' => $request->input('tanggal_kirim'),
             'tanggal_ambil' => $request->input('tanggal_ambil'),
             'no_nota' => $request->input('no_nota'),
-            'pelanggan_id' => $request->input('pelanggan_id'),
         ];
+        if (!$request->input('nama_umum')) {
+            $data['pelanggan_id'] =  $request->input('pelanggan_id');
+        }
+
 
         Transaksi::create($data);
+        if ($request->input('nama_umum')) {
+            PenyewaUmum::create([
+                'no_nota' => $request->input('no_nota'),
+                'nama' => $request->input('nama_umum'),
+                'alamat' => $request->input('alamat_umum'),
+                'no_telpon' => $request->input('no_telpon_umum'),
+                'kota' => $request->input('kota_umum')
+            ]);
+        }
 
         AtasNama::create([
             'no_nota' => $request->input('no_nota'),
@@ -49,6 +62,14 @@ class TransaksiController extends Controller
         ]);
 
         return back()->with('success', 'Order Berhasil Dibuat');
+    }
+
+    public function destroy(Transaksi $transaksi)
+    {
+        $transaksi->delete();
+        PenyewaUmum::where('no_nota', $transaksi->no_nota)->delete();
+
+        return back()->with('success', 'Transaksi Dihapus');
     }
 
     public function detailSewa(Transaksi $transaksi)
@@ -138,6 +159,5 @@ class TransaksiController extends Controller
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
         ])->setPaper('a5', 'portrait');;
         return $pdf->stream('nota sewa' . now() . '.pdf', array("Attachment" => false));
-
     }
 }
