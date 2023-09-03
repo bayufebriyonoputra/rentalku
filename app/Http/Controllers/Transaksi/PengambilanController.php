@@ -93,9 +93,16 @@ class PengambilanController extends Controller
     {
         $transaksi->update(
             [
-                'status_pengambilan' => 'Diambil'
+                'status_pengambilan' => 'Diambil',
             ]
         );
+        $detail_transaksi = DetailTransaksi::where('no_nota' , $transaksi->no_nota)->get();
+        foreach($detail_transaksi as $dt){
+            DetailTransaksi::where('id', $dt->id)
+                ->update([
+                    'unit_in' => $dt->unit_out
+                ]);
+        }
 
         return back()->with('success', 'Status barang diubah menjadi Diambil');
     }

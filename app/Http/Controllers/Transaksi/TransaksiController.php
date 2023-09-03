@@ -158,6 +158,6 @@ class TransaksiController extends Controller
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
         ])->setPaper('a5', 'portrait');;
-        return $pdf->stream('nota sewa' . now() . '.pdf', array("Attachment" => false));
+        return $pdf->stream('nota sewa' . now() . '.pdf', ["Attachment" => 0]);
     }
 }
