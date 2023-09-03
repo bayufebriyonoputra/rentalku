@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\Transaksi\PengirimanBarangController;
 use App\Http\Controllers\TipeController;
@@ -82,12 +83,23 @@ Route::resource('/karyawan', KaryawanController::class)->middleware('auth');
 // Pelanggan
 Route::resource('/pelanggan', PelangganController::class)->middleware('auth');
 
+// Paket
+Route::get('/paket', [PaketController::class,'index'])->middleware('auth');
+Route::post('/paket', [PaketController::class,'store'])->middleware('auth');
+Route::put('/paket/{paket}', [PaketController::class,'update'])->middleware('auth');
+Route::delete('/paket/{paket}', [PaketController::class,'destroy'])->middleware('auth');
+Route::get('/paket/edit/{paket}', [PaketController::class,'edit'])->middleware('auth');
+Route::get('/paket/{paket}', [PaketController::class,'detailPaket'])->middleware('auth');
+Route::post('/paket/detail', [PaketController::class,'storeDetailPaket'])->middleware('auth');
+Route::delete('/paket/detail/{detail_paket}', [PaketController::class,'destroyDetail'])->middleware('auth');
+
 // Transaksi
 Route::get('/transaksi-sewa', [TransaksiController::class, 'listTransaksiSewa'])->middleware('auth');
 Route::post('/transaksi-sewa', [TransaksiController::class, 'storeSewa'])->middleware('auth');
 Route::delete('/transaksi-sewa/hapus/{transaksi}', [TransaksiController::class, 'destroy'])->middleware('auth');
 Route::get('/transaksi-sewa/{transaksi}/edit', [TransaksiController::class, 'detailSewa'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder', [TransaksiController::class, 'isiDetailOrder'])->middleware('auth');
+Route::post('/transaksi-sewa/detailOrder/paket', [TransaksiController::class, 'isiDetailOrderPaket'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder/update', [TransaksiController::class, 'updateOrder'])->middleware('auth');
 Route::delete('/transaksi-sewa/detailOrder/{id}', [TransaksiController::class, 'hapusOrdet'])->middleware('auth');
 

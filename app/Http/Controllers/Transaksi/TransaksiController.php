@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Transaksi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AtasNama;
+use App\Models\DetailPaket;
 use App\Models\DetailTransaksi;
 use App\Models\Kategori;
+use App\Models\Paket;
 use App\Models\Pelanggan;
 use App\Models\PenyewaUmum;
 use App\Models\Tipe;
@@ -80,7 +82,8 @@ class TransaksiController extends Controller
             'transaksi' => $transaksi,
             'detail_transaksi' => $detail_transaksi,
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
-            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
+            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim'),
+            'paket' => Paket::all()
         ]);
     }
 
@@ -105,9 +108,33 @@ class TransaksiController extends Controller
         DetailTransaksi::create($data);
         $tipe = Tipe::where('id', $request->input('tipe_id'))
             ->first();
-        $tipe->update([
-            'stock' => $tipe->stock - $request->unit
-        ]);
+        // $tipe->update([
+        //     'stock' => $tipe->stock - $request->unit
+        // ]);
+        return back()->with('success', 'Item ditambahkan');
+    }
+    public function isiDetailOrderPaket(Request $request)
+    {
+        $paket = DetailPaket::where('paket_id', $request->input('paket_id'))->get();
+        foreach ($paket as $p) {
+            $data = [
+                'no_nota' => $request->input('no_nota'),
+                'tipe_id' => $p->tipe_id,
+                'tarif_sewa' => $p->total_tarif_sewa,
+                'lama_sewa' => $p->lama_sewa,
+                'komisi_kirim' => $p->total_komisi_kirim,
+                'x_komisi' => $p->x_kirim,
+                'unit_out' => $p->unit,
+            ];
+
+            DetailTransaksi::create($data);
+            $tipe = Tipe::where('id', $request->input('tipe_id'))
+                ->first();
+            // $tipe->update([
+            //     'stock' => $tipe->stock - $request->unit
+            // ]);
+        }
+
         return back()->with('success', 'Item ditambahkan');
     }
 

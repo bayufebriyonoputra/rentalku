@@ -14,17 +14,15 @@
             )
         </script>
     @endif
-    <h1 class="mb-4">Detail No Nota : {{ $transaksi->no_nota }}</h1>
+    <h1 class="mb-4">Detail Paket : {{ $paket->paket }}</h1>
 
-    <p class="text-muted">Input Transaksi</p>
-    <form action="/transaksi-sewa/detailOrder" method="POST">
+    <p class="text-muted">Input Detail Paket</p>
+    <form action="/paket/detail" method="POST">
         @csrf
-        <input type="hidden" id="TotalKomisiKirim" name="total_komisi_kirim">
-        <input type="hidden" id="TotalTarifSewa" name="total_tarif_sewa">
-        <input type="hidden" id="NoNota" name="no_nota" value="{{ $transaksi->no_nota }}">
+        <input type="hidden" name="paket_id" value="{{ $paket->id }}">
         <div class="row">
             <div class="col-md-6">
-                <p class="mt-4 text-muted"><b>Data Transaksi</b></p>
+                <p class="mt-4 text-muted"><b>Data Detail Paket</b></p>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="KategoriId" class="">Kategori Produk</label>
@@ -69,18 +67,19 @@
                         <input type="number" class="form-control" name="unit" id="Unit" placeholder="1" required>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="" class="">Satuan</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="satuan" id="Satuan" readonly required>
-                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
-                    </div>
-                </div>
 
             </div>
             <div class="col-md-6 mt-4">
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">Lama Sewa</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" name="lama_sewa" id="LamaSewa" placeholder="1 (hari)"
+                            required>
+                        {{-- <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa : </p> --}}
+                    </div>
+                </div>
                 <div class="row mt-5">
                     <div class="col-md-3">
                         <label for="" class="">Tarif Sewa</label>
@@ -91,12 +90,11 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <label for="" class="">Lama Sewa</label>
+                        <label for="" class="">Total Tarif Sewa</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="lama_sewa" id="LamaSewa" placeholder="1 (hari)"
-                            required>
-                        <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa : </p>
+                        <input type="number" class="form-control" name="total_tarif_sewa" id="LbTotalSewa"
+                            placeholder="Rp." required readonly>
                     </div>
                 </div>
 
@@ -113,30 +111,22 @@
                         <label for="" class="">X Komisi</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="xKomisi" id="XKomisi" placeholder="1"
-                            required>
-                        <p class="text-muted" id="LbTotalKomisi">Total Komisi : </p>
+                        <input type="number" class="form-control" name="xKomisi" id="XKomisi" placeholder="1" required>
+                        {{-- <p class="text-muted" id="LbTotalKomisi">Total Komisi : </p> --}}
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </form>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="" class="">Total Komisi Kirim</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" name="total_komisi_kirim" id="LbTotalKomisi"
+                            placeholder="Rp." required readonly>
+                            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                    </div>
+                </div>
 
-    <p>Pilih Paket</p>
-    <form action="/transaksi-sewa/detailOrder/paket" method="POST">
-        @csrf
-        <input type="hidden" name="no_nota" value="{{ $transaksi->no_nota }}">
-        <div class="row">
-            <div class="col-md-6">
-                <select name="paket_id" id="Paket" class="form-select">
-                    @foreach ($paket as $p)
-                        <option value="{{ $p->id }}">{{ $p->paket }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
         </div>
     </form>
@@ -149,33 +139,29 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Tipe/Jeis Produk</th>
+                    <th scope="col">Tipe</th>
                     <th scope="col">Unit</th>
-                    <th scope="col">Satuan</th>
-                    <th scope="col">Tarif Sewa</th>
                     <th scope="col">Lama Sewa</th>
+                    <th scope="col">Tarif Sewa</th>
                     <th scope="col">Total Tarif Sewa</th>
-                    <th scope="col">Komisi Kirim</th>
                     <th scope="col">X Kirim</th>
                     <th scope="col">Total Komisi Kirim</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($detail_transaksi as $dt)
+                @foreach ($detail_paket as $dt)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $dt->tipe->tipe }}</td>
-                        <td>{{ $dt->unit_out }}</td>
-                        <td>{{ $dt->tipe->satuan }}</td>
-                        <td>{{ $dt->tipe->tarif_sewa }}</td>
+                        <td>{{ $dt->unit}}</td>
                         <td>{{ $dt->lama_sewa }}</td>
-                        <td>{{ $dt->tarif_sewa }}</td>
-                        <td>{{ $dt->tipe->komisi_kirim }}</td>
-                        <td>{{ $dt->x_komisi }}</td>
-                        <td>{{ $dt->komisi_kirim }}</td>
+                        <td>{{ $dt->tipe->tarif_sewa }}</td>
+                        <td>{{ $dt->total_tarif_sewa }}</td>
+                        <td>{{ $dt->x_kirim }}</td>
+                        <td>{{ $dt->total_komisi_kirim }}</td>
                         <td>
-                            <form action="/transaksi-sewa/detailOrder/{{ $dt->id }}" class="d-inline"
+                            <form action="/paket/detail/{{ $dt->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -190,55 +176,6 @@
             </tbody>
         </table>
     </div>
-
-
-
-        <form action="/transaksi-sewa/detailOrder/update" class="mt-5" method="POST">
-            @csrf
-            <input type="hidden" name="jumlah_bayar" id="JumlahBayar">
-            <input type="hidden" name="no_nota" value="{{ $transaksi->no_nota }}">
-            <input type="hidden" name="total_sewa" value="{{ $total_biaya_sewa }}">
-            <input type="hidden" name="total_komisi" value="{{ $total_komisi_kirim }}">
-            <div class="row">
-                <div class="col-md-4">
-                    <p><b>Total Biaya Sewa : {{ formatRupiah($total_biaya_sewa) }}</b></p>
-                    <p><b>Total Komisi Kirm : {{ formatRupiah($total_komisi_kirim) }}</b></p>
-                    <p><b id="Jumlah">Jumlah : {{ formatRupiah($total_komisi_kirim + $total_biaya_sewa + $transaksi->biaya_kirim_ambil) }}</b></p>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="">Uang Muka</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="number" placeholder="Rp." class="form-control" name="uang_muka" id="UangMuka" value="{{ $transaksi->uang_muka }}" required>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="">Biaya Kirim/Ambil</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="number" placeholder="Rp." class="form-control" name="biaya_kirim_ambil" id="BiayaKirimAmbil" value="{{ $transaksi->biaya_kirim_ambil }}" required>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <label for="">Diskon</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="number" placeholder="%" class="form-control" name="diskon" id="Diskon" required>
-                        </div>
-                    </div>
-                    <p class="mt-3" ><b id="Sisa">Sisa :</b></p>
-                </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a href="/nota/penyewaan/{{ $transaksi->id }}" target="_blank" class="btn btn-success">Cetak Nota Penyewaan</a>
-                </div>
-            </div>
-        </form>
-
 @endsection
 @section('bottom')
     <script src="{{ asset('datatables/jQuery/jquery-3.7.0.min.js') }}"></script>
@@ -373,48 +310,22 @@
             // Lama sewa Listener
             $('#LamaSewa').change(function() {
                 let total = $('#TarifSewa').val() * $('#Unit').val() * $('#LamaSewa').val();
-                $('#LbTotalSewa').text('Total Tarif Sewa : Rp.' + total);
+                $('#LbTotalSewa').val(total);
                 $('#TotalTarifSewa').val(total);
             });
             // Unit Listener
             $('#Unit').change(function() {
                 let total = $('#TarifSewa').val() * $('#Unit').val() * $('#LamaSewa').val();
-                $('#LbTotalSewa').text('Total Tarif Sewa : Rp.' + total);
+                $('#LbTotalSewa').val(total);
                 $('#TotalTarifSewa').val(total);
             });
             // KomisiKirimListener
             $('#XKomisi').change(function() {
                 let total = $('#KomisiKirim').val() * $('#XKomisi').val();
-                $('#LbTotalKomisi').text('Total Komisi : Rp.' + total);
+                $('#LbTotalKomisi').val(total);
                 $('#TotalKomisiKirim').val(total);
             });
-            // Listener UangMuka
-            $('#UangMuka').change(function() {
-                $('#Diskon').val(null);
-                let dp = $(this).val();
-                let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +  Number($('#BiayaKirimAmbil').val());
-                $('#Sisa').text('Sisa : ' + formatToRupiah(total - dp));
-                $('#JumlahBayar').val(total);
-            });
-            // Listener Biaya Kirim Ambil
-            $('#BiayaKirimAmbil').change(function() {
-                let biaya = $(this).val();
-                $('#Diskon').val(null);
-                let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +Number(biaya);
-                $('#Sisa').text('Sisa : ' + formatToRupiah(total - $('#UangMuka').val()));
-                $('#Jumlah').text('Jumlah : ' + formatToRupiah(total));
-                $('#JumlahBayar').val(total);
-            });
-            // Diskon Listener
-            $('#Diskon').change(function(){
-                let diskon = $(this).val();
-                let total = {{ $total_komisi_kirim }} + {{ $total_biaya_sewa }} +  Number($('#BiayaKirimAmbil').val());
-                let after_diskon = diskon / 100 * total;
-                let jumlah_total = total - after_diskon;
-                $('#JumlahBayar').val(jumlah_total);
-                $('#Jumlah').text('Jumlah : ' + formatToRupiah(jumlah_total));
-                $('#Sisa').text('Sisa : ' + formatToRupiah(jumlah_total - $('#UangMuka').val()));
-            })
+
         });
     </script>
 @endsection
