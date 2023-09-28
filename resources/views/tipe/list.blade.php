@@ -187,8 +187,8 @@
                 @foreach ($tipe as $p)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $p->merk->kategori->kategori }}</td>
-                        <td>{{ $p->merk->merk }}</td>
+                        <td>{{ $p->merk->kategori->kategori ?? '-' }}</td>
+                        <td>{{ $p->merk->merk ?? '-'}}</td>
                         <td>{{ $p->tipe }}</td>
                         <td>{{ formatRupiah($p->tarif_sewa) }}</td>
                         <td>{{ formatRupiah($p->komisi_kirim) }}</td>

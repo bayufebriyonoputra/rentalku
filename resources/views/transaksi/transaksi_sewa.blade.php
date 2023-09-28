@@ -113,7 +113,7 @@
                             <label for="" class="">Nama</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" id="NamaUmum" class="col-md-9 form-control" name="nama_umum">
+                            <input type="text" id="NamaUmum" class="col-md-9 form-control" name="nama_umum" required>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -121,7 +121,7 @@
                             <label for="" class="">Alamat</label>
                         </div>
                         <div class="col-md-8">
-                            <textarea name="alamat_umum" id="AlamatUmum" rows="3" class="form-control"></textarea>
+                            <textarea name="alamat_umum" id="AlamatUmum" rows="3" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -129,7 +129,7 @@
                             <label for="" class="">No Telepon</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" class="col-md-9 form-control" name="no_telpon_umum" id="NoTelponUmum" >
+                            <input type="number" class="col-md-9 form-control" name="no_telpon_umum" id="NoTelponUmum" required>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -137,7 +137,7 @@
                             <label for="" class="">Kota</label>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="col-md-9 form-control" name="kota_umum" id="KotaUmum" >
+                            <input type="text" class="col-md-9 form-control" name="kota_umum" id="KotaUmum" required>
                         </div>
                     </div>
 

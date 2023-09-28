@@ -25,13 +25,13 @@
                 <td style="width:198px"><span style="font-size:8px">Nama : {{ $transaksi->atasNama->nama }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">Nama : {{ $transaksi->pelanggan->pelanggan }}</span>
+                <td style="width:212px"><span style="font-size:8px">Nama : {{ $transaksi->pelanggan->pelanggan ?? $penyewa_umum->nama }}</span>
                 </td>
                 <td style="width:198px"><span style="font-size:8px">Alamat : {{ $transaksi->atasNama->alamat }}</span>
                 </td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">Alamat : {{ $transaksi->pelanggan->alamat }}</span>
+                <td style="width:212px"><span style="font-size:8px">Alamat : {{ $transaksi->pelanggan->alamat ?? $penyewa_umum->alamat }}</span>
                 </td>
                 <td style="width:198px">&nbsp;</td>
             </tr>
@@ -40,13 +40,13 @@
                 <td style="width:198px"><span style="font-size:8px">Kota : {{ $transaksi->atasNama->kota }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">Kota :{{ $transaksi->pelanggan->kota }}</span></td>
+                <td style="width:212px"><span style="font-size:8px">Kota :{{ $transaksi->pelanggan->kota ?? $penyewa_umum->kota }}</span></td>
                 <td style="width:198px"><span style="font-size:8px">No Tlp :
                         {{ $transaksi->atasNama->no_telpon }}</span></td>
             </tr>
             <tr>
                 <td style="width:212px"><span style="font-size:8px">No Tlp :
-                        {{ $transaksi->pelanggan->no_telpon }}</span></td>
+                        {{ $transaksi->pelanggan->no_telpon ?? $penyewa_umum->no_telpon }}</span></td>
                 <td style="width:198px">&nbsp;</td>
             </tr>
         </tbody>

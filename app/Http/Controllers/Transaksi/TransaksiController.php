@@ -182,6 +182,7 @@ class TransaksiController extends Controller
         $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
         $pdf = PDF::loadView('nota.penyewaan_barang', [
             'transaksi' => $data_transaksi,
+            'penyewa_umum' => PenyewaUmum::where('no_nota', $data_transaksi->no_nota)->first(),
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
         ])->setPaper('a5', 'portrait');;
