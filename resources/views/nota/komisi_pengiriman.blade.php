@@ -18,15 +18,19 @@
             </tr>
             <tr>
                 <td style="width:212px"><span style="font-size:8px">Kepada YTH :
-                        {{ $transaksi->pelanggan->pelanggan }}</span></td>
+                        {{ $transaksi->pelanggan->pelanggan ?? $transaksi->penyewaUmum->nama }}</span></td>
                 <td style="width:198px"><span style="font-size:8px">No Nota : {{ $transaksi->no_nota }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->alamat }}</span></td>
+                <td style="width:212px"><span
+                        style="font-size:8px">{{ $transaksi->pelanggan->alamat ?? $transaksi->penyewaUmum->alamat }}</span>
+                </td>
                 <td style="width:198px"><span style="font-size:8px">Tanggal :{{ $transaksi->tanggal }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->kota }}</span></td>
+                <td style="width:212px"><span
+                        style="font-size:8px">{{ $transaksi->pelanggan->kota ?? $transaksi->penyewaUmum->kota }}</span>
+                </td>
                 <td style="width:198px">&nbsp;</td>
             </tr>
         </tbody>
@@ -81,7 +85,7 @@
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Total Komisi Kirim :
                 {{ formatRupiah($transaksi->detailTransaksi->sum('komisi_kirim')) }}
-                </strong></span></p>
+            </strong></span></p>
 
     <table border="1" cellpadding="1" cellspacing="1" style="width:234.455px">
         <tbody>
@@ -107,7 +111,8 @@
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</u></p>
 
-    <p><span style="font-size:8px">Total Komisi&nbsp; &nbsp;=&nbsp; {{ formatRupiah($transaksi->pengiriman->sum('komisi')) }}</span></p>
+    <p><span style="font-size:8px">Total Komisi&nbsp; &nbsp;=&nbsp;
+            {{ formatRupiah($transaksi->pengiriman->sum('komisi')) }}</span></p>
 
     <p><span style="font-size:8px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

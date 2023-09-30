@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('no_nota');
+            $table->string('no_nota')->unique();
             $table->foreignId('pelanggan_id');
             $table->date('tanggal');
             $table->date('tanggal_kirim');
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->integer('total_komisi')->nullable();
             $table->string('status_pengiriman')->nullable();
             $table->string('status_pengambilan')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

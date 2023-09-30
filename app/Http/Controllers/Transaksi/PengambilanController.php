@@ -110,7 +110,7 @@ class PengambilanController extends Controller
     public function cetakNotaAmbil(Transaksi $transaksi)
     {
 
-        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama', 'penyewaUmum'])->first();
         $pdf = PDF::loadView('nota.pengambilan_barang', [
             'transaksi' => $data_transaksi,
         ])->setPaper('a5', 'portrait');;
@@ -128,7 +128,7 @@ class PengambilanController extends Controller
 
 
 
-        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama', 'penyewaUmum'])->first();
         $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
         $pdf = PDF::loadView('nota.pelunasan', [
             'transaksi' => $data_transaksi,
@@ -145,7 +145,7 @@ class PengambilanController extends Controller
         foreach ($detail as $d) {
             $total_komisi += $d->x_komisi * $d->tipe->komisi_ambil;
         }
-        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengambilan'])->first();
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengambilan', 'penyewaUmum'])->first();
         $pdf = PDF::loadView('nota.komisi_pengambilan', [
             'transaksi' => $data_transaksi,
             'total_komisi_ambil' => $total_komisi

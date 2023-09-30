@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
             $table->string('no_nota');
+            $table->foreign('no_nota')->references('no_nota')->on('transaksis')->onDelete('cascade');
             $table->foreignId('tipe_id');
             $table->integer('tarif_sewa');
             $table->integer('lama_sewa');

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pengrimans', function (Blueprint $table) {
             $table->id();
             $table->string('no_nota');
+            $table->foreign('no_nota')->references('no_nota')->on('transaksis')->onDelete('cascade');
             $table->foreignId('karyawan_id');
             $table->integer('komisi');
             $table->timestamps();

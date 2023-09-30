@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaksi extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $guarded = ['id'];
 
@@ -30,5 +30,9 @@ class Transaksi extends Model
 
     public function pengambilan(){
         return $this->hasMany(Pengambilan::class,'no_nota', 'no_nota');
+    }
+
+    public function penyewaUmum(){
+        return $this->hasOne(PenyewaUmum::class, 'no_nota', 'no_nota');
     }
 }

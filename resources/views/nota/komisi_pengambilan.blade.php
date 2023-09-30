@@ -18,15 +18,15 @@
             </tr>
             <tr>
                 <td style="width:212px"><span style="font-size:8px">Kepada YTH :
-                        {{ $transaksi->pelanggan->pelanggan }}</span></td>
+                        {{ $transaksi->pelanggan->pelanggan ?? $transaksi->penyewaUmum->nama }}</span></td>
                 <td style="width:198px"><span style="font-size:8px">No Nota : {{ $transaksi->no_nota }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->alamat }}</span></td>
+                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->alamat ?? $transaksi->penyewaUmum->alamat }}</span></td>
                 <td style="width:198px"><span style="font-size:8px">Tanggal :{{ $transaksi->tanggal }}</span></td>
             </tr>
             <tr>
-                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->kota }}</span></td>
+                <td style="width:212px"><span style="font-size:8px">{{ $transaksi->pelanggan->kota ?? $transaksi->penyewaUmum->kota }}</span></td>
                 <td style="width:198px">&nbsp;</td>
             </tr>
         </tbody>

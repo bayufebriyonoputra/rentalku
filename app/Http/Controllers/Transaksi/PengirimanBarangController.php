@@ -10,6 +10,7 @@ use App\Models\Pengiriman;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
 use App\Http\Controllers\Controller;
+use App\Models\PenyewaUmum;
 
 class PengirimanBarangController extends Controller
 {
@@ -100,6 +101,7 @@ class PengirimanBarangController extends Controller
         $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
         $pdf = PDF::loadView('nota.pengiriman_barang', [
             'transaksi' => $data_transaksi,
+            'penyewa_umum' => PenyewaUmum::where('no_nota', $transaksi->no_nota)->first()
         ])->setPaper('a5', 'portrait');;
         return $pdf->stream('nota kirim' . now() . '.pdf', array("Attachment" => false));
 
@@ -108,7 +110,7 @@ class PengirimanBarangController extends Controller
     public function cetakNotaKomisiKirim(Transaksi $transaksi)
     {
 
-        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengiriman'])->first();
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'pengiriman', 'penyewaUmum'])->first();
         $pdf = PDF::loadView('nota.komisi_pengiriman', [
             'transaksi' => $data_transaksi,
         ])->setPaper('a5', 'portrait');;
