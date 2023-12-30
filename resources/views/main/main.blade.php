@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ asset('sidebar/assets/css/styles.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
   @yield('head')
+  @livewireStyles
 </head>
 
 <body>
@@ -70,6 +71,7 @@
   <script src="{{ asset('sidebar/assets/libs/simplebar/dist/simplebar.js') }}"></script>
   <script src="{{ asset('sidebar/assets/js/dashboard.js') }}"></script>
   @yield('bottom')
+  @livewireScripts
 </body>
 
 </html>

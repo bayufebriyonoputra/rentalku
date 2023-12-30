@@ -24,11 +24,7 @@ class TransaksiController extends Controller
         $pelanggan = Pelanggan::all();
         $transaksi = Transaksi::with('pelanggan')->latest()->get();
 
-        return view('transaksi.transaksi_sewa', [
-            'pelanggan' => $pelanggan,
-            'no_nota'  => 'SP' . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth(),
-            'transaksi' => $transaksi
-        ]);
+        return view('transaksi.transaksi_sewa', );
     }
 
     public function storeSewa(Request $request)
