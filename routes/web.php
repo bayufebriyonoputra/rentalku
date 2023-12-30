@@ -16,6 +16,7 @@ use App\Http\Controllers\Transaksi\GajiKaryawan;
 use App\Http\Controllers\Transaksi\PengambilanController;
 use App\Http\Controllers\Transaksi\PinjamanController;
 use App\Http\Controllers\Transaksi\TransaksiController;
+use App\Livewire\Transaksi\DetailTransaksi;
 use App\Models\Karyawan;
 use App\Models\Merk;
 use App\Models\Tipe;
@@ -97,7 +98,7 @@ Route::delete('/paket/detail/{detail_paket}', [PaketController::class,'destroyDe
 Route::get('/transaksi-sewa', [TransaksiController::class, 'listTransaksiSewa'])->middleware('auth');
 Route::post('/transaksi-sewa', [TransaksiController::class, 'storeSewa'])->middleware('auth');
 Route::delete('/transaksi-sewa/hapus/{transaksi}', [TransaksiController::class, 'destroy'])->middleware('auth');
-Route::get('/transaksi-sewa/{transaksi}/edit', [TransaksiController::class, 'detailSewa'])->middleware('auth');
+Route::get('/transaksi-sewa/{transaksi}/edit', DetailTransaksi::class)->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder', [TransaksiController::class, 'isiDetailOrder'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder/paket', [TransaksiController::class, 'isiDetailOrderPaket'])->middleware('auth');
 Route::post('/transaksi-sewa/detailOrder/update', [TransaksiController::class, 'updateOrder'])->middleware('auth');
