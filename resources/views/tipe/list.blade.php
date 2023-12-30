@@ -1,6 +1,9 @@
 @extends('main.main')
 @section('head')
-    <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"> --}}
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css"
+        rel="stylesheet">
+
     <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.min.css') }}">
 @endsection
@@ -171,6 +174,7 @@
             <thead>
                 <tr>
                     <th scope="col">No</th>
+                    <th scope="col">Barcode</th>
                     <th scope="col">Kategori Produk</th>
                     <th scope="col">Merk</th>
                     <th scope="col">Tipe Produk</th>
@@ -187,8 +191,9 @@
                 @foreach ($tipe as $p)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $p->barcode }}</td>
                         <td>{{ $p->merk->kategori->kategori ?? '-' }}</td>
-                        <td>{{ $p->merk->merk ?? '-'}}</td>
+                        <td>{{ $p->merk->merk ?? '-' }}</td>
                         <td>{{ $p->tipe }}</td>
                         <td>{{ formatRupiah($p->tarif_sewa) }}</td>
                         <td>{{ formatRupiah($p->komisi_kirim) }}</td>
@@ -217,11 +222,27 @@
 @section('bottom')
     <script src="{{ asset('datatables/jQuery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
+    {{-- <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script> --}}
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+
+
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({
-                scrollX: true
+                scrollX: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'LEGAL'
+                }]
             });
         });
     </script>
