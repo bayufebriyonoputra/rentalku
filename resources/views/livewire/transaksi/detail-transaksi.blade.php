@@ -12,11 +12,7 @@
     <h1 class="mb-4">Detail No Nota : {{ $transaksi->no_nota }}</h1>
 
     <p class="text-muted">Input Transaksi</p>
-    <form action="/transaksi-sewa/detailOrder" method="POST">
-        @csrf
-        <input type="hidden" id="TotalKomisiKirim" name="total_komisi_kirim">
-        <input type="hidden" id="TotalTarifSewa" name="total_tarif_sewa">
-        <input type="hidden" id="NoNota" name="no_nota" value="{{ $transaksi->no_nota }}">
+    <form wire:submit="store">
         <div class="row">
             <div class="col-md-6">
                 <p class="mt-4 text-muted"><b>Data Transaksi</b></p>
@@ -25,7 +21,7 @@
                         <label for="KategoriId" class="">Kategori Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model.live="kategoriId" name="kategori_id" id="KategoriId" class="form-select"
+                        <select wire:model.change="kategoriId" name="kategori_id" id="KategoriId" class="form-select"
                             required>
                             <option value="none" disabled selected>---Pilih Kategori---</option>
                             @foreach ($kategori as $k)
@@ -41,7 +37,7 @@
                         <label for="MerkId" class="">Merk Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model.live="merkId" name="merk_id" id="MerkId" class="form-select" required>
+                        <select wire:model.change="merkId" name="merk_id" id="MerkId" class="form-select" required>
                             <option value="none" disabled selected>---Pilih Merk---</option>
                             @foreach ($merk_produk as $m)
                                 <option wire:key="{{ $m->id }}" value="{{ $m->id }}">{{ $m->merk }}
@@ -56,7 +52,8 @@
                         <label for="TipeId" class="">Tipe Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model.live="tipeProdukId" name="tipe_id" id="TipeId" class="form-select" required>
+                        <select wire:model.change="tipeProdukId" name="tipe_id" id="TipeId" class="form-select"
+                            required>
                             <option value="none" disabled selected>---Pilih Merk---</option>
                             @foreach ($tipe_produk as $t)
                                 <option wire:key="{{ $t->id }}" value="{{ $t->id }}">{{ $t->tipe }}
@@ -68,11 +65,23 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
+                        <label for="Barcode" class="">Kode Tipe</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input wire:model="barcode" type="text" class="form-control" placeholder="Cari berdasarkan code">
+                    </div>
+                    <div class="col-md-2">
+                        <button wire:click="cariBarcode" type="button" class="btn btn-primary">cari</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
                         <label for="" class="">Unit</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="unit" id="Unit" placeholder="1"
-                            required>
+                        <input wire:model.live="unit" type="number" class="form-control" name="unit" id="Unit"
+                            placeholder="1" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -80,7 +89,8 @@
                         <label for="" class="">Satuan</label>
                     </div>
                     <div class="col-md-8">
-                        <input wire:model.live="satuan" type="text" class="form-control" name="satuan" id="Satuan" readonly required>
+                        <input wire:model.live="satuan" type="text" class="form-control" name="satuan"
+                            id="Satuan" readonly required>
                         <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                     </div>
                 </div>
@@ -92,7 +102,8 @@
                         <label for="" class="">Tarif Sewa</label>
                     </div>
                     <div class="col-md-8">
-                        <input wire:model.live="tarif_sewa" type="text" class="form-control" name="tarif_sewa" id="TarifSewa" readonly required>
+                        <input wire:model.live="tarif_sewa" type="text" class="form-control" name="tarif_sewa"
+                            id="TarifSewa" readonly required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -100,9 +111,10 @@
                         <label for="" class="">Lama Sewa</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="lama_sewa" id="LamaSewa"
-                            placeholder="1 (hari)" required>
-                        <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa : </p>
+                        <input wire:model.live="lama_sewa" type="number" class="form-control" name="lama_sewa"
+                            id="LamaSewa" placeholder="1 (hari)" required>
+                        <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa :{{ formatRupiah($total_tarif_sewa) }}
+                        </p>
                     </div>
                 </div>
 
@@ -111,8 +123,8 @@
                         <label for="" class="">Komisi Kirim</label>
                     </div>
                     <div class="col-md-8">
-                        <input wire:model.live="komisi_kirim" type="text" class="form-control" name="komisi_kirim" id="KomisiKirim" readonly
-                            required>
+                        <input wire:model.live="komisi_kirim" type="text" class="form-control"
+                            name="komisi_kirim" id="KomisiKirim" readonly required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -120,9 +132,10 @@
                         <label for="" class="">X Komisi</label>
                     </div>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" name="xKomisi" id="XKomisi" placeholder="1"
-                            required>
-                        <p class="text-muted" id="LbTotalKomisi">Total Komisi : </p>
+                        <input wire:model.live="x_komisi" type="number" class="form-control" name="xKomisi"
+                            id="XKomisi" placeholder="1" required>
+                        <p class="text-muted" id="LbTotalKomisi">Total Komisi :
+                            {{ formatRupiah($total_komisi_kirim) }} </p>
                     </div>
                 </div>
 
