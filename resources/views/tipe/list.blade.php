@@ -1,7 +1,7 @@
 @extends('main.main')
 @section('head')
     {{-- <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"> --}}
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css"
+    <link href="{{ asset('datatables/plugin/bs5.css') }}"
         rel="stylesheet">
 
     <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
@@ -223,13 +223,13 @@
     <script src="{{ asset('datatables/jQuery/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('datatables/datatables.min.js') }}"></script>
     {{-- <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script> --}}
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="{{ asset('datatables/plugin/bprint.min.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/buttons.min.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/jszip.min.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/vsffont.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/buttons_html5.min.js') }}"></script>
+    <script src="{{ asset('datatables/plugin/buttons_print.min.js') }}"></script>
 
 
 
