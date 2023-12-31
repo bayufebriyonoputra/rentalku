@@ -16,6 +16,7 @@ use App\Http\Controllers\Transaksi\GajiKaryawan;
 use App\Http\Controllers\Transaksi\PengambilanController;
 use App\Http\Controllers\Transaksi\PinjamanController;
 use App\Http\Controllers\Transaksi\TransaksiController;
+use App\Livewire\MasterData\PaketController as MasterDataPaketController;
 use App\Livewire\Transaksi\DetailTransaksi;
 use App\Models\Karyawan;
 use App\Models\Merk;
@@ -90,7 +91,7 @@ Route::post('/paket', [PaketController::class,'store'])->middleware('auth');
 Route::put('/paket/{paket}', [PaketController::class,'update'])->middleware('auth');
 Route::delete('/paket/{paket}', [PaketController::class,'destroy'])->middleware('auth');
 Route::get('/paket/edit/{paket}', [PaketController::class,'edit'])->middleware('auth');
-Route::get('/paket/{paket}', [PaketController::class,'detailPaket'])->middleware('auth');
+Route::get('/paket/{paket}', MasterDataPaketController::class)->middleware('auth');
 Route::post('/paket/detail', [PaketController::class,'storeDetailPaket'])->middleware('auth');
 Route::delete('/paket/detail/{detail_paket}', [PaketController::class,'destroyDetail'])->middleware('auth');
 
