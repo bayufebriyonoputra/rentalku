@@ -63,6 +63,18 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
+                        <label for="Barcode" class="">Code Tipe</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" wire:model="barcode">
+                    </div>
+                    <div class="col-md-2">
+                        <button wire:click="searchBarcode" type="button" class="btn btn-primary">Cari</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
                         <label for="" class="">Unit</label>
                     </div>
                     <div class="col-md-8">

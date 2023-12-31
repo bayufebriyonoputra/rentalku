@@ -32,6 +32,8 @@ class PaketController extends Component
     public $xKomisi = 0;
     public $totalKomisiKirim = 0;
 
+    public $barcode = '';
+
     public function render()
     {
         $this->kategori = Kategori::all();
@@ -62,6 +64,16 @@ class PaketController extends Component
         ];
 
         DetailPaket::create($data);
+    }
+
+    public function searchBarcode()
+    {
+        $tipe = Tipe::where('barcode', $this->barcode)->with('merk.kategori')->first();
+        if ($tipe) {
+            $this->kategoriId = $tipe->merk->kategori->id;
+            $this->merkId = $tipe->merk->id;
+            $this->tipeId = $tipe->id;
+        }
     }
 
 
