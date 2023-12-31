@@ -64,7 +64,7 @@ class TransaksiController extends Component
                 'no_nota' => $this->no_nota,
                 'nama' => $this->nama_umum,
                 'alamat' => $this->alamat_umum,
-                'no_telpon' => $this->alamat_umum,
+                'no_telpon' => $this->no_telpon_umum,
                 'kota' => $this->kota_umum
             ]);
         }

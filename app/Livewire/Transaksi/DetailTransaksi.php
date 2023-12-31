@@ -37,6 +37,7 @@ class DetailTransaksi extends Component
     public $barcode = '';
 
 
+
     public function render()
     {
         $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
@@ -55,8 +56,6 @@ class DetailTransaksi extends Component
         return view('livewire.transaksi.detail-transaksi', [
             'transaksi' => $this->transaksi,
             'detail_transaksi' => $detail_transaksi,
-            'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
-            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim'),
             'paket' => Paket::all(),
 
         ]);
@@ -74,6 +73,7 @@ class DetailTransaksi extends Component
         ];
 
         modelDetailTransaksi::create($data);
+        $this->dispatch('update-harga');
     }
 
 
