@@ -77,6 +77,8 @@ class DetailTransaksi extends Component
     }
 
 
+
+
     public function cariBarcode(){
         $tipe = Tipe::where('barcode', $this->barcode)->with('merk.kategori')->first();
 

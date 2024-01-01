@@ -164,52 +164,7 @@
 
 
 
-    <div style="overflow-x: auto; margin-top: 80px">
-        <table class="table table-striped mt-4 display nowrap" id="myTable" style="width: 100%;">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Tipe/Jeis Produk</th>
-                    <th scope="col">Unit</th>
-                    <th scope="col">Satuan</th>
-                    <th scope="col">Tarif Sewa</th>
-                    <th scope="col">Lama Sewa</th>
-                    <th scope="col">Total Tarif Sewa</th>
-                    <th scope="col">Komisi Kirim</th>
-                    <th scope="col">X Kirim</th>
-                    <th scope="col">Total Komisi Kirim</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($detail_transaksi as $dt)
-                    <tr wire:key="{{ $dt->id }}">
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $dt->tipe->tipe }}</td>
-                        <td>{{ $dt->unit_out }}</td>
-                        <td>{{ $dt->tipe->satuan }}</td>
-                        <td>{{ $dt->tipe->tarif_sewa }}</td>
-                        <td>{{ $dt->lama_sewa }}</td>
-                        <td>{{ $dt->tarif_sewa }}</td>
-                        <td>{{ $dt->tipe->komisi_kirim }}</td>
-                        <td>{{ $dt->x_komisi }}</td>
-                        <td>{{ $dt->komisi_kirim }}</td>
-                        <td>
-                            <form action="/transaksi-sewa/detailOrder/{{ $dt->id }}" class="d-inline"
-                                id="myForm{{ $loop->iteration }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger"
-                                    onclick="deleteData('myForm{{ $loop->iteration }}')"><i
-                                        class="fa-solid fa-trash-can"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
+   <livewire:transaksi.table-detail-transaksi :detail_transaksi="$detail_transaksi" />
 
 
 
@@ -229,11 +184,11 @@
     <script src="{{ asset('datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('datatables/DataTables/js/dataTables.bootstrap5.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                scrollX: true
-            });
-        });
+        // $(document).ready(function() {
+        //     $('#myTable').DataTable({
+        //         scrollX: true
+        //     });
+        // });
     </script>
 
     @if ($errors->any())
