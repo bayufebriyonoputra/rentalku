@@ -182,7 +182,7 @@
                     <th scope="col">Komisi Kirim</th>
                     <th scope="col">Komisi Ambil</th>
                     <th scope="col">Satuan</th>
-                    <th scope="col">Saldo Awal</th>
+                    <th scope="col">Stock Awal</th>
                     <th scope="col">Stock</th>
                     <th>Aksi</th>
                 </tr>
