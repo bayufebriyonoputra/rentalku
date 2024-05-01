@@ -178,12 +178,13 @@ class TransaksiController extends Controller
         $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
         // return $data_transaksi;
         $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
+        $customPaper = array(0,0,200, 300);
         $pdf = PDF::loadView('nota.penyewaan_barang', [
             'transaksi' => $data_transaksi,
             'penyewa_umum' => PenyewaUmum::where('no_nota', $data_transaksi->no_nota)->first(),
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
-        ])->setPaper('a5', 'portrait');;
+        ])->setPaper($customPaper, 'portrait');
         return $pdf->stream('nota sewa' . now() . '.pdf', ["Attachment" => 0]);
     }
 }

@@ -35,7 +35,8 @@ class TransaksiController extends Component
 
     public function render()
     {
-        $this->no_nota = 'SP' . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
+        $nota= $this->isPelanggan == true ? 'SP' : 'SU';
+        $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
         $this->tanggal = Carbon::now()->format('Y-m-d');
         $this->tanggal_kirim = Carbon::now()->format('Y-m-d');
         $this->tanggal_ambil = Carbon::now()->format('Y-m-d');
@@ -121,10 +122,19 @@ class TransaksiController extends Component
         $currentMonth = now()->format('m');
         $currentYear = now()->format('Y');
 
-        $data = Transaksi::whereMonth('created_at', $currentMonth)
-            ->whereYear('created_at', $currentYear)
-            ->latest()
-            ->first();
+        if($this->isPelanggan){
+            $data = Transaksi::whereMonth('created_at', $currentMonth)
+                ->whereNotNull('pelanggan_id')
+                ->whereYear('created_at', $currentYear)
+                ->latest()
+                ->first();
+        }else{
+            $data = Transaksi::whereMonth('created_at', $currentMonth)
+                ->whereYear('created_at', $currentYear)
+                ->whereNull('pelanggan_id')
+                ->latest()
+                ->first();
+        }
 
         $lastThreeDigits = substr($data->no_nota ?? 0, -3);
 
