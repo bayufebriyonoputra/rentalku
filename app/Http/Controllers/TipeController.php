@@ -59,7 +59,7 @@ class TipeController extends Controller
      */
     public function show(Tipe $tipe)
     {
-        //
+        //Implemetns
     }
 
     /**

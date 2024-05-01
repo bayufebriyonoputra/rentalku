@@ -92,7 +92,7 @@
                             <div class="col-md-8">
                                 <select wire:model="pelangganId" name="pelanggan_id" id="PilihPelanggan"
                                     class="form-select" required>
-                                    <option value="-" selected disabled>---Pilih Data---</option>
+                                    <option value="-" selected>---Pilih Data---</option>
                                     @foreach ($pelanggan as $p)
                                         <option wire:key="{{ $p->id }}" value="{{ $p->id }}">
                                             {{ $p->pelanggan }}</option>

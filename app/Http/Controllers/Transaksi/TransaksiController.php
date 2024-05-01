@@ -29,6 +29,7 @@ class TransaksiController extends Controller
 
     public function storeSewa(Request $request)
     {
+        dd("tes");
         $data = [
             'tanggal' => $request->input('tanggal'),
             'tanggal_kirim' => $request->input('tanggal_kirim'),
@@ -175,6 +176,7 @@ class TransaksiController extends Controller
     {
 
         $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        // return $data_transaksi;
         $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
         $pdf = PDF::loadView('nota.penyewaan_barang', [
             'transaksi' => $data_transaksi,

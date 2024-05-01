@@ -47,6 +47,7 @@ class TransaksiController extends Component
 
     public function store()
     {
+
         $data = [
             'tanggal' => $this->tanggal,
             'tanggal_kirim' => $this->tanggal_kirim,
@@ -56,7 +57,6 @@ class TransaksiController extends Component
         if (!$this->nama_umum) {
             $data['pelanggan_id'] =  $this->pelangganId;
         }
-
 
         Transaksi::create($data);
         if ($this->nama_umum) {
