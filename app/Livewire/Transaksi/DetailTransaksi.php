@@ -9,6 +9,7 @@ use App\Models\Kategori;
 use App\Models\Merk;
 use App\Models\Tipe;
 use App\Models\Transaksi;
+use Carbon\Carbon;
 use Exception;
 use Livewire\Attributes\Layout;
 
@@ -37,6 +38,9 @@ class DetailTransaksi extends Component
     public $barcode = '';
 
 
+    public function mount(){
+        $this->lama_sewa = $this->getDiffTanggal($this->transaksi->tanggal_kirim, $this->transaksi->tanggal_ambil);
+    }
 
     public function render()
     {
@@ -68,7 +72,7 @@ class DetailTransaksi extends Component
             'tarif_sewa' => $this->total_tarif_sewa,
             'lama_sewa' => $this->lama_sewa,
             'komisi_kirim' => $this->total_komisi_kirim,
-            'x_komisi' => $this->x_komisi,
+            'x_komisi' => $this->unit,
             'unit_out' => $this->unit,
         ];
 
@@ -106,9 +110,17 @@ class DetailTransaksi extends Component
     private function calculateKomisi()
     {
         try{
-            $this->total_komisi_kirim = (int)$this->komisi_kirim * (int)$this->x_komisi;
+            $this->total_komisi_kirim = (int)$this->komisi_kirim * (int)$this->unit;
         }catch(Exception $e){
             $this->total_komisi_kirim = 0;
         }
+    }
+
+    private function getDiffTanggal($ambil, $kirim): int{
+        $tanggal1 = Carbon::createFromFormat('Y-m-d', $ambil);
+        $tanggal2 = Carbon::createFromFormat('Y-m-d', $kirim);
+
+        $selisih =$tanggal1->diffInDays($tanggal2);
+        return $selisih;
     }
 }

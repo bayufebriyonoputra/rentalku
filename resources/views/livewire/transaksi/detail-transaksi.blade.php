@@ -142,11 +142,9 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <label for="" class="">X Komisi</label>
+                        <label for="" class="">X Komisi : {{ $unit }}</label>
                     </div>
                     <div class="col-md-8">
-                        <input wire:model.live="x_komisi" type="number" class="form-control" name="xKomisi"
-                            id="XKomisi" placeholder="1" required>
                         <p class="text-muted" id="LbTotalKomisi">Total Komisi :
                             {{ formatRupiah($total_komisi_kirim) }} </p>
                     </div>
