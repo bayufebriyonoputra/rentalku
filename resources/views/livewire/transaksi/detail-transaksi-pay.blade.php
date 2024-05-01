@@ -6,7 +6,7 @@
                 <p><b>Total Komisi Kirm : {{ formatRupiah($total_komisi_kirim) }}</b></p>
                 <p><b>Total Komisi Kirm : {{ formatRupiah($total_komisi_ambil) }}</b></p>
                 <p><b id="Jumlah">Jumlah :
-                        {{ formatRupiah($total_komisi_kirim + $total_biaya_sewa + $transaksi->biaya_kirim_ambil) }}</b>
+                        {{ formatRupiah($total_komisi_ambil + $total_komisi_kirim + $total_biaya_sewa + $transaksi->biaya_kirim_ambil) }}</b>
                 </p>
             </div>
             <div class="col-md-4">
