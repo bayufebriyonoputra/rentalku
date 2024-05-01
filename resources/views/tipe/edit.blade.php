@@ -116,6 +116,19 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-3">
+                        <label for="SaldoAwal" class="form-label">Barcode</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control @error('barcode')is-invalid @enderror"
+                            name="barcode" id="SaldoAwal" placeholder="Masukkan Tarif Sewa"
+                            value="{{ old('barcode') ?? $tipe->barcode }}" required>
+                        @error('barcode')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
                         <label for="Stock" class="form-label">Stock</label>
                     </div>
                     <div class="col-md-9">

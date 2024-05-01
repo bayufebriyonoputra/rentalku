@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('pelanggan');
             $table->text('alamat');
             $table->string('kota');
-            $table->integer('no_telpon');
+            $table->varchar('no_telpon');
             $table->softDeletes();
             $table->timestamps();
         });

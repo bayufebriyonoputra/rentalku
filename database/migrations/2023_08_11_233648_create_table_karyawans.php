@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('ttl');
             $table->text('alamat');
             $table->string('kota');
-            $table->integer('no_telpon');
-            $table->integer('no_hp');
+            $table->string('no_telpon');
+            $table->string('no_hp');
             $table->string('posisi');
             $table->string('status');
             $table->integer('uang_makan');

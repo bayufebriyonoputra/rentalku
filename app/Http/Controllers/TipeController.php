@@ -93,6 +93,7 @@ class TipeController extends Controller
             'satuan' => 'required',
             'saldo_awal' => 'required',
             'stock' => 'required',
+            'barcode' => 'min:1'
         ]);
 
         $tipe->update($validatedData);
