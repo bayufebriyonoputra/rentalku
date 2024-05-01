@@ -19,7 +19,12 @@ class TableDetailTransaksi extends Component
     public function mount($detail_transaksi)
     {
         $this->detail_transaksi = $detail_transaksi;
-        $this->noNota = $detail_transaksi->first()->no_nota;
+        
+        if($this->detail_transaksi->count()){
+            $this->noNota = $detail_transaksi->first()->no_nota;
+        }else{
+            $this->noNota = "";
+        }
     }
 
     public function render()
