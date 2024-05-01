@@ -4,6 +4,7 @@ namespace App\Livewire\Transaksi;
 
 use App\Models\DetailTransaksi;
 use App\Models\Tipe;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class TableDetailTransaksi extends Component
@@ -19,10 +20,22 @@ class TableDetailTransaksi extends Component
     public function mount($detail_transaksi)
     {
         $this->detail_transaksi = $detail_transaksi;
-        
-        if($this->detail_transaksi->count()){
+
+        if ($this->detail_transaksi->count()) {
             $this->noNota = $detail_transaksi->first()->no_nota;
-        }else{
+        } else {
+            $this->noNota = "";
+        }
+    }
+
+    #[On('update-detail')]
+    public function refresh($detail_transaksi)
+    {
+        $detail_transaksi = collect($detail_transaksi);
+        $this->detail_transaksi = $detail_transaksi;
+        if ($detail_transaksi->count()) {
+            $this->noNota =  $detail_transaksi->first()['no_nota'];
+        } else {
             $this->noNota = "";
         }
     }
@@ -44,7 +57,7 @@ class TableDetailTransaksi extends Component
     public function update()
     {
         $detailTransaksi = DetailTransaksi::where('id', $this->detailTransaksiId)->first();
-        $totalSewa =(int)$this->unit * (int)$this->lamaSewa * (int)$detailTransaksi->tipe->tarif_sewa;
+        $totalSewa = (int)$this->unit * (int)$this->lamaSewa * (int)$detailTransaksi->tipe->tarif_sewa;
 
         $detailTransaksi->update([
             'unit_out' => $this->unit,

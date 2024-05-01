@@ -74,6 +74,9 @@ class DetailTransaksi extends Component
 
         modelDetailTransaksi::create($data);
         $this->dispatch('update-harga');
+        $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
+        $this->dispatch('update-detail', $detail_transaksi);
+
     }
 
 
