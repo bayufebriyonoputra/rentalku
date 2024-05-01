@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-9">
                         <input type="text" class="form-control @error('barcode')is-invalid @enderror"
-                            name="barcode" id="SaldoAwal" placeholder="Masukkan Tarif Sewa"
+                            name="barcode" id="SaldoAwal" placeholder="Masukkan kode"
                             value="{{ old('barcode') ?? $tipe->barcode }}" required>
                         @error('barcode')
                             <p class="text-danger">{{ $message }}</p>
