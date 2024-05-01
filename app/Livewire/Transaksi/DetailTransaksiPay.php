@@ -40,8 +40,8 @@ class DetailTransaksiPay extends Component
 
     public function calculatePrice()
     {
-        $total = (int)$this->total_komisi_ambil + (int)$this->total_komisi_kirim + (int)$this->total_biaya_sewa + (int)$this->biaya_kirim_ambil;
-        $diskon = (int)$this->diskon / 100 * $total;
+        $total =  (int)$this->total_biaya_sewa + (int)$this->biaya_kirim_ambil;
+        $diskon = (int)$this->diskon / 100 * (int)$this->total_biaya_sewa;
         $this->jumlah_total = $total - $diskon;
         $this->sisa = (int)$this->jumlah_total - (int)$this->uang_muka;
     }
