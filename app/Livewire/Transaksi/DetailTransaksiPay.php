@@ -13,6 +13,7 @@ class DetailTransaksiPay extends Component
     public $transaksi;
     public $total_biaya_sewa = 0;
     public $total_komisi_kirim = 0;
+    public $total_komisi_ambil = 0;
     public $uang_muka = 0;
     public $biaya_kirim_ambil = 0;
     public $diskon = 0;
@@ -25,6 +26,7 @@ class DetailTransaksiPay extends Component
         $detail_transaksi = DetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
         $this->total_biaya_sewa = $detail_transaksi->sum('tarif_sewa');
         $this->total_komisi_kirim = $detail_transaksi->sum('komisi_kirim');
+        $this->total_komisi_ambil = $detail_transaksi->sum('komisi_ambil');
     }
 
     #[On('update-harga')]
@@ -33,11 +35,12 @@ class DetailTransaksiPay extends Component
         $detail_transaksi = DetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
         $this->total_biaya_sewa = $detail_transaksi->sum('tarif_sewa');
         $this->total_komisi_kirim = $detail_transaksi->sum('komisi_kirim');
+        $this->total_komisi_ambil = $detail_transaksi->sum('komisi_ambil');
     }
 
     public function calculatePrice()
     {
-        $total = (int)$this->total_komisi_kirim + (int)$this->total_biaya_sewa + (int)$this->biaya_kirim_ambil;
+        $total = (int)$this->total_komisi_ambil + (int)$this->total_komisi_kirim + (int)$this->total_biaya_sewa + (int)$this->biaya_kirim_ambil;
         $diskon = (int)$this->diskon / 100 * $total;
         $this->jumlah_total = $total - $diskon;
         $this->sisa = (int)$this->jumlah_total - (int)$this->uang_muka;
@@ -53,7 +56,7 @@ class DetailTransaksiPay extends Component
         $transaksi = Transaksi::where('no_nota', $this->transaksi->no_nota)->first();
         $data_transaksi = [
             'total_sewa' => $this->total_biaya_sewa,
-            'total_komisi' => $this->total_komisi_kirim,
+            'total_komisi' => $this->total_komisi_kirim + $this->total_komisi_ambil,
             'biaya_kirim_ambil' => $this->biaya_kirim_ambil,
             'uang_muka' => $this->uang_muka,
             'diskon' => $this->diskon,

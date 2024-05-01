@@ -27,6 +27,7 @@ class DetailTransaksi extends Component
     public $satuan = '';
     public $tarif_sewa = 0;
     public $komisi_kirim =0;
+    public $komisi_ambil = 0;
 
     public $total_tarif_sewa = 0;
     public $unit = 0;
@@ -34,6 +35,7 @@ class DetailTransaksi extends Component
 
     public $x_komisi = 0;
     public $total_komisi_kirim = 0;
+    public $total_komisi_ambil = 0;
 
     public $barcode = '';
 
@@ -53,6 +55,7 @@ class DetailTransaksi extends Component
             $this->satuan = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->satuan;
             $this->tarif_sewa = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->tarif_sewa;
             $this->komisi_kirim = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->komisi_kirim;
+            $this->komisi_ambil = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->komisi_ambil;
         }
 
         $this->calculateTotal();
@@ -72,6 +75,7 @@ class DetailTransaksi extends Component
             'tarif_sewa' => $this->total_tarif_sewa,
             'lama_sewa' => $this->lama_sewa,
             'komisi_kirim' => $this->total_komisi_kirim,
+            'komisi_ambil' => $this->total_komisi_ambil,
             'x_komisi' => $this->unit,
             'unit_out' => $this->unit,
         ];
@@ -111,8 +115,10 @@ class DetailTransaksi extends Component
     {
         try{
             $this->total_komisi_kirim = (int)$this->komisi_kirim * (int)$this->unit;
+            $this->total_komisi_ambil = (int)$this->komisi_ambil * (int)$this->unit;
         }catch(Exception $e){
             $this->total_komisi_kirim = 0;
+            $this->total_komisi_ambil = 0;
         }
     }
 
