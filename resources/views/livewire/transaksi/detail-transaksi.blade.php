@@ -16,6 +16,19 @@
         <div class="row">
             <div class="col-md-6">
                 <p class="mt-4 text-muted"><b>Data Transaksi</b></p>
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="Barcode" class="">Kode Tipe</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input wire:change="cariBarcode" wire:model="barcode" type="text" class="form-control" placeholder="Cari berdasarkan code">
+                    </div>
+                    <div class="col-md-2">
+                        <button wire:click="cariBarcode" type="button" class="btn btn-primary">cari</button>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-3">
                         <label for="KategoriId" class="">Kategori Produk</label>
@@ -63,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                {{-- <div class="row mt-3">
                     <div class="col-md-3">
                         <label for="Barcode" class="">Kode Tipe</label>
                     </div>
@@ -73,7 +86,7 @@
                     <div class="col-md-2">
                         <button wire:click="cariBarcode" type="button" class="btn btn-primary">cari</button>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row mt-3">
                     <div class="col-md-3">
@@ -91,7 +104,7 @@
                     <div class="col-md-8">
                         <input wire:model.live="satuan" type="text" class="form-control" name="satuan"
                             id="Satuan" readonly required>
-                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                        <button type="button"wire:click="store"  class="btn btn-primary mt-3">Simpan</button>
                     </div>
                 </div>
 
