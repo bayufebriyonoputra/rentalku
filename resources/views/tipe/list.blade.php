@@ -1,8 +1,7 @@
 @extends('main.main')
 @section('head')
     {{-- <link href="{{ asset('datatables/DataTables/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('datatables/plugin/bs5.css') }}"
-        rel="stylesheet">
+    <link href="{{ asset('datatables/plugin/bs5.css') }}" rel="stylesheet">
 
     <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('sweetalert/sweetalert.min.css') }}">
@@ -95,7 +94,7 @@
                             </div>
                             <div class="col-md-9">
                                 <input type="number" class="form-control @error('komisi_kirim')is-invalid @enderror"
-                                    name="komisi_kirim" id="KomisiKirim" placeholder="Masukkan Tarif Sewa"
+                                    name="komisi_kirim" id="KomisiKirim" placeholder="Masukkan Komisi Kirim"
                                     value="{{ old('komisi_kirim') }}" required>
                                 @error('komisi_kirim')
                                     <p class="text-danger">{{ $message }}</p>
@@ -109,7 +108,7 @@
                             </div>
                             <div class="col-md-9">
                                 <input type="number" class="form-control @error('komisi_ambil')is-invalid @enderror"
-                                    name="komisi_ambil" id="KomisiAmbil" placeholder="Masukkan Tarif Sewa"
+                                    name="komisi_ambil" id="KomisiAmbil" placeholder="Masukkan Komisi Ambil"
                                     value="{{ old('komisi_ambil') }}" required>
                                 @error('komisi_ambil')
                                     <p class="text-danger">{{ $message }}</p>
@@ -122,20 +121,35 @@
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control @error('satuan')is-invalid @enderror"
-                                    name="satuan" id="Satuan" placeholder="Masukkan Tarif Sewa"
+                                    name="satuan" id="Satuan" placeholder="Masukkan Satuan"
                                     value="{{ old('satuan') }}" required>
                                 @error('satuan')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <label for="barcode" class="form-label">Barcode</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control @error('barcode')is-invalid @enderror"
+                                    name="barcode" id="barcode" placeholder="Masukkan barcode"
+                                    value="{{ old('barcode') }}" required>
+                                @error('barcode')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <label for="SaldoAwal" class="form-label">Saldo Awal</label>
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control @error('saldo_awal')is-invalid @enderror"
-                                    name="saldo_awal" id="SaldoAwal" placeholder="Masukkan Tarif Sewa"
+                                    name="saldo_awal" id="SaldoAwal" placeholder="Masukkan Saldo Awal"
                                     value="{{ old('saldo_awal') }}" required>
                                 @error('saldo_awal')
                                     <p class="text-danger">{{ $message }}</p>
@@ -148,8 +162,8 @@
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control @error('stock')is-invalid @enderror"
-                                    name="stock" id="Stock" placeholder="Masukkan Tarif Sewa"
-                                    value="{{ old('stock') }}" required>
+                                    name="stock" id="Stock" placeholder="Masukkan Stock"
+                                    value="{{ old('stock') }}" readonly required>
                                 @error('stock')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -231,6 +245,15 @@
     <script src="{{ asset('datatables/plugin/buttons_html5.min.js') }}"></script>
     <script src="{{ asset('datatables/plugin/buttons_print.min.js') }}"></script>
 
+    {{-- script untuk menyamakan saldo awal dan stock --}}
+    <script>
+        const stock = document.getElementById('Stock');
+        const saldoAwal = document.getElementById('SaldoAwal');
+
+        saldoAwal.addEventListener("input", function() {
+            stock.value = saldoAwal.value
+        });
+    </script>
 
 
     <script>

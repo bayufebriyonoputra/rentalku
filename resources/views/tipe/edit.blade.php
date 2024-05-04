@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-9">
                         <input type="number" class="form-control @error('komisi_kirim')is-invalid @enderror"
-                            name="komisi_kirim" id="KomisiKirim" placeholder="Masukkan Tarif Sewa"
+                            name="komisi_kirim" id="KomisiKirim" placeholder="Masukkan Komisi Kirim"
                             value="{{ old('komisi_kirim') ?? $tipe->komisi_kirim }}" required>
                         @error('komisi_kirim')
                             <p class="text-danger">{{ $message }}</p>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-md-9">
                         <input type="number" class="form-control @error('komisi_ambil')is-invalid @enderror"
-                            name="komisi_ambil" id="KomisiAmbil" placeholder="Masukkan Tarif Sewa"
+                            name="komisi_ambil" id="KomisiAmbil" placeholder="Masukkan Komisi Ambil"
                             value="{{ old('komisi_ambil') ?? $tipe->komisi_ambil }}" required>
                         @error('komisi_ambil')
                             <p class="text-danger">{{ $message }}</p>
@@ -95,45 +95,48 @@
                     </div>
                     <div class="col-md-9">
                         <input type="text" class="form-control @error('satuan')is-invalid @enderror" name="satuan"
-                            id="Satuan" placeholder="Masukkan Tarif Sewa" value="{{ old('satuan') ?? $tipe->satuan }}" required>
+                            id="Satuan" placeholder="Masukkan Satuan" value="{{ old('satuan') ?? $tipe->satuan }}" required>
                         @error('satuan')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <label for="SaldoAwal" class="form-label">Saldo Awal</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control @error('saldo_awal')is-invalid @enderror"
-                            name="saldo_awal" id="SaldoAwal" placeholder="Masukkan Tarif Sewa"
-                            value="{{ old('saldo_awal') ?? $tipe->saldo_awal }}" required>
-                        @error('saldo_awal')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <label for="SaldoAwal" class="form-label">Barcode</label>
+                        <label for="Barcode" class="form-label">Barcode</label>
                     </div>
                     <div class="col-md-9">
                         <input type="text" class="form-control @error('barcode')is-invalid @enderror"
-                            name="barcode" id="SaldoAwal" placeholder="Masukkan kode"
+                            name="barcode" id="Barcode" placeholder="Masukkan kode"
                             value="{{ old('barcode') ?? $tipe->barcode }}" required>
                         @error('barcode')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="SaldoAwal" class="form-label">Saldo Awal</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control @error('saldo_awal')is-invalid @enderror"
+                            name="saldo_awal" id="SaldoAwal" placeholder="Masukkan Saldo Awal"
+                            value="{{ old('saldo_awal') ?? $tipe->saldo_awal }}" required>
+                        @error('saldo_awal')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <label for="Stock" class="form-label">Stock</label>
                     </div>
                     <div class="col-md-9">
                         <input type="text" class="form-control @error('stock')is-invalid @enderror" name="stock"
-                            id="Stock" placeholder="Masukkan Tarif Sewa" value="{{ old('stock') ?? $tipe->stock }}" required>
+                            id="Stock" placeholder="Masukkan Stock" value="{{ old('stock') ?? $tipe->stock }}" required>
                         @error('stock')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
