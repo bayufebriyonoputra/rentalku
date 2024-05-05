@@ -184,7 +184,20 @@ class TransaksiController extends Controller
             'penyewa_umum' => PenyewaUmum::where('no_nota', $data_transaksi->no_nota)->first(),
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
             'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
-        ])->setPaper($customPaper, 'portrait');
+        ])->setPaper('a4', 'portrait');
         return $pdf->stream('nota sewa' . now() . '.pdf', ["Attachment" => 0]);
+    }
+
+    public function cetakNotaSewa2(Transaksi $transaksi){
+        $data_transaksi = Transaksi::where('id', $transaksi->id)->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+        // return $data_transaksi;
+        $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
+
+        return view('nota.penyewaan_barang_2', [
+            'transaksi' => $data_transaksi,
+            'penyewa_umum' => PenyewaUmum::where('no_nota', $data_transaksi->no_nota)->first(),
+            'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
+            'total_komisi_kirim' => $detail_transaksi->sum('komisi_kirim')
+        ]);
     }
 }
