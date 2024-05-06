@@ -395,6 +395,8 @@
 }
 .home-text30 {
   align-self: flex-start;
+  width: 2.6cm;
+  text-align: right;
 }
 .home-content1 {
   flex: 0 0 auto;
@@ -417,7 +419,9 @@
   font-size: 14px;
 }
 .home-text34 {
-  align-self: flex-start;
+  align-self: flex-end;
+  width: 2.6cm;
+  text-align: right;
 }
 .home-content2 {
   flex: 0 0 auto;
@@ -461,6 +465,8 @@
 }
 .home-text40 {
   align-self: flex-start;
+  width: 2.6cm;
+  text-align: right;
 }
 .home-content4 {
   flex: 0 0 auto;
@@ -533,6 +539,8 @@
 }
 .home-text46 {
   align-self: flex-start;
+  width: 2.6cm;
+  text-align: right;
 }
 .home-image {
   width: 100%;
