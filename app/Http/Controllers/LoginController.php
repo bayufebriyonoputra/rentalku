@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(Request $request)
+
     {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 

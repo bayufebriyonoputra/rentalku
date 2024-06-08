@@ -204,6 +204,7 @@
                     <th scope="col">Biaya Kirim Ambil</th>
                     <th scope="col">Uang Muka</th>
                     <th scope="col">Nama Pelanggan</th>
+                    <th scope="col">Alamat Pelanggan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -221,7 +222,8 @@
                         <td>{{ formatRupiah($t->total_sewa) }}</td>
                         <td>{{ formatRupiah($t->biaya_kirim_ambil) }}</td>
                         <td>{{ formatRupiah($t->uang_muka) }}</td>
-                        <td>{{ $t->pelanggan->pelanggan ?? 'Penyewa Umum' }}</td>
+                        <td>{{ $t->pelanggan->pelanggan ?? $t->penyewaUmum->alamat }}</td>
+                        <td>{{ $t->pelanggan->alamat ?? 'Penyewa Umum' }}</td>
                         <td><a href="/transaksi-sewa/{{ $t->id }}/edit" class="btn btn-warning"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <form action="/transaksi-sewa/hapus/{{ $t->id }}" class="d-inline"
