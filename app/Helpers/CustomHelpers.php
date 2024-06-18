@@ -5,7 +5,7 @@ use Jenssegers\Date\Date;
 
 function formatRupiah($angka)
 {
-    return 'Rp ' . number_format($angka, 0, ',', '.');
+    return number_format($angka, 0, ',', '.');
 }
 
 function ambilLokasi($input)

@@ -150,7 +150,7 @@
                                 class="home-text12" style="font-size: 13px">No. tlp &nbsp;&nbsp;&nbsp;= {{ $transaksi->atasNama->no_telpon }}</span></div>
                     </div>
                     <div class="home-main-content">
-                        <div class="home-table"><span class="home-text13">No</span><span class="home-text14">Tipe
+                        <div style="font-size: 13px" class="home-table"><span class="home-text13">No</span><span class="home-text14">Tipe
                                 Produk</span><span class="home-text15">Unit</span><span
                                 class="home-text16">Satuan</span><span class="home-text17">@ (Rp)</span><span
                                 class="home-text18">Hr</span><span class="home-text19">Jumlah (Rp)</span></div>
@@ -169,23 +169,23 @@
                                 {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('dddd') }}</span><span
                                 class="home-text28">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('DD-MM-YYYY') }}</span><span
                                 class="home-text29">Total tarif
-                                sewa&nbsp;</span><span class="home-text30">{{ formatRupiah($total_biaya_sewa) }}</span>
+                                sewa(Rp)&nbsp;</span><span class="home-text30">{{ formatRupiah($total_biaya_sewa) }}</span>
                         </div>
                         <div class="home-content1"><span class="home-text31">Ambil hari =
                                 {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('dddd') }}</span><span
                                 class="home-text32">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('DD-MM-YYYY') }}</span><span
                                 class="home-text33">Biaya kirim &amp;
-                                ambil&nbsp;</span><span
+                                ambil(Rp)&nbsp;</span><span
                                 class="home-text34">{{ formatRupiah($transaksi->biaya_kirim_ambil) }}</span></div>
                         <div class="home-content"><span class="home-text27">&nbsp;</span><span
-                                class="home-text28">&nbsp;</span><span class="home-text29">Jumlah&nbsp;</span><span
+                                class="home-text28">&nbsp;</span><span class="home-text29">Jumlah(Rp)&nbsp;</span><span
                                 class="home-text30">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim) }}</span>
                         </div>
                         <div class="home-content3"><span class="home-text37">TTD Penyewa</span><span
                                 class="home-text38">TTD Pengirim</span><span class="home-text39">Diskon</span><span
                                 class="home-text40">{{ $transaksi->diskon ?? 0.0 }}</span></div>
                         <div class="home-content"><span class="home-text27">&nbsp;</span><span
-                                class="home-text28">&nbsp;</span><span class="home-text29">Uang Muka&nbsp;</span><span
+                                class="home-text28">&nbsp;</span><span class="home-text29">Uang Muka(Rp)&nbsp;</span><span
                                 class="home-text30">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
                         <div class="home-content5">
                             <div class="home-container1"><span class="home-text43">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -194,7 +194,7 @@
                             <div class="home-container2"><span class="home-text44">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     &nbsp; &nbsp; &nbsp;
                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div><span
-                                class="home-text45">Sisa</span><span
+                                class="home-text45">Sisa(Rp)</span><span
                                 class="home-text46">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span>
                         </div><img alt="image" src="{{ asset('nota_template/footer nota-200h.png') }}"
                             class="home-image" />
