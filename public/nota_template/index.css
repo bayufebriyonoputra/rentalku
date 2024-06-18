@@ -393,14 +393,15 @@
 }
 .home-text28 {
   width: 3.2cm;
-  font-size: 14px;
+  font-size: 13px;
 }
 .home-text29 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text30 {
   align-self: flex-start;
+  font-size: 13px;
   width: 2.6cm;
   text-align: right;
 }
@@ -414,20 +415,21 @@
 }
 .home-text31 {
   width: 4cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text32 {
   width: 3.2cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text33 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text34 {
   align-self: flex-end;
   width: 2.6cm;
   text-align: right;
+  font-size: 13px;
 }
 .home-content2 {
   flex: 0 0 auto;
@@ -442,10 +444,11 @@
 }
 .home-text35 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text36 {
   align-self: flex-start;
+  font-size: 13px;
 }
 .home-content3 {
   flex: 0 0 auto;
@@ -457,22 +460,24 @@
 }
 .home-text37 {
   width: 4cm;
-  font-size: 14px;
+   font-size: 13px;
   text-align: center;
 }
 .home-text38 {
   width: 3.2cm;
-  font-size: 14px;
+   font-size: 13px;
   text-align: center;
 }
 .home-text39 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
+   font-size: 13px;
 }
 .home-text40 {
   align-self: flex-start;
   width: 2.6cm;
   text-align: right;
+  font-size: 13px;
 }
 .home-content4 {
   flex: 0 0 auto;
@@ -487,10 +492,11 @@
 }
 .home-text41 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text42 {
   align-self: flex-start;
+  font-size: 13px;
 }
 .home-content5 {
   flex: 0 0 auto;
@@ -510,7 +516,7 @@
 }
 .home-text43 {
   width: auto;
-  font-size: 14px;
+   font-size: 13px;
   text-align: center;
   border-color: #000000;
   border-width: 1px;
@@ -531,7 +537,7 @@
 }
 .home-text44 {
   width: auto;
-  font-size: 14px;
+   font-size: 13px;
   border-color: #000000;
   border-width: 1px;
   border-top-width: 0px;
@@ -541,11 +547,12 @@
 }
 .home-text45 {
   width: 4.5cm;
-  font-size: 14px;
+   font-size: 13px;
 }
 .home-text46 {
   align-self: flex-start;
   width: 2.6cm;
+  font-size: 13px;
   text-align: right;
 }
 .home-image {
