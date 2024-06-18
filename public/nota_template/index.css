@@ -66,7 +66,7 @@
   font-weight: 700;
 }
 .home-text01 {
-  font-size: 14px;
+  font-size:13px;
   font-style: normal;
   font-weight: 700;
 }
@@ -86,6 +86,7 @@
 }
 .home-text02 {
   width: 7cm;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
 }
@@ -103,10 +104,11 @@
 }
 .home-text03 {
   width: 7cm;
+  font-size: 13px;
   font-weight: 700;
 }
 .home-text04 {
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 700;
 }
@@ -124,11 +126,12 @@
 }
 .home-text05 {
   width: 7cm;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
 }
 .home-text06 {
-  font-size: 16px;
+  font-size: 13px;
 }
 .home-isi-header4 {
   flex: 0 0 auto;
@@ -144,11 +147,12 @@
 }
 .home-text07 {
   width: 7cm;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
 }
 .home-text08 {
-  font-size: 16px;
+  font-size: 13px;
 }
 .home-isi-header5 {
   flex: 0 0 auto;
@@ -164,11 +168,12 @@
 }
 .home-text09 {
   width: 7cm;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
 }
 .home-text10 {
-  font-size: 16px;
+  font-size: 13px;
 }
 .home-isi-header6 {
   flex: 0 0 auto;
@@ -184,11 +189,12 @@
 }
 .home-text11 {
   width: 7cm;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
 }
 .home-text12 {
-  font-size: 16px;
+  font-size: 13px;
 }
 .home-main-content {
   flex: 0 0 auto;
