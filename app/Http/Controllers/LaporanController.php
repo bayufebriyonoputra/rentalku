@@ -84,7 +84,7 @@ class LaporanController extends Controller
 
     public function jadwalAmbil(Request $request)
     {
-        $transaksi = Transaksi::with('pelanggan')->get();
+        $transaksi = Transaksi::with('pelanggan')->whereDate('created_at', today())->get();
         if ($request->tanggal_awal && $request->tanggal_akhir) {
             $transaksi = $transaksi->whereBetween('tanggal_ambil', [$request->tanggal_awal, $request->tanggal_akhir]);
         }
@@ -101,7 +101,7 @@ class LaporanController extends Controller
     }
     public function jadwalKirim(Request $request)
     {
-        $transaksi = Transaksi::with('pelanggan')->get();
+        $transaksi = Transaksi::with('pelanggan')->whereDate('created_at', today())->get();
         if ($request->tanggal_awal && $request->tanggal_akhir) {
             $transaksi = $transaksi->whereBetween('tanggal_kirim', [$request->tanggal_awal, $request->tanggal_akhir]);
         }
