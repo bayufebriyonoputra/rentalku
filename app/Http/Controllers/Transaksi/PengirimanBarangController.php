@@ -104,7 +104,17 @@ class PengirimanBarangController extends Controller
             'penyewa_umum' => PenyewaUmum::where('no_nota', $transaksi->no_nota)->first()
         ])->setPaper('a5', 'portrait');;
         return $pdf->stream('nota kirim' . now() . '.pdf', array("Attachment" => false));
+    }
 
+    public function cetakNotaKirim2(Transaksi $transaksi)
+    {
+        $data_transaksi = Transaksi::where('id', $transaksi->id)
+            ->with(['pelanggan', 'detailTransaksi', 'atasNama'])->first();
+
+            return view('nota.pengiriman_barang2', [
+                'transaksi' => $data_transaksi,
+                'penyewa_umum' => PenyewaUmum::where('no_nota', $transaksi->no_nota)->first()
+            ]);
     }
 
     public function cetakNotaKomisiKirim(Transaksi $transaksi)
@@ -115,6 +125,5 @@ class PengirimanBarangController extends Controller
             'transaksi' => $data_transaksi,
         ])->setPaper('a5', 'portrait');;
         return $pdf->stream('nota komsi kirim' . now() . '.pdf', array("Attachment" => false));
-
     }
 }

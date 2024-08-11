@@ -200,11 +200,12 @@
                     <th scope="col">Tanggal Pesan</th>
                     <th scope="col">Tanggal Kirim</th>
                     <th scope="col">Tanggal Ambil</th>
-                    <th scope="col">Total Sewa</th>
-                    <th scope="col">Biaya Kirim Ambil</th>
-                    <th scope="col">Uang Muka</th>
+                    {{-- <th scope="col">Total Sewa</th> --}}
+                    {{-- <th scope="col">Biaya Kirim Ambil</th> --}}
+                    {{-- <th scope="col">Uang Muka</th> --}}
                     <th scope="col">Nama Pelanggan</th>
                     <th scope="col">Alamat Pelanggan</th>
+                    <th scope="col">Telpon</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -213,17 +214,18 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $t->no_nota }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tannggal)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        <td>{{ \Carbon\Carbon::parse($t->tannggal)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
                         </td>
-                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
                         </td>
-                        <td>{{ \Carbon\Carbon::parse($t->tanggal_ambil)->locale('id')->isoFormat('dddd D-MM-YYYY', 'dddd') }}
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal_ambil)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
                         </td>
-                        <td>{{ formatRupiah($t->total_sewa) }}</td>
-                        <td>{{ formatRupiah($t->biaya_kirim_ambil) }}</td>
-                        <td>{{ formatRupiah($t->uang_muka) }}</td>
-                        <td>{{ $t->pelanggan->pelanggan ?? $t->penyewaUmum->alamat }}</td>
-                        <td>{{ $t->pelanggan->alamat ?? 'Penyewa Umum' }}</td>
+                        {{-- <td>{{ formatRupiah($t->total_sewa) }}</td> --}}
+                        {{-- <td>{{ formatRupiah($t->biaya_kirim_ambil) }}</td> --}}
+                        {{-- <td>{{ formatRupiah($t->uang_muka) }}</td> --}}
+                        <td>{{ $t->pelanggan->pelanggan ?? $t->penyewaUmum->nama }}</td>
+                        <td>{{ $t->pelanggan->alamat ?? $t->penyewaUmum->alamat }}</td>
+                        <td>{{ $t->pelanggan->no_telpon ?? $t->penyewaUmum->no_telpon }}</td>
                         <td><a href="/transaksi-sewa/{{ $t->id }}/edit" class="btn btn-warning"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
                             <form action="/transaksi-sewa/hapus/{{ $t->id }}" class="d-inline"

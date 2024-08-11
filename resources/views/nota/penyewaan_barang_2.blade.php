@@ -132,22 +132,43 @@
                         <div class="home-isi-header"><span class="home-text">No Nota =
                                 {{ $transaksi->no_nota }}</span><span class="home-text01">NOTA TRANSAKSI PENYEWAAN
                                 BARANG</span></div>
-                        <div class="home-isi-header1"><span class="home-text02">Tanggal =
-                                {{ $transaksi->tanggal }}</span></div>
+                        <div class="home-isi-header1"><span class="home-text02">Tanggal&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ \Carbon\Carbon::parse($transaksi->tanggal)->isoFormat('DD-MM-YYYY') }}</span></div>
                         <div class="home-isi-header2"><span class="home-text03">Penyewa</span><span
                                 class="home-text04">Atas Nama</span></div>
-                        <div class="home-isi-header3"><span class="home-text05">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-                                {{ $transaksi->pelanggan->pelanggan ?? $penyewa_umum->nama }}</span><span
-                                class="home-text06">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {{ $transaksi->atasNama->nama }}</span></div>
-                        <div class="home-isi-header4"><span class="home-text07">Alamat &nbsp;&nbsp;&nbsp;=
-                                {{ $transaksi->pelanggan->alamat ?? $penyewa_umum->alamat }} </span><span
-                                class="home-text08" style="font-size: 13px">Alamat &nbsp;&nbsp;&nbsp;={{ $transaksi->atasNama->alamat }}</span></div>
-                        <div class="home-isi-header5"><span class="home-text09">Kota &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-                                {{ $transaksi->pelanggan->kota ?? $penyewa_umum->kota }}</span><span
-                                class="home-text10">Kota &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {{ $transaksi->atasNama->kota }}</span></div>
-                        <div class="home-isi-header6"><span class="home-text11">No. tlp &nbsp;&nbsp;&nbsp;&nbsp;=
-                                {{ $transaksi->pelanggan->no_telpon ?? $penyewa_umum->no_telpon }} </span><span
-                                class="home-text12" style="font-size: 13px">No. tlp &nbsp;&nbsp;&nbsp;= {{ $transaksi->atasNama->no_telpon }}</span></div>
+                        <div class="home-isi-header3">
+                            <span class="home-text06" style="margin-left: 0px;">Nama</span>
+                                <span class="home-text06" style="margin-left: 0px; width: 0.3cm;"> = </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 5.2cm;"> {{ $transaksi->pelanggan->pelanggan ?? $penyewa_umum->nama }} </span>
+                                <span class="home-text06" style="text-align: left;">Nama</span>
+                                <span class="home-text06" style="margin-left: 0px; width: 0.2cm;"> = </span>
+                                <span class="home-text06" style="text-align: left; margin-left: 0.1cm;">{{ $transaksi->atasNama->nama }} </span>
+                            </div>
+                        <div class="home-isi-header4">
+                            <span class="home-text06" style="margin-left: 0px;">Alamat</span>
+                                <span class="home-text06" style="margin-left: 0px; width: 0.3cm;"> = </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 5.2cm;"> {{ $transaksi->pelanggan->alamat ?? $penyewa_umum->alamat }}  </span>
+                                <span class="home-text08" style="font-size: 13px">Alamat </span>
+                            <span class="home-text08" style="margin-left: 0px; width: 0.2cm;"> = </span>
+                            <span class="home-text08" style="text-align: left; margin-left: 0.1cm;"> {{ $transaksi->atasNama->alamat }} </span>
+                            </div>
+                        <div class="home-isi-header5"><span class="home-text06" style="margin-left: 0px;">Kota
+                                </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 0.3cm;"> = </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 5.2cm;"> {{ $transaksi->pelanggan->kota ?? $penyewa_umum->kota }}</span>
+                                <span class="home-text10">Kota &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <span class="home-text10" style="margin-left: 0px; width: 0.2cm;"> = </span>
+                                <span class="home-text10" style="text-align: left; margin-left: 0.1cm;">{{ $transaksi->atasNama->kota }} </span>
+
+                            </div>
+                        <div class="home-isi-header6"><span class="home-text06" style="margin-left: 0px;">No. tlp
+                                 </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 0.3cm;"> = </span>
+                                <span class="home-text06" style="margin-left: 0px; width: 5.2cm;">{{ $transaksi->pelanggan->no_telpon ?? $penyewa_umum->no_telpon }} </span>
+                                <span class="home-text12" style="font-size: 13px">No. tlp&nbsp;</span>
+                             <span class="home-text12" style="margin-left: 0px; width: 0.2cm;"> = </span>
+                             <span class="home-text12" style="text-align: left; margin-left: 0.1cm"> {{ $transaksi->atasNama->no_telpon }} </span>
+                            </div>
                     </div>
                     <div class="home-main-content">
                         <div style="font-size: 13px" class="home-table"><span class="home-text13">No</span><span class="home-text14">Tipe
@@ -159,34 +180,44 @@
                                     class="home-text21">{{ $dt->tipe->tipe }}</span><span
                                     class="home-text22">{{ $dt->unit_out }}</span><span
                                     class="home-text23">{{ $dt->tipe->satuan }}</span><span
-                                    class="home-text24">{{ $dt->tipe->tarif_sewa }}</span><span
+                                    class="home-text24">{{ formatRupiah($dt->tipe->tarif_sewa) }}</span><span
                                     class="home-text25">{{ $dt->lama_sewa }}</span><span
-                                    class="home-text26">{{ $dt->tarif_sewa }}</span></div>
+                                    class="home-text26">{{ formatRupiah($dt->tarif_sewa) }}</span></div>
                         @endforeach
                     </div>
                     <div class="home-footer">
-                        <div class="home-content"><span class="home-text27">Dikrim hari =
-                                {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('dddd') }}</span><span
-                                class="home-text28">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('DD-MM-YYYY') }}</span><span
+                        <div style="margin-top: 0.2cm;"></div>
+                        <div class="home-content">
+                            <span class="custom-text1">Dikrim hari </span>
+                                <span class="custom-text1"> =
+                                    {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('dddd') }}</span>
+                                <span class="home-text28">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('DD-MM-YYYY') }}</span><span
                                 class="home-text29">Total tarif
-                                sewa(Rp)&nbsp;</span><span class="home-text30">{{ formatRupiah($total_biaya_sewa) }}</span>
+                                sewa&nbsp;</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ formatRupiah($total_biaya_sewa) }}</span>
                         </div>
-                        <div class="home-content1"><span class="home-text31">Ambil hari =
-                                {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('dddd') }}</span><span
-                                class="home-text32">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('DD-MM-YYYY') }}</span><span
-                                class="home-text33">Biaya kirim &amp;
-                                ambil(Rp)&nbsp;</span><span
-                                class="home-text34">{{ formatRupiah($transaksi->biaya_kirim_ambil) }}</span></div>
+                        <div class="home-content1"><span class="custom-text1">Ambil hari</span>
+                                <span class="custom-text1"> = {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('dddd') }}</span>
+                                <span
+                                class="home-text32">Tgl. {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('DD-MM-YYYY') }}</span>
+
+                                <span class="home-text33">Diskon</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ $transaksi->diskon ?? 0.0 }}</span></div>
                         <div class="home-content"><span class="home-text27">&nbsp;</span><span
-                                class="home-text28">&nbsp;</span><span class="home-text29">Jumlah(Rp)&nbsp;</span><span
-                                class="home-text30">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim) }}</span>
+                                class="home-text28">&nbsp;</span><span class="home-text29">Jumlah&nbsp;</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim) }}</span>
                         </div>
                         <div class="home-content3"><span class="home-text37">TTD Penyewa</span><span
-                                class="home-text38">TTD Pengirim</span><span class="home-text39">Diskon</span><span
-                                class="home-text40">{{ $transaksi->diskon ?? 0.0 }}</span></div>
+                                class="home-text38">TTD Pengirim</span><span class="home-text39">Biaya kirim&amp;ambil</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ formatRupiah($transaksi->biaya_kirim_ambil)}}</span></div>
                         <div class="home-content"><span class="home-text27">&nbsp;</span><span
-                                class="home-text28">&nbsp;</span><span class="home-text29">Uang Muka(Rp)&nbsp;</span><span
-                                class="home-text30">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
+                                class="home-text28">&nbsp;</span><span class="home-text29">Uang Muka&nbsp;</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
                         <div class="home-content5">
                             <div class="home-container1"><span class="home-text43">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     &nbsp; &nbsp; &nbsp;
@@ -194,9 +225,10 @@
                             <div class="home-container2"><span class="home-text44">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     &nbsp; &nbsp; &nbsp;
                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div><span
-                                class="home-text45">Sisa(Rp)</span><span
-                                class="home-text46">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span>
-                        </div><img alt="image" src="{{ asset('nota_template/footer nota-200h.png') }}"
+                                class="home-text45">Sisa</span>
+                                <span class="home-text50">=RP</span>
+                                <span class="home-text30">{{ formatRupiah($total_biaya_sewa + $total_komisi_kirim + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span>
+                        </div><img alt="image" src="{{ asset('nota_template/footer nota-200h2.png') }}"
                             class="home-image" />
                     </div>
                 </div>

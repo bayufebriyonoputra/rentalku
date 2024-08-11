@@ -142,7 +142,7 @@ Route::get('/laporan/jadwal-kirim',[LaporanController::class,'jadwalKirim'])->mi
 
 // Cetak Nota
 Route::get('/nota/penyewaan/{transaksi}', [TransaksiController::class, 'cetakNotaSewa2'])->middleware('auth');
-Route::get('/nota/kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKirim'])->middleware('auth');
+Route::get('/nota/kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKirim2'])->middleware('auth');
 Route::get('/nota/ambil/{transaksi}', [PengambilanController::class, 'cetakNotaAmbil'])->middleware('auth');
 Route::get('/nota/komisi-kirim/{transaksi}', [PengirimanBarangController::class, 'cetakNotaKomisiKirim'])->middleware('auth');
 Route::get('/nota/pelunasan/{transaksi}', [PengambilanController::class, 'cetakNotaLunas'])->middleware('auth');
