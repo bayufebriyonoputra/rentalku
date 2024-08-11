@@ -17,7 +17,7 @@ class TipeController extends Controller
     {
         $kategori = Kategori::all();
         $merk = Merk::all();
-        $tipe = Tipe::with('merk.kategori')->get();
+        $tipe = Tipe::with('merk.kategori')->get()->sortBy('tipe');
         return view('tipe.list', [
             'kategori' => $kategori,
             'merk' => $merk,

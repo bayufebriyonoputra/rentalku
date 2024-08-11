@@ -14,7 +14,7 @@ class MerkController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::all()->sortBy('merk');
         $merk = Merk::with('kategori')->get();
 
         return view('merk.list', [
