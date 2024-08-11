@@ -50,10 +50,10 @@
                         <td>{{ $t->no_nota }}</td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
-                        <td>{{ $t->pelanggan->pelanggan ?? $t->penyewaUmum->nama }}</td>
-                        <td>{{ $t->pelanggan->alamat ?? $t->penyewaUmum->alamat }}</td>
-                        <td>{{ $t->pelanggan->kota ?? $t->penyewaUmum->kota }}</td>
-                        <td>{{ $t->pelanggan->no_telpon ?? $t->penyewaUmum->no_telpon }}</td>
+                        <td>{{ $t->atasNama->nama ??'-' }}</td>
+                        <td>{{ $t->atasNama->alamat ?? '-' }}</td>
+                        <td>{{ $t->atasNama->kota ?? '-' }}</td>
+                        <td>{{ $t->atasNama->no_telpon ?? '-' }}</td>
                     </tr>
                 @endforeach
 
