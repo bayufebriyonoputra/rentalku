@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="">Tanggal Awal</label>
-                <input type="date" class="form-control" name="tanggal_awal" value="{{ $tanggal_awal }}">
+                <input type="date" class="form-control" name="tanggal_awal" value="{{ $tanggal_awal ?? date('Y-m-d') }}">
             </div>
             <div class="col-md-6">
                 <label for="">Tanggal Akhir</label>
-                <input type="date" class="form-control" name="tanggal_akhir" value="{{ $tanggal_akhir }}">
+                <input type="date" class="form-control" name="tanggal_akhir" value="{{ $tanggal_akhir ?? date('Y-m-d') }}">
             </div>
 
             <div class="col-md-6">

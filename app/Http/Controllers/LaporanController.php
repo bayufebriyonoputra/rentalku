@@ -13,8 +13,7 @@ class LaporanController extends Controller
     public function transaksiSewa(Request $request)
     {
 
-
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::whereDate('created_at', today())->get();
         $pelanggan = Pelanggan::all();
 
         if ($request->tanggal_awal && $request->tanggal_akhir) {
@@ -40,7 +39,7 @@ class LaporanController extends Controller
 
     public function komisiKirim(Request $request)
     {
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::whereDate('created_at', today())->get();
         $pelanggan = Pelanggan::all();
 
         if ($request->tanggal_awal && $request->tanggal_akhir) {
@@ -62,7 +61,7 @@ class LaporanController extends Controller
 
     public function absensi(Request $request)
     {
-        $absensi = Absensi::with('karyawan')->get();
+        $absensi = Absensi::with('karyawan')->whereDate('created_at', today())->get();
         $karyawan = Karyawan::all();
 
         if ($request->tanggal_awal && $request->tanggal_akhir) {
