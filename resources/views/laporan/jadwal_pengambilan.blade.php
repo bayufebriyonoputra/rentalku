@@ -53,10 +53,10 @@
                         <td>{{ \Carbon\Carbon::parse($t->tanggal)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal_ambil)->locale('id')->isoFormat('dddd, D MMM YYYY') }}
                         </td>
-                        <td>{{ $t->pelanggan->pelanggan }}</td>
-                        <td>{{ $t->pelanggan->alamat }}</td>
-                        <td>{{ $t->pelanggan->kota }}</td>
-                        <td>{{ $t->pelanggan->no_telpon }}</td>
+                        <td>{{ $t->pelanggan->pelanggan ?? $t->penyewaUmum->nama }}</td>
+                        <td>{{ $t->pelanggan->alamat ?? $t->penyewaUmum->alamat }}</td>
+                        <td>{{ $t->pelanggan->kota  ?? $t->penyewaUmum->kota}}</td>
+                        <td>{{ $t->pelanggan->no_telpon ?? $t->penyewaUmum->no_telpon}}</td>
                     </tr>
                 @endforeach
 
