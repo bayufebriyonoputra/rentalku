@@ -40,7 +40,7 @@
                     <th scope="col">No Nota</th>
                     <th scope="col">Tanggal Pesan</th>
                     <th>Tanggal Kirim</th>
-                    <th>Total Komisi Kirim</th>
+                    {{-- <th>Total Komisi Kirim</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +51,7 @@
                         <td>{{ \Carbon\Carbon::parse($t->tanggal)->locale('id')->isoFormat('dddd, D MMM YYYY') }}</td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat('dddd, D MMM YYYY') }}
                         </td>
-                        <td>{{ formatRupiah($t->total_komisi) }}</td>
+                        {{-- <td>{{ formatRupiah($t->total_komisi) }}</td> --}}
                     </tr>
                 @endforeach
 
