@@ -106,7 +106,7 @@
         <div class="d-flex justify-content-start">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Tambah Pengirim
+                Tambah Karyawan Yang Bertugas
             </button>
             <form class="me-3" action="/pengiriman/kirim/{{ $transaksi->id }}" method="POST">
                 @csrf
