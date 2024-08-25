@@ -42,7 +42,7 @@ Route::get('/login', function(){
     return view('login_2');
 })->name('login');
 Route::get('/tes', function () {
-    return view('admin.main');
+    return view('nota.penyewaan_barang3');
 });
 
 // Route API

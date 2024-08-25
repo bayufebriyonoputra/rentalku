@@ -193,7 +193,7 @@ class TransaksiController extends Controller
         // return $data_transaksi;
         $detail_transaksi = DetailTransaksi::where('no_nota', $transaksi->no_nota)->get();
 
-        return view('nota.penyewaan_barang_2', [
+        return view('nota.penyewaan_barang3', [
             'transaksi' => $data_transaksi,
             'penyewa_umum' => PenyewaUmum::where('no_nota', $data_transaksi->no_nota)->first(),
             'total_biaya_sewa' => $detail_transaksi->sum('tarif_sewa'),
