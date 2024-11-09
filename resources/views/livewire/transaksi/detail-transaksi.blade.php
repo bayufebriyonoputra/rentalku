@@ -34,7 +34,7 @@
                         <label for="KategoriId" class="">Kategori Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model.change="kategoriId" name="kategori_id" id="KategoriId" class="form-select"
+                        <select wire:model="kategoriId" wire:change='getMerkData' name="kategori_id" id="KategoriId" class="form-select"
                             required>
                             <option value="none" disabled selected>---Pilih Kategori---</option>
                             @foreach ($kategori as $k)
@@ -50,7 +50,7 @@
                         <label for="MerkId" class="">Merk Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model.change="merkId" name="merk_id" id="MerkId" class="form-select" required>
+                        <select wire:model="merkId" wire:change='getTipeData' name="merk_id" id="MerkId" class="form-select" required>
                             <option value="none" disabled selected>---Pilih Merk---</option>
                             @foreach ($merk_produk as $m)
                                 <option wire:key="{{ $m->id }}" value="{{ $m->id }}">{{ $m->merk }}

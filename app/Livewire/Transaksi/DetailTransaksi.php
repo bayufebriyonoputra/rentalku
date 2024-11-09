@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use Exception;
 use Livewire\Attributes\Layout;
 
+use function Laravel\Prompts\alert;
+
 #[Layout('components.layouts.detail_transaksi')]
 class DetailTransaksi extends Component
 {
@@ -42,24 +44,26 @@ class DetailTransaksi extends Component
 
     public function mount(){
         $this->lama_sewa = $this->getDiffTanggal($this->transaksi->tanggal_kirim, $this->transaksi->tanggal_ambil);
+        $this->kategori = Kategori::all();
+        $this->merk_produk = Merk::all();
+        $this->tipe_produk = Tipe::all();
     }
 
     public function render()
     {
         $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
-        $this->merk_produk = Merk::where('kategori_id', $this->kategoriId)->get();
-        $this->kategori = Kategori::all();
-        $this->tipe_produk = Tipe::where('merk_id', $this->merkId)->get();
 
         if ($this->tipeProdukId !=  'none') {
             $this->satuan = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->satuan;
             $this->tarif_sewa = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->tarif_sewa;
             $this->komisi_kirim = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->komisi_kirim;
             $this->komisi_ambil = $this->tipe_produk->where('id', $this->tipeProdukId)->first()->komisi_ambil;
+
         }
 
         $this->calculateTotal();
         $this->calculateKomisi();
+
         return view('livewire.transaksi.detail-transaksi', [
             'transaksi' => $this->transaksi,
             'detail_transaksi' => $detail_transaksi,
@@ -87,15 +91,23 @@ class DetailTransaksi extends Component
 
     }
 
+    public function getMerkData(){
+        $this->merk_produk = Merk::where('kategori_id', $this->kategoriId)->get();
+    }
 
+    public function getTipeData(){
+        $this->tipe_produk = Tipe::where('merk_id', $this->merkId)->get();
+    }
 
 
     public function cariBarcode(){
         $tipe = Tipe::where('barcode', $this->barcode)->with('merk.kategori')->first();
 
         if($tipe){
-            $this->kategoriId = $tipe->merk->kategori->id;
+            $this->kategoriId = $tipe->merk->kategori_id;
+            $this->getMerkData();
             $this->merkId = $tipe->merk_id;
+            $this->getTipeData();
             $this->tipeProdukId = $tipe->id;
         }
 
