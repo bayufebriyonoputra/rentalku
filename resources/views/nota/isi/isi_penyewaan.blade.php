@@ -53,31 +53,32 @@
     </div>
 @endforeach --}}
 
-
-<div class="wcdiv" style="top:11.49pt;">
+@foreach($transaksi->detailTransaksi as $index => $detail)
+<div class="wcdiv" style="top:{{ ($index +1 * 11.49) }}pt;">
     <div class="wcdiv" style="clip:rect(0.5pt,32.9pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ isset($transaksi->detailTransaksi[0]->unit_out) ? 1 : '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $index +1 }}</span></div>
     </div>
     <div class="wcdiv" style="left:32.9pt; clip:rect(0.5pt,106.15pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $transaksi->detailTransaksi[0]->tipe->tipe ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $detail->tipe->tipe ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:139.05pt; clip:rect(0.5pt,34.75pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $transaksi->detailTransaksi[0]->unit_out ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:8pt; top:0pt; line-height:10.99pt; text-align:center;">{{ $detail->unit_out ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:173.8pt; clip:rect(0.5pt,48.3pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $transaksi->detailTransaksi[0]->tipe->satuan ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:8pt; top:0pt; line-height:10.99pt;">{{ $detail->tipe->satuan ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:222.1pt; clip:rect(0.5pt,67.45pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $transaksi->detailTransaksi[0]->tipe->tarif_sewa ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:15pt; top:0pt; line-height:10.99pt;">{{ $detail->tipe->tarif_sewa ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:289.55pt; clip:rect(0.5pt,32.35pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $transaksi->detailTransaksi[0]->lama_sewa ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $detail->lama_sewa ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:321.9pt; clip:rect(0.5pt,68.75pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{  $transaksi->detailTransaksi[0]->tarif_sewa ?? ''}}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:20pt; top:0pt; line-height:10.99pt;">{{  $detail->tarif_sewa ?? ''}}</span></div>
     </div>
 </div>
-<div class="wcdiv" style="top:22.97pt;">
+@endforeach
+{{-- <div class="wcdiv" style="top:22.97pt;">
     <div class="wcdiv" style="clip:rect(0.5pt,32.9pt,12.49pt,0pt);">
         <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ isset($transaksi->detailTransaksi[1]->unit_out) ? 2 : '' }}</span></div>
     </div>
@@ -260,7 +261,7 @@
     <div class="wcdiv" style="left:321.9pt; clip:rect(0.5pt,68.75pt,12.49pt,0pt);">
         <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{  $transaksi->detailTransaksi[8]->tarif_sewa ?? ''}}</span></div>
     </div>
-</div>
+</div> --}}
 {{-- <div class="wcdiv" style="top:110.86pt;">
     <div class="wcdiv" style="clip:rect(0pt,32.9pt,11.99pt,0pt);">
         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Item1</span></div>
