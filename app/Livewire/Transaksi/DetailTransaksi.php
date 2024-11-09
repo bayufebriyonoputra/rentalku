@@ -20,9 +20,9 @@ class DetailTransaksi extends Component
     public $kategoriId = 'none';
     public $merkId = 'none';
     public $tipeProdukId = 'none';
-    public $merk_produk = [];
-    public $tipe_produk = [];
-    public $kategori = [];
+    public $merk_produk;
+    public $tipe_produk;
+    public $kategori;
 
     public $satuan = '';
     public $tarif_sewa = 0;
@@ -95,7 +95,7 @@ class DetailTransaksi extends Component
 
         if($tipe){
             $this->kategoriId = $tipe->merk->kategori->id;
-            $this->merkId = $tipe->merk->id;
+            $this->merkId = $tipe->merk_id;
             $this->tipeProdukId = $tipe->id;
         }
 
