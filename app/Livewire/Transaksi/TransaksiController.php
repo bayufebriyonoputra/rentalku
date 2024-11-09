@@ -32,14 +32,17 @@ class TransaksiController extends Component
 
 
 
+    public function mount(){
+        $this->tanggal = Carbon::now()->format('Y-m-d');
+        $this->tanggal_kirim = Carbon::now()->format('Y-m-d');
+        $this->tanggal_ambil = Carbon::now()->format('Y-m-d');
+    }
 
     public function render()
     {
         $nota= $this->isPelanggan == true ? 'SP' : 'SU';
         $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
-        $this->tanggal = Carbon::now()->format('Y-m-d');
-        $this->tanggal_kirim = Carbon::now()->format('Y-m-d');
-        $this->tanggal_ambil = Carbon::now()->format('Y-m-d');
+
         return view('livewire.transaksi.transaksi-controller', [
             'pelanggan' => Pelanggan::all(),
             'transaksi' => Transaksi::with('pelanggan')->latest()->get()
