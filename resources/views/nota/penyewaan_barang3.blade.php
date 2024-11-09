@@ -87,9 +87,9 @@
                             style="font-size:11pt; left:0pt; top:0pt; line-height:13.43pt;">No Nota {{ $transaksi->no_nota }}</span>
                     </div>
                 </div>
-                <div class="wcdiv" style="left:227.2pt; clip:rect(0pt,163.95pt,16.45pt,0pt);">
+                <div class="wcdiv" style="left:204.2pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext002"
-                            style="font-size:8pt; left:0pt; top:0pt; line-height:9.77pt;">NOTA TRANSAKSI PENYEWAAN BARANG</span></div>
+                            style="font-size:12pt; left:0pt; top:0pt; line-height:9.77pt;">NOTA TRANSAKSI PENYEWAAN BARANG</span></div>
                 </div>
                 <div class="wcdiv" style="top:15.45pt;">
                     <div class="wcdiv" style="clip:rect(0pt,227.2pt,16.45pt,0pt);">
@@ -212,7 +212,7 @@
                     </div>
                 </div>
             </div>
-            <div class="wcdiv" style="left:0.25pt; top:215.01pt;">
+            <div class="wcdiv" style="left:0.25pt; top:204.01pt;">
                 <div class="wcdiv " style="">
                     <div class="wcdiv " style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">No</span></div>
@@ -243,7 +243,7 @@
                 </div>
 
             </div>
-            <div class="wcdiv" style="top:220.78pt;"><span class="wcspan wctext001"
+            <div class="wcdiv" style="top:210.78pt;"><span class="wcspan wctext001"
                 style="font-size:11pt; left:0pt; top:0pt; line-height:13.43pt;">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
                 @include('nota.isi.isi_penyewaan')
 
@@ -275,7 +275,7 @@
                 </div>
                 <div class="wcdiv" style="left:279.95pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                            style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                 </div>
                 <div class="wcdiv" style="left:312.4pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -305,7 +305,7 @@
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -319,7 +319,7 @@
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -331,11 +331,13 @@
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; left:40pt; top:0pt; line-height:10.99pt;">TTD Penyewa</span>
                         </div>
+                        <div  class="wcdiv" style="left:40pt; top:40pt; width: 60pt; border-top: 1px solid black;"></div>
                     </div>
                     <div class="wcdiv" style="left:114.2pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; left:40pt; top:0pt; line-height:10.99pt;">TTD Pengirim</span>
                         </div>
+                        <div  class="wcdiv" style="left:40pt; top:40pt; width: 60pt; border-top: 1px solid black;"></div>
                     </div>
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -343,7 +345,7 @@
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -357,7 +359,7 @@
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -371,7 +373,7 @@
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:50pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
