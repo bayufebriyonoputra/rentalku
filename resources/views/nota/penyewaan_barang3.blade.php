@@ -219,7 +219,7 @@
                 </div>
                 <div class="wcdiv " style="left:-10pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; left:25.79pt; top:0pt; line-height:10.99pt; font-weight: bold;">Tipe Produk</span></div>
+                            style="font-size:9pt; left:120pt; top:0pt; line-height:10.99pt; font-weight: bold;">Tipe Produk</span></div>
                 </div>
                 <div class="wcdiv" style="left:220pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
