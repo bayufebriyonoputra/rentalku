@@ -15,13 +15,13 @@
         <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:8pt; top:0pt; line-height:10.99pt;">{{ $detail->tipe->satuan ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:222.1pt; clip:rect(0.5pt,67.45pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:15pt; top:0pt; line-height:10.99pt;">{{ $detail->tipe->tarif_sewa ?? '' }}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:15pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($detail->tipe->tarif_sewa) ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:289.55pt; clip:rect(0.5pt,32.35pt,12.49pt,0pt);">
         <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:8pt; top:0pt; line-height:10.99pt;">{{ $detail->lama_sewa ?? '' }}</span></div>
     </div>
     <div class="wcdiv" style="left:321.9pt; clip:rect(0.5pt,68.75pt,12.49pt,0pt);">
-        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:20pt; top:0pt; line-height:10.99pt;">{{  $detail->tarif_sewa ?? ''}}</span></div>
+        <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:10pt; top:0pt; line-height:10.99pt;">{{  formatRupiah($detail->tarif_sewa) ?? ''}}</span></div>
     </div>
 </div>
 @endforeach

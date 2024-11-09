@@ -382,7 +382,9 @@
         <div class="wcdiv" style="left:14.2pt; top:14.2pt;"><img class="wcimg"
                 style="left: 0pt; top: 0pt; width: 391.15pt; height: 76.1pt;"
                 src="{{ asset("nota_template/header nota-1500w.png") }}"
-                width="391.15pt" height="76.1pt"></div>
+                width="391.15pt" height="76.1pt">
+                <div  class="wcdiv" style="left:0; top:80pt; width: 400pt; border-top: 2px solid black;"></div>
+ </div>
         <div class="wcdiv" style="left:14.2pt; top:543.37pt;"><img class="wcimg"
                 style="left: 0pt; top: 0pt; width: 391.15pt; height: 26.7pt;"
                 src="{{ asset("nota_template/footer nota-200h2.png") }}"
