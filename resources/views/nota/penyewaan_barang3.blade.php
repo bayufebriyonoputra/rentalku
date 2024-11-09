@@ -84,7 +84,7 @@
             <div class="wcdiv" style="top:85.56pt;">
                 <div class="wcdiv" style="clip:rect(0pt,227.2pt,16.45pt,0pt);">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                            style="font-size:11pt; left:0pt; top:0pt; line-height:13.43pt;">No Nota {{ $transaksi->no_nota }}</span>
+                            style="font-size:11pt; left:0pt; top:0pt; line-height:13.43pt;">No Nota <span style="font-weight: bold;">{{ $transaksi->no_nota }}</span></span>
                     </div>
                 </div>
                 <div class="wcdiv" style="left:204.2pt;">
@@ -331,13 +331,13 @@
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; left:40pt; top:0pt; line-height:10.99pt;">TTD Penyewa</span>
                         </div>
-                        <div  class="wcdiv" style="left:40pt; top:40pt; width: 60pt; border-top: 1px solid black;"></div>
+                        <div  class="wcdiv" style="left:40pt; top:35pt; width: 60pt; border-top: 1px solid black;"></div>
                     </div>
                     <div class="wcdiv" style="left:114.2pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; left:40pt; top:0pt; line-height:10.99pt;">TTD Pengirim</span>
                         </div>
-                        <div  class="wcdiv" style="left:40pt; top:40pt; width: 60pt; border-top: 1px solid black;"></div>
+                        <div  class="wcdiv" style="left:40pt; top:35pt; width: 60pt; border-top: 1px solid black;"></div>
                     </div>
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
