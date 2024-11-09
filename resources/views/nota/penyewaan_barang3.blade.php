@@ -216,27 +216,27 @@
                     <div class="wcdiv " style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">No</span></div>
                 </div>
-                <div class="wcdiv " style="left:32.9pt; clip:rect(0.5pt,105.9pt,12.49pt,0.25pt);">
+                <div class="wcdiv " style="left:-10pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:25.79pt; top:0pt; line-height:10.99pt;">Tipe Produk</span></div>
                 </div>
-                <div class="wcdiv" style="left:139.05pt; clip:rect(0.5pt,34.5pt,12.49pt,0.25pt);">
+                <div class="wcdiv" style="left:220pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:4.18pt; top:0pt; line-height:10.99pt;">Unit</span></div>
                 </div>
-                <div class="wcdiv" style="left:173.8pt; clip:rect(0.5pt,48.05pt,12.49pt,0.25pt);">
+                <div class="wcdiv" style="left:245.8pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:6.14pt; top:0pt; line-height:10.99pt;">Satuan</span></div>
                 </div>
-                <div class="wcdiv" style="left:222.1pt; clip:rect(0.5pt,67.2pt,12.49pt,0.25pt);">
+                <div class="wcdiv" style="left:275.1pt;">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:16.77pt; top:0pt; line-height:10.99pt;">@(Rp)</span></div>
                 </div>
-                <div class="wcdiv" style="left:289.55pt; clip:rect(0.5pt,32.1pt,12.49pt,0.25pt);">
+                <div class="wcdiv" style="left:325pt; ">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:6.4pt; top:0pt; line-height:10.99pt;">Hr</span></div>
                 </div>
-                <div class="wcdiv" style="left:321.9pt; ">
+                <div class="wcdiv" style="left:350.9pt; ">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:8.49pt; top:0pt; line-height:10.99pt;">Jumlah(Rp)</span></div>
                 </div>
