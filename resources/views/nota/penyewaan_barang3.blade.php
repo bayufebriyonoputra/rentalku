@@ -267,23 +267,23 @@
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                             style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Tgl {{ \Carbon\Carbon::parse($transaksi->tanggal_kirim)->locale('id')->isoFormat('DD-MM-YYYY') }}</span></div>
                 </div>
-                <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                <div class="wcdiv" style="left:185.4pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Total Tarif Sewa</span>
+                            style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Total Tarif Sewa</span>
                     </div>
                 </div>
-                <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                <div class="wcdiv" style="left:279.95pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                            style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                 </div>
-                <div class="wcdiv" style="left:312.4pt; clip:rect(0pt,78.75pt,11.99pt,0pt);">
+                <div class="wcdiv" style="left:312.4pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa) }}</span></div>
+                            style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa) }}</span></div>
                 </div>
                 <div class="wcdiv" style="top:10.99pt;">
                     <div class="wcdiv" style="clip:rect(0pt,63.5pt,11.99pt,0pt);">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Ambil Hari</span></div>
+                                style="font-size:9pt; top:0pt; line-height:10.99pt;">Ambil Hari</span></div>
                     </div>
                     <div class="wcdiv" style="left:63.5pt; clip:rect(0pt,15.3pt,11.99pt,0pt);">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -298,31 +298,31 @@
                                 style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Tgl {{ \Carbon\Carbon::parse($transaksi->tanggal_ambil)->locale('id')->isoFormat('DD-MM-YYYY') }}</span>
                         </div>
                     </div>
-                    <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:185.4pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Diskon</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Diskon</span></div>
                     </div>
-                    <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
-                    <div class="wcdiv" style="left:312.4pt; clip:rect(0pt,78.75pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ $transaksi->diskon ?? 0.0 }}</span></div>
+                                style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ $transaksi->diskon ?? 0.0 }}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:21.97pt;">
-                    <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Jumlah</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Jumlah</span></div>
                     </div>
-                    <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
-                    <div class="wcdiv" style="left:312.4pt; clip:rect(0pt,78.75pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa) }}</span></div>
+                                style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa) }}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:32.96pt;">
@@ -336,45 +336,45 @@
                                 style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">TTD Pengirim</span>
                         </div>
                     </div>
-                    <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Biaya Kirim &amp;Ambil</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Biaya Kirim &amp;Ambil</span></div>
                     </div>
-                    <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
-                    <div class="wcdiv" style="left:312.4pt; clip:rect(0pt,78.75pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->biaya_kirim_ambil)}}</span></div>
+                                style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->biaya_kirim_ambil)}}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:43.94pt;">
-                    <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Uang Muka</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Uang Muka</span></div>
                     </div>
-                    <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
                     <div class="wcdiv" style="left:312.4pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
+                                style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:54.93pt;">
-                    <div class="wcdiv" style="left:185.4pt; clip:rect(0pt,94.55pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">Sisa</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Sisa</span></div>
                     </div>
-                    <div class="wcdiv" style="left:279.95pt; clip:rect(0pt,32.45pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">=RP</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">=RP</span></div>
                     </div>
-                    <div class="wcdiv" style="left:312.4pt; clip:rect(0pt,78.75pt,11.99pt,0pt);">
+                    <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-72pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
+                                style="font-size:9pt; right:-88pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
                     </div>
                 </div>
             </div>
