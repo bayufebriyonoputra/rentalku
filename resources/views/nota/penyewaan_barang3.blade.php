@@ -89,7 +89,7 @@
                 </div>
                 <div class="wcdiv" style="left:204.2pt;">
                     <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext002"
-                            style="font-size:12pt; left:0pt; top:0pt; line-height:9.77pt;">NOTA TRANSAKSI PENYEWAAN BARANG</span></div>
+                            style="font-size:12pt; left:-10pt; top:0pt; line-height:9.77pt;">NOTA TRANSAKSI PENYEWAAN BARANG</span></div>
                 </div>
                 <div class="wcdiv" style="top:15.45pt;">
                     <div class="wcdiv" style="clip:rect(0pt,227.2pt,16.45pt,0pt);">
@@ -239,7 +239,7 @@
                 </div>
                 <div class="wcdiv" style="left:350.9pt; ">
                     <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001"
-                            style="font-size:9pt; left:8.49pt; top:0pt; line-height:10.99pt;  font-weight: bold;">Jumlah(Rp)</span></div>
+                            style="font-size:9pt; left:4.49pt; top:0pt; line-height:10.99pt;  font-weight: bold;">Jumlah(Rp)</span></div>
                 </div>
 
             </div>
