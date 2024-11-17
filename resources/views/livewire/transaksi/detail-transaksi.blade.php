@@ -22,10 +22,12 @@
                         <label for="Barcode" class="">Kode Tipe</label>
                     </div>
                     <div class="col-md-7">
-                        <input wire:change="cariBarcode" wire:model="barcode" type="text" class="form-control" placeholder="Cari berdasarkan code">
+                        <input wire:change="cariBarcode" wire:model="barcode" type="text" class="form-control"
+                            placeholder="Cari berdasarkan code">
                     </div>
                     <div class="col-md-2">
-                        <button wire:click="cariBarcode" type="button" class="btn btn-primary">cari</button>
+                        <button wire:click="cariBarcode" type="button" class="btn btn-primary"
+                            id="btnCari">cari</button>
                     </div>
                 </div>
 
@@ -34,8 +36,8 @@
                         <label for="KategoriId" class="">Kategori Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model="kategoriId" wire:change='getMerkData' name="kategori_id" id="KategoriId" class="form-select"
-                            required>
+                        <select wire:model="kategoriId" wire:change='getMerkData' name="kategori_id" id="KategoriId"
+                            class="form-select" required>
                             <option value="none" disabled selected>---Pilih Kategori---</option>
                             @foreach ($kategori as $k)
                                 <option wire:key="{{ $k->id }}" value="{{ $k->id }}">{{ $k->kategori }}
@@ -50,7 +52,8 @@
                         <label for="MerkId" class="">Merk Produk</label>
                     </div>
                     <div class="col-md-9">
-                        <select wire:model="merkId" wire:change='getTipeData' name="merk_id" id="MerkId" class="form-select" required>
+                        <select wire:model="merkId" wire:change='getTipeData' name="merk_id" id="MerkId"
+                            class="form-select" required>
                             <option value="none" disabled selected>---Pilih Merk---</option>
                             @foreach ($merk_produk as $m)
                                 <option wire:key="{{ $m->id }}" value="{{ $m->id }}">{{ $m->merk }}
@@ -104,7 +107,7 @@
                     <div class="col-md-8">
                         <input wire:model.live="satuan" type="text" class="form-control" name="satuan"
                             id="Satuan" readonly required>
-                        <button type="button"wire:click="store"  class="btn btn-primary mt-3">Simpan</button>
+                        <button type="button"wire:click="store" class="btn btn-primary mt-3">Simpan</button>
                     </div>
                 </div>
 
@@ -126,7 +129,8 @@
                     <div class="col-md-8">
                         <input wire:model.live="lama_sewa" type="number" class="form-control" name="lama_sewa"
                             id="LamaSewa" placeholder="1 (hari)" required>
-                        <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa :{{ formatRupiah($total_tarif_sewa) }}
+                        <p class="text-muted" id="LbTotalSewa">Total Tarif Sewa
+                            :{{ formatRupiah($total_tarif_sewa) }}
                         </p>
                     </div>
                 </div>
@@ -175,11 +179,11 @@
 
 
 
-   <livewire:transaksi.table-detail-transaksi :detail_transaksi="$detail_transaksi" />
+    <livewire:transaksi.table-detail-transaksi :detail_transaksi="$detail_transaksi" />
 
 
 
-  <livewire:transaksi.detail-transaksi-pay :transaksi="$transaksi"/>
+    <livewire:transaksi.detail-transaksi-pay :transaksi="$transaksi" />
 
 
 </div>
@@ -200,6 +204,17 @@
         //         scrollX: true
         //     });
         // });
+    </script>
+
+    <script>
+        document.addEventListener('livewire:initialized', function() {
+            const unitInput = document.getElementById('Unit');
+            const btnCari = document.getElementById('btnCari');
+
+            btnCari.addEventListener('click', () => {
+                unitInput.focus();
+            });
+        });
     </script>
 
     @if ($errors->any())
@@ -238,6 +253,5 @@
                 minimumFractionDigits: 0,
             });
         }
-
     </script>
 @endsection
