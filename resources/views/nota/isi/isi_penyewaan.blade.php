@@ -1,7 +1,7 @@
 
 
 @foreach($transaksi->detailTransaksi as $index => $detail)
-<div class="wcdiv" style="top:{{ ($index +1 * 11.49) }}pt;">
+<div class="wcdiv" style="top:{{ ($loop->iteration * 11.49) }}pt;">
     <div class="wcdiv" style="clip:rect(0.5pt,32.9pt,12.49pt,0pt);">
         <div class="wcdiv" style="left:5.4pt; top:0.5pt;"><span class="wcspan wctext001" style="font-size:9pt; left:0pt; top:0pt; line-height:10.99pt;">{{ $index +1 }}</span></div>
     </div>
