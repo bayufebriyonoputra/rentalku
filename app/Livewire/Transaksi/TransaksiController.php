@@ -42,6 +42,8 @@ class TransaksiController extends Component
     {
         $nota= $this->isPelanggan == true ? 'SP' : 'SU';
         $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
+        $transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
+        // dd($transaksi->toArray());
 
         return view('livewire.transaksi.transaksi-controller', [
             'pelanggan' => Pelanggan::all(),
