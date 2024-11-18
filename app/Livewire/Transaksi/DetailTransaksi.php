@@ -73,21 +73,27 @@ class DetailTransaksi extends Component
     }
 
     public function store(){
-        $data = [
-            'no_nota' => $this->transaksi->no_nota,
-            'tipe_id' => $this->tipeProdukId,
-            'tarif_sewa' => $this->total_tarif_sewa,
-            'lama_sewa' => $this->lama_sewa,
-            'komisi_kirim' => $this->total_komisi_kirim,
-            'komisi_ambil' => $this->total_komisi_ambil,
-            'x_komisi' => $this->unit,
-            'unit_out' => $this->unit,
-        ];
+        $cek = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)
+            ->where('tipe_id', $this->tipeProdukId)
+            ->first();
+        if(!$cek){
+            $data = [
+                'no_nota' => $this->transaksi->no_nota,
+                'tipe_id' => $this->tipeProdukId,
+                'tarif_sewa' => $this->total_tarif_sewa,
+                'lama_sewa' => $this->lama_sewa,
+                'komisi_kirim' => $this->total_komisi_kirim,
+                'komisi_ambil' => $this->total_komisi_ambil,
+                'x_komisi' => $this->unit,
+                'unit_out' => $this->unit,
+            ];
 
-        modelDetailTransaksi::create($data);
-        $this->dispatch('update-harga');
-        $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
-        $this->dispatch('update-detail', $detail_transaksi);
+            modelDetailTransaksi::create($data);
+            $this->dispatch('update-harga');
+            $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
+            $this->dispatch('update-detail', $detail_transaksi);
+        }
+
 
     }
 
