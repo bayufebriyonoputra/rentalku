@@ -26,12 +26,12 @@
                             <td>{{ $dt->tipe->tipe }}</td>
                             <td>{{ $dt->unit_out }}</td>
                             <td>{{ $dt->tipe->satuan }}</td>
-                            <td>{{ $dt->tipe->tarif_sewa }}</td>
+                            <td>{{ formatRupiah($dt->tipe->tarif_sewa) }}</td>
                             <td>{{ $dt->lama_sewa }}</td>
-                            <td>{{ $dt->tarif_sewa }}</td>
-                            <td>{{ $dt->tipe->komisi_kirim }}</td>
+                            <td>{{ formatRupiah($dt->tarif_sewa) }}</td>
+                            <td>{{ formatRupiah($dt->tipe->komisi_kirim) }}</td>
                             <td>{{ $dt->x_komisi }}</td>
-                            <td>{{ $dt->komisi_kirim }}</td>
+                            <td>{{ formatRupiah($dt->komisi_kirim) }}</td>
                             <td>
                                 <span role="button" type="button" class="btn btn-warning d-inline"
                                     wire:click="selectDetail('{{ $dt->id }}')"><i

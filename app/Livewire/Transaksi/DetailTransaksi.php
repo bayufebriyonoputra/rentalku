@@ -49,6 +49,24 @@ class DetailTransaksi extends Component
         $this->tipe_produk = Tipe::all();
     }
 
+    private function resetFields(){
+        $this->barcode = '';
+        $this->kategoriId = 'none';
+        $this->tipeProdukId = 'none';
+        $this->merkId = 'none';
+
+        $this->unit = 0;
+        $this->satuan = '';
+        $this->tarif_sewa = 0;
+        $this->lama_sewa = 0;
+        $this->komisi_kirim = 0;
+        $this->x_komisi = 0;
+        $this->total_tarif_sewa = 0;
+        $this->total_komisi_kirim = 0;
+
+
+    }
+
     public function render()
     {
         $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
@@ -92,6 +110,7 @@ class DetailTransaksi extends Component
             $this->dispatch('update-harga');
             $detail_transaksi = modelDetailTransaksi::where('no_nota', $this->transaksi->no_nota)->with('tipe')->get();
             $this->dispatch('update-detail', $detail_transaksi);
+            $this->resetFields();
         }
 
 
