@@ -105,7 +105,7 @@
                 @endif
 
                 {{-- Penyewa Umum --}}
-                @if ($isPenyewaUmum)
+                @if (!$isPelanggan)
                     <div wire:transition class="penyewa-umum" id="PenyewaUmumForm">
                         <p class="text-muted"><b>Penyewa Umum</b></p>
                         <div class="row mt-3">
@@ -226,8 +226,8 @@
                         <td>{{ $t->atasNama->nama ?? '-' }}</td>
                         <td>{{ $t->atasNama->alamat ?? '-' }}</td>
                         <td>{{ $t->atasNama->no_telpon ?? '-'}}</td>
-                        <td><a href="/transaksi-sewa/{{ $t->id }}/edit" class="btn btn-warning"><i
-                                    class="fa-solid fa-pen-to-square"></i></a>
+                        <td><a href="/transaksi-sewa/{{ $t->id }}/edit" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
+                            <span wire:click='setUpdate({{ $t->id }})' role="button" class="btn btn-warning"> <i class="fa-solid fa-pen-to-square"></i></span>
                             <form action="/transaksi-sewa/hapus/{{ $t->id }}" class="d-inline"
                                 id="myForm{{ $loop->iteration }}" method="POST">
                                 @csrf

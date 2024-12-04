@@ -12,7 +12,6 @@ use App\Models\PenyewaUmum;
 class TransaksiController extends Component
 {
     public $isPelanggan = true;
-    public $isPenyewaUmum = false;
     public $tanggal = null;
     public $tanggal_kirim = null;
     public $tanggal_ambil = null;
@@ -30,18 +29,23 @@ class TransaksiController extends Component
     public $no_telpon_umum = null;
     public $kota_umum = null;
 
+    public $isEdit = false;
 
 
-    public function mount(){
+
+
+    public function mount()
+    {
         $this->tanggal = Carbon::now()->format('Y-m-d');
         $this->tanggal_kirim = Carbon::now()->format('Y-m-d');
         $this->tanggal_ambil = Carbon::now()->format('Y-m-d');
+        $nota = $this->isPelanggan == true ? 'SP' : 'SU';
+        $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
     }
 
     public function render()
     {
-        $nota= $this->isPelanggan == true ? 'SP' : 'SU';
-        $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
+
         $transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
         // dd($transaksi->toArray());
 
@@ -51,52 +55,105 @@ class TransaksiController extends Component
         ]);
     }
 
+    public  function setUpdate($id)
+    {
+        $this->isEdit = true;
+        $transaksi =  Transaksi::find($id);
+        $this->tanggal = $transaksi->tanggal;
+        $this->tanggal_kirim = $transaksi->tanggal_kirim;
+        $this->tanggal_ambil = $transaksi->tanggal_ambil;
+        $this->no_nota = $transaksi->no_nota;
+
+        if ($transaksi->pelanggan_id != null) {
+            $this->isPelanggan = true;
+        } else {
+            $this->isPelanggan = false;
+            $penyewaUmum = PenyewaUmum::where('no_nota', $transaksi->no_nota)->first();
+            $this->nama_umum = $penyewaUmum->nama;
+            $this->alamat_umum = $penyewaUmum->alamat;
+            $this->no_telpon_umum = $penyewaUmum->no_telpon;
+            $this->kota_umum = $penyewaUmum->kota;
+        }
+        $pelanggan = AtasNama::where('no_nota', $transaksi->no_nota)->first();
+        $this->nama = $pelanggan->nama;
+        $this->alamat = $pelanggan->alamat;
+        $this->no_telpon = $pelanggan->no_telpon;
+        $this->kota = $pelanggan->kota;
+    }
+
+
     public function store()
     {
 
-        $data = [
-            'tanggal' => $this->tanggal,
-            'tanggal_kirim' => $this->tanggal_kirim,
-            'tanggal_ambil' => $this->tanggal_ambil,
-            'no_nota' => $this->no_nota,
-        ];
-        if (!$this->nama_umum) {
-            $data['pelanggan_id'] =  $this->pelangganId;
-        }
-
-        Transaksi::create($data);
-        if ($this->nama_umum) {
-            PenyewaUmum::create([
+        if (!$this->isEdit) {
+            $data = [
+                'tanggal' => $this->tanggal,
+                'tanggal_kirim' => $this->tanggal_kirim,
+                'tanggal_ambil' => $this->tanggal_ambil,
                 'no_nota' => $this->no_nota,
-                'nama' => $this->nama_umum,
-                'alamat' => $this->alamat_umum,
-                'no_telpon' => $this->no_telpon_umum,
-                'kota' => $this->kota_umum
-            ]);
-        }
+            ];
+            if (!$this->nama_umum) {
+                $data['pelanggan_id'] =  $this->pelangganId;
+            }
 
-        AtasNama::create([
-            'no_nota' => $this->no_nota,
-            'nama' => $this->nama,
-            'alamat' => $this->alamat,
-            'no_telpon' => $this->no_telpon,
-            'kota' => $this->kota
-        ]);
+            Transaksi::create($data);
+            if ($this->nama_umum) {
+                PenyewaUmum::create([
+                    'no_nota' => $this->no_nota,
+                    'nama' => $this->nama_umum,
+                    'alamat' => $this->alamat_umum,
+                    'no_telpon' => $this->no_telpon_umum,
+                    'kota' => $this->kota_umum
+                ]);
+            }
+
+            AtasNama::create([
+                'no_nota' => $this->no_nota,
+                'nama' => $this->nama,
+                'alamat' => $this->alamat,
+                'no_telpon' => $this->no_telpon,
+                'kota' => $this->kota
+            ]);
+        } else {
+            $data = [
+                'tanggal' => $this->tanggal,
+                'tanggal_kirim' => $this->tanggal_kirim,
+                'tanggal_ambil' => $this->tanggal_ambil,
+                'no_nota' => $this->no_nota,
+            ];
+            if ($this->isPelanggan) {
+                $data['pelanggan_id'] =  $this->pelangganId;
+            } else {
+                PenyewaUmum::where('no_nota', $this->no_nota)->update([
+                    'no_nota' => $this->no_nota,
+                    'nama' => $this->nama_umum,
+                    'alamat' => $this->alamat_umum,
+                    'no_telpon' => $this->no_telpon_umum,
+                    'kota' => $this->kota_umum
+                ]);
+            }
+            Transaksi::where('no_nota', $this->no_nota)->update($data);
+
+            AtasNama::where('no_nota', $this->no_nota)->update([
+                'no_nota' => $this->no_nota,
+                'nama' => $this->nama,
+                'alamat' => $this->alamat,
+                'no_telpon' => $this->no_telpon,
+            ]);
+            $this->isEdit = false;
+        }
 
         session()->flash('success', 'Order Berhasil Dibuat');
         $this->resetFields();
-
     }
 
     public function setIsPelanggan()
     {
         $this->isPelanggan = true;
-        $this->isPenyewaUmum = false;
     }
 
     public function setIsPenyewaUmum()
     {
-        $this->isPenyewaUmum = true;
         $this->isPelanggan = false;
     }
 
@@ -127,13 +184,13 @@ class TransaksiController extends Component
         $currentMonth = now()->format('m');
         $currentYear = now()->format('Y');
 
-        if($this->isPelanggan){
+        if ($this->isPelanggan) {
             $data = Transaksi::whereMonth('created_at', $currentMonth)
                 ->whereNotNull('pelanggan_id')
                 ->whereYear('created_at', $currentYear)
                 ->latest()
                 ->first();
-        }else{
+        } else {
             $data = Transaksi::whereMonth('created_at', $currentMonth)
                 ->whereYear('created_at', $currentYear)
                 ->whereNull('pelanggan_id')

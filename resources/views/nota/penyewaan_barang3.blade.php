@@ -377,7 +377,7 @@
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
+                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa - $transaksi->diskon  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
                     </div>
                 </div>
             </div>
