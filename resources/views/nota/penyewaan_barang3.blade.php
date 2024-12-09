@@ -144,7 +144,7 @@
                     </div>
                     <div class="wcdiv" style="left:69.85pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:11pt; left:-20pt; top:0pt; line-height:13.43pt;">{{ $transaksi->pelanggan->alamat ?? $penyewa_umum->alamat }}</span></div>
+                                style="font-size:11pt; left:-20pt; top:0pt; line-height:13.43pt; width:180px; height: 35px; white-space: normal;">{{ $transaksi->pelanggan->alamat ?? $penyewa_umum->alamat }}</span></div>
                     </div>
                     <div class="wcdiv" style="left:226.7pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -156,7 +156,7 @@
                     </div>
                     <div class="wcdiv" style="left:310.2pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:11pt; left:-60pt; top:0pt; line-height:13.43pt;">{{ $transaksi->atasNama->alamat }}</span></div>
+                                style="font-size:11pt; left:-60pt; top:0pt; line-height:13.43pt; width:200px; height: 35px; white-space: normal;">{{ $transaksi->atasNama->alamat }}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:53.71pt;">
@@ -377,7 +377,7 @@
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa - $transaksi->diskon  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
+                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa - ($transaksi->diskon / 100 * $total_biaya_sewa)  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
                     </div>
                 </div>
             </div>
