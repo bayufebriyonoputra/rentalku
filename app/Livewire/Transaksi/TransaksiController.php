@@ -45,6 +45,8 @@ class TransaksiController extends Component
 
     public function render()
     {
+        $nota = $this->isPelanggan == true ? 'SP' : 'SU';
+        $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
 
         $transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
         // dd($transaksi->toArray());

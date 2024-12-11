@@ -315,7 +315,7 @@
                 <div class="wcdiv" style="top:21.97pt;">
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Jumlah</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Biaya Kirim &amp;Ambil</span></div>
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -323,7 +323,7 @@
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa) }}</span></div>
+                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->biaya_kirim_ambil) }}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:32.96pt;">
@@ -341,7 +341,7 @@
                     </div>
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Biaya Kirim &amp;Ambil</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Uang Muka</span></div>
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -349,13 +349,13 @@
                     </div>
                     <div class="wcdiv" style="left:312.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->biaya_kirim_ambil)}}</span></div>
+                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->uang_muka)}}</span></div>
                     </div>
                 </div>
                 <div class="wcdiv" style="top:43.94pt;">
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Uang Muka</span></div>
+                                style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Sisa</span></div>
                     </div>
                     <div class="wcdiv" style="left:279.95pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
@@ -363,10 +363,10 @@
                     </div>
                     <div class="wcdiv" style="left:312.4pt; ">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
-                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($transaksi->uang_muka) }}</span></div>
+                                style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa - ($transaksi->diskon / 100 * $total_biaya_sewa)  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka)  }}</span></div>
                     </div>
                 </div>
-                <div class="wcdiv" style="top:54.93pt;">
+                {{-- <div class="wcdiv" style="top:54.93pt;">
                     <div class="wcdiv" style="left:185.4pt;">
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; left:60pt; top:0pt; line-height:10.99pt;">Sisa</span></div>
@@ -379,7 +379,7 @@
                         <div class="wcdiv" style="left:5.4pt;"><span class="wcspan wctext001"
                                 style="font-size:9pt; right:-87pt; top:0pt; line-height:10.99pt;">{{ formatRupiah($total_biaya_sewa - ($transaksi->diskon / 100 * $total_biaya_sewa)  + $transaksi->biaya_kirim_ambil - $transaksi->uang_muka) }}</span></div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="wcdiv" style="left:14.2pt; top:14.2pt;"><img class="wcimg"
