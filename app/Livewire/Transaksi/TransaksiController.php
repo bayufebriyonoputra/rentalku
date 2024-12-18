@@ -39,14 +39,21 @@ class TransaksiController extends Component
         $this->tanggal = Carbon::now()->format('Y-m-d');
         $this->tanggal_kirim = Carbon::now()->format('Y-m-d');
         $this->tanggal_ambil = Carbon::now()->format('Y-m-d');
+        $this->generateNota();
+        
+    }
+
+    public function generateNota() {
         $nota = $this->isPelanggan == true ? 'SP' : 'SU';
         $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
+
     }
+
+
 
     public function render()
     {
-        $nota = $this->isPelanggan == true ? 'SP' : 'SU';
-        $this->no_nota = $nota . now()->isoFormat('YYMM') . $this->getDataByCurrentMonth();
+       
 
         $transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
         // dd($transaksi->toArray());
@@ -128,7 +135,7 @@ class TransaksiController extends Component
             if ($this->isPelanggan) {
                 $data['pelanggan_id'] =  $this->pelangganId;
             } else {
-               $penyewa =  PenyewaUmum::where('no_nota', $this->no_nota)->first();
+                $penyewa =  PenyewaUmum::where('no_nota', $this->no_nota)->first();
             }
             Transaksi::where('no_nota', $this->no_nota)->update($data);
 
@@ -143,16 +150,19 @@ class TransaksiController extends Component
 
         session()->flash('success', 'Order Berhasil Dibuat');
         $this->resetFields();
+        $this->generateNota();
     }
 
     public function setIsPelanggan()
     {
         $this->isPelanggan = true;
+        $this->generateNota();
     }
 
     public function setIsPenyewaUmum()
     {
         $this->isPelanggan = false;
+        $this->generateNota();
     }
 
     private function resetFields()
