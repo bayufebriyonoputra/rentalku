@@ -84,6 +84,7 @@ class TransaksiController extends Component
     }
 
 
+
     public function store()
     {
 
@@ -117,6 +118,7 @@ class TransaksiController extends Component
                 'kota' => $this->kota
             ]);
         } else {
+
             $data = [
                 'tanggal' => $this->tanggal,
                 'tanggal_kirim' => $this->tanggal_kirim,
@@ -126,13 +128,7 @@ class TransaksiController extends Component
             if ($this->isPelanggan) {
                 $data['pelanggan_id'] =  $this->pelangganId;
             } else {
-                PenyewaUmum::where('no_nota', $this->no_nota)->update([
-                    'no_nota' => $this->no_nota,
-                    'nama' => $this->nama_umum,
-                    'alamat' => $this->alamat_umum,
-                    'no_telpon' => $this->no_telpon_umum,
-                    'kota' => $this->kota_umum
-                ]);
+               $penyewa =  PenyewaUmum::where('no_nota', $this->no_nota)->first();
             }
             Transaksi::where('no_nota', $this->no_nota)->update($data);
 
