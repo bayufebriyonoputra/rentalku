@@ -190,6 +190,12 @@
 
 
 
+    <div>
+        <p class="text-muted">Filter Tanggal Kirim</p>
+        <div class="col-md-6">
+            <input wire:model.live="filterTanggalKirim" type="date" class="mt-2 form-control"  id="filterTanggal">
+        </div>
+    </div>
 
     <div style="overflow-x: auto; margin-top: 80px">
         <table class="table table-striped mt-4 display nowrap" id="myTable" style="width: 100%;">
@@ -214,7 +220,7 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $t->no_nota }}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->tannggal)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
+                        <td>{{ \Carbon\Carbon::parse($t->tanggal)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
                         </td>
                         <td>{{ \Carbon\Carbon::parse($t->tanggal_kirim)->locale('id')->isoFormat(' D-MM-YYYY', 'dddd') }}
                         </td>

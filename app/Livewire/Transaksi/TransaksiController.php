@@ -30,6 +30,10 @@ class TransaksiController extends Component
     public $kota_umum = null;
 
     public $isEdit = false;
+    
+    public $filterTanggalKirim = null;
+
+    public $transaksi;
 
 
 
@@ -54,13 +58,16 @@ class TransaksiController extends Component
     public function render()
     {
        
-
-        $transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
-        // dd($transaksi->toArray());
+        if($this->filterTanggalKirim){
+            $this->transaksi = Transaksi::with(['pelanggan', 'atasNama'])->where('tanggal_kirim', $this->filterTanggalKirim)->get();
+            // dd($transaksi->toArray());
+        }else{
+            $this->transaksi = Transaksi::with(['pelanggan', 'atasNama'])->latest()->get();
+        }
 
         return view('livewire.transaksi.transaksi-controller', [
             'pelanggan' => Pelanggan::all(),
-            'transaksi' => Transaksi::with('pelanggan')->latest()->get()
+            
         ]);
     }
 
@@ -125,7 +132,7 @@ class TransaksiController extends Component
                 'kota' => $this->kota
             ]);
         } else {
-
+           
             $data = [
                 'tanggal' => $this->tanggal,
                 'tanggal_kirim' => $this->tanggal_kirim,
