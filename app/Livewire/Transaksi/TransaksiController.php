@@ -80,10 +80,12 @@ class TransaksiController extends Component
         $this->tanggal_ambil = $transaksi->tanggal_ambil;
         $this->no_nota = $transaksi->no_nota;
 
+
         if ($transaksi->pelanggan_id != null) {
             $this->isPelanggan = true;
         } else {
             $this->isPelanggan = false;
+          
             $penyewaUmum = PenyewaUmum::where('no_nota', $transaksi->no_nota)->first();
             $this->nama_umum = $penyewaUmum->nama;
             $this->alamat_umum = $penyewaUmum->alamat;
@@ -142,7 +144,13 @@ class TransaksiController extends Component
             if ($this->isPelanggan) {
                 $data['pelanggan_id'] =  $this->pelangganId;
             } else {
-                $penyewa =  PenyewaUmum::where('no_nota', $this->no_nota)->first();
+                PenyewaUmum::create([
+                    'no_nota' => $this->no_nota,
+                    'nama' => $this->nama_umum,
+                    'alamat' => $this->alamat_umum,
+                    'no_telpon' => $this->no_telpon_umum,
+                    'kota' => $this->kota_umum
+                ]);
             }
             Transaksi::where('no_nota', $this->no_nota)->update($data);
 
